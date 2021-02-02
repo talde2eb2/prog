@@ -38,7 +38,6 @@ public class mekaniko_menua extends JFrame {
 	 * Create the frame.
 	 */
 	public mekaniko_menua() {
-		
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 140);

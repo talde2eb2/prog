@@ -19,6 +19,7 @@ public class Faktura extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	protected static int Totala=0;
 	private JPanel contentPane;
 	private JTextField textField_1;
 	private JTextField textField_3;

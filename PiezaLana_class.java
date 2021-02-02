@@ -1,6 +1,12 @@
 package Erronka2;
 
-public abstract class PiezaLana_class {
+import java.io.Serializable;
+
+public abstract class PiezaLana_class implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected String Izena;
 	protected int Prezioa;
 	

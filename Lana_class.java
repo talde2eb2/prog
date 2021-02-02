@@ -1,6 +1,12 @@
 package Erronka2;
 
-public class Lana_class extends PiezaLana_class {
+import java.io.Serializable;
+
+public class Lana_class extends PiezaLana_class implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected String Langile;
 	
  Lana_class(){

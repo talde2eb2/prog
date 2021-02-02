@@ -69,6 +69,21 @@ public class registro1 extends JFrame implements Serializable {
 		}catch(IOException | ClassNotFoundException ioe) {
 			
 		}	
+		try {
+			FileInputStream fis = new FileInputStream ("Autoa.txt");
+			ObjectInputStream ois=new ObjectInputStream(fis);
+			Object o = (autoa_class)ois.readObject();
+			autoaarrayr.add((autoa_class) o);
+			while(o != null) {
+				 o = (autoa_class)ois.readObject();
+				 autoaarrayr.add((autoa_class) o);
+			}
+			
+			ois.close();
+
+		}catch(IOException | ClassNotFoundException ioe) {
+			
+		}	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 540, 420);
 		contentPane = new JPanel();

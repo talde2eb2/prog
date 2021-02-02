@@ -90,6 +90,7 @@ public class bezero_sortu extends JFrame implements Serializable {
 		}catch(IOException | ClassNotFoundException ioe) {
 			
 		}	
+		System.out.print(bezeroarray.size());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 376, 300);
 		contentPane = new JPanel();

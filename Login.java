@@ -1,4 +1,4 @@
- package Erronka2;
+package Erronka2;
 
 import java.awt.EventQueue;
 
@@ -46,8 +46,6 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
-		//
-		
 		try {
 			FileInputStream fis = new FileInputStream ("Langileak.txt");
 			ObjectInputStream ois=new ObjectInputStream(fis);
@@ -74,6 +72,7 @@ public class Login extends JFrame {
 		
 		JButton btnNewButton = new JButton("Sartu");
 		btnNewButton.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				//erabiltzaile_berria.langileaarray
 				for(int i=0;i<erabiltzaile_berria.langileaarray.size();i++) {
@@ -128,9 +127,4 @@ public class Login extends JFrame {
 		panel.setBounds(45, 11, 356, 107);
 		contentPane.add(panel);
 	}
-
-	
-	
-
-
 }
