@@ -8,18 +8,15 @@ import javax.swing.border.EmptyBorder;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
-
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.JComboBox;
 
 public class autoa_sortu extends JFrame {
@@ -39,15 +36,11 @@ public class autoa_sortu extends JFrame {
 	private JLabel Label_modeloa;
 	private JLabel Label_matrikula;
 	private JLabel Label_bezeroa;
-	private JComboBox<String> comboBox;
-	private JButton btn_itzuli;
-	private JButton btn_gorde;
+	private JComboBox comboBox;
 	private boolean matrikulakomp=false;
 	protected static ArrayList<autoa_class> autoaarray = new ArrayList<autoa_class>();
 	protected static DefaultListModel<String> dlm_Nan= new DefaultListModel<String>();
 
-	protected static ArrayList<bezero_class> bezeroarray = new ArrayList<bezero_class>();
-	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -65,35 +58,7 @@ public class autoa_sortu extends JFrame {
 	 * Create the frame.
 	 */
 	public autoa_sortu() {
-		try {
-			FileInputStream fis = new FileInputStream ("Bezeroa.txt");
-			ObjectInputStream ois=new ObjectInputStream(fis);
-			Object o = (bezero_class)ois.readObject();
-			bezeroarray.add((bezero_class) o);
-			while(o != null) {
-				 o = (bezero_class)ois.readObject();
-				 bezeroarray.add((bezero_class) o);
-			}
-			
-			ois.close();
-
-		}catch(IOException | ClassNotFoundException ioe) {
-			
-		}	
-		try {
-			FileInputStream fis = new FileInputStream ("Autoa.txt");
-			ObjectInputStream ois=new ObjectInputStream(fis);
-			Object o = (autoa_class)ois.readObject();
-			autoaarray.add((autoa_class) o);
-			while(o != null) {
-				 o = (autoa_class)ois.readObject();
-					autoaarray.add((autoa_class) o);
-			}
-			ois.close();
-
-		}catch(IOException | ClassNotFoundException ioe) {
-			
-		}	
+		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 370, 308);
 		contentPane = new JPanel();
@@ -133,7 +98,7 @@ public class autoa_sortu extends JFrame {
 		Label_bezeroa.setBounds(10, 129, 140, 14);
 		contentPane.add(Label_bezeroa);
 		
-		btn_gorde = new JButton("Gorde");
+		JButton btn_gorde = new JButton("Gorde");
 		btn_gorde.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -152,17 +117,7 @@ public class autoa_sortu extends JFrame {
 										
 										autoa_class autoa =new autoa_class(Marka_testua.getText(),Modeloa_testua.getText(),Matrikula_testua.getText(),comboBox.getSelectedItem().toString());
 										autoaarray.add(autoa);
-										try {
-											FileOutputStream fos = new FileOutputStream ("Autoa.txt");
-											ObjectOutputStream oos=new ObjectOutputStream(fos);
-											for(int a=0;a<autoaarray.size();a++) {
-												oos.writeObject(autoaarray.get(a));
-											}
-											oos.close();
-
-										}catch(IOException ioe) {
-											
-										}
+										System.out.println(autoaarray);
 										registro1 frame = new registro1();
 										frame.setVisible(true);
 										dispose();	
@@ -184,20 +139,20 @@ public class autoa_sortu extends JFrame {
 		btn_gorde.setBounds(248, 30, 90, 35);
 		contentPane.add(btn_gorde);
 		
-		btn_itzuli = new JButton("Itzuli");
-		btn_itzuli.addActionListener(new ActionListener() {
+		JButton btnNewButton = new JButton("Itzuli");
+		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				registro1 frame = new registro1();
 				frame.setVisible(true);
 				dispose();
 			}
 		});
-		btn_itzuli.setBounds(248, 154, 90, 35);
-		contentPane.add(btn_itzuli);
+		btnNewButton.setBounds(248, 154, 90, 35);
+		contentPane.add(btnNewButton);
 		
-	    comboBox = new JComboBox<String>();
-		for(int i=0;bezeroarray.size()>i;i++) {
-			comboBox.addItem(bezeroarray.get(i).getNan());
+	    comboBox = new JComboBox();
+		for(int i=0;bezero_sortu.bezeroarray.size()>i;i++) {
+			comboBox.addItem(bezero_sortu.bezeroarray.get(i).getNan());
 		
 		}
 		comboBox.setBounds(10, 154, 161, 35);
