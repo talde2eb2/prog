@@ -1,6 +1,8 @@
 package Erronka2;
 
-public class langilea_class extends pertsona_class {
+import java.io.Serializable;
+
+public class langilea_class extends pertsona_class implements Serializable {
 
 	/**
 	 * 

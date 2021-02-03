@@ -115,6 +115,8 @@ public class erabiltzaile_berria extends JFrame {
 					if (birpaza==0) {
 								langilea_class langilea= new langilea_class(Izena_testua.getText(),Abizena_testua.getText(),Dokumentazio_testua.getText(),Erabiltzaile_testua.getText(),Pasahitza1_testua.getText(),Mota_box.getSelectedItem().toString());
 								langileaarray.add(langilea);
+								Fitxategi_class langile = new Fitxategi_class();
+								langile.gordeLangileak(erabiltzaile_berria.langileaarray);
 								admin frame = new admin();
 								frame.setVisible(true);
 								dispose();
