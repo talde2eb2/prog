@@ -23,6 +23,7 @@ public class Login extends JFrame {
 	private JPasswordField passwordField;
 	private JTextField textField;
 	private Fitxategi_class f;
+	public static String erabiltzailemota="";
 
 	/**
 	 * Launch the application.
@@ -61,7 +62,10 @@ public class Login extends JFrame {
 				//erabiltzaile_berria.langileaarray
 				for(int i=0;i<erabiltzaile_berria.langileaarray.size();i++) {
 					if(textField.getText().equals(erabiltzaile_berria.langileaarray.get(i).getErabiltzailea())&&(passwordField.getText().equals(erabiltzaile_berria.langileaarray.get(i).getPasahitza()))){
-					
+						erabiltzailemota=erabiltzaile_berria.langileaarray.get(i).getMota();
+						
+						
+						
 						if(erabiltzaile_berria.langileaarray.get(i).getMota().equals("admin")) {
 							menu frame = new menu();
 							frame.setVisible(true);
