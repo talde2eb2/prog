@@ -1,23 +1,16 @@
 package Erronka2;
 
 import java.awt.EventQueue;
-import java.awt.Image;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.awt.event.ActionEvent;
 
 public class Login extends JFrame {
@@ -29,8 +22,7 @@ public class Login extends JFrame {
 	private JPanel contentPane;
 	private JPasswordField passwordField;
 	private JTextField textField;
-	private JLabel logoa;
-	public static String erabiltzailemota="";
+	private Fitxategi_class f;
 
 	/**
 	 * Launch the application.
@@ -52,22 +44,8 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
-		try {
-			FileInputStream fis = new FileInputStream ("Langileak.txt");
-			ObjectInputStream ois=new ObjectInputStream(fis);
-			Object o = (langilea_class)ois.readObject();
-			erabiltzaile_berria.langileaarray.add((langilea_class) o);
-			while(o != null) {
-				 o = (langilea_class)ois.readObject();
-				 erabiltzaile_berria.langileaarray.add((langilea_class) o);
-			}
-			
-			ois.close();
-
-		}catch(IOException | ClassNotFoundException ioe) {
-			
-		}	
-		
+		f = new Fitxategi_class();
+		f.kargatuLangilea(erabiltzaile_berria.langileaarray);
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -84,8 +62,6 @@ public class Login extends JFrame {
 				for(int i=0;i<erabiltzaile_berria.langileaarray.size();i++) {
 					if(textField.getText().equals(erabiltzaile_berria.langileaarray.get(i).getErabiltzailea())&&(passwordField.getText().equals(erabiltzaile_berria.langileaarray.get(i).getPasahitza()))){
 					
-						erabiltzailemota=erabiltzaile_berria.langileaarray.get(i).getMota();
-						
 						if(erabiltzaile_berria.langileaarray.get(i).getMota().equals("admin")) {
 							menu frame = new menu();
 							frame.setVisible(true);
@@ -131,21 +107,8 @@ public class Login extends JFrame {
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		
-		
-		
-		JLabel logoa = new JLabel();
-		File sourceimage = new File("fotos/logoRA_psd.png");
-		Image image;
-		try {
-		image = ImageIO.read(sourceimage);
-		logoa = new JLabel(new ImageIcon(image));
-		} catch (IOException e1) {
-		logoa.setVisible(false);
-		}
-		logoa.setBounds(0, 26, 450, 94);
-		contentPane.add(logoa);
-		
-		
+		JPanel panel = new JPanel();
+		panel.setBounds(45, 11, 356, 107);
+		contentPane.add(panel);
 	}
 }

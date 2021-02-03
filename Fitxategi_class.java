@@ -49,6 +49,23 @@ public class Fitxategi_class implements Serializable{
 			e.printStackTrace();
 		}
 	}
+	void gordeLangileak(ArrayList<langilea_class> langileaarray) {
+		FileOutputStream fos = null;
+		ObjectOutputStream oos=null;
+		try {
+			fos = new FileOutputStream ("Langileak.txt");
+			oos=new ObjectOutputStream(fos);
+			for(int b=0;b<erabiltzaile_berria.langileaarray.size();b++) {
+				oos.writeObject(erabiltzaile_berria.langileaarray.get(b));
+			}
+			}catch(IOException e) {
+			}	
+		try {
+			oos.close();
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	void kargatuAutoa(ArrayList <autoa_class> autoaarray) {
 		FileInputStream fis = null;
@@ -79,6 +96,23 @@ public class Fitxategi_class implements Serializable{
 			while(obj != null) {
 				obj = (bezero_class)ois.readObject();
 				bezeroarray.add((bezero_class) obj);
+			}
+			ois.close();
+			}catch(IOException | ClassNotFoundException ioe) {
+		}	
+	}
+	void kargatuLangilea(ArrayList<langilea_class> langileaarray) {
+		FileInputStream fis = null;
+		ObjectInputStream ois = null;
+		Object obj = null;
+		try {
+			fis = new FileInputStream ("Langileak.txt");
+			ois=new ObjectInputStream(fis);
+			obj = (langilea_class)ois.readObject();
+			langileaarray.add((langilea_class) obj);
+			while(obj != null) {
+				obj = (langilea_class)ois.readObject();
+				langileaarray.add((langilea_class) obj);
 			}
 			ois.close();
 			}catch(IOException | ClassNotFoundException ioe) {
