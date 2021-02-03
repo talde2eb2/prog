@@ -142,6 +142,7 @@ public class erabiltzaile_berria extends JFrame {
 		Mota_box = new JComboBox<String>();
 		Mota_box.addItem("Mekanikaria");
 		Mota_box.addItem("Harrera");
+		Mota_box.addItem("admin");
 		Mota_box.setBounds(139, 154, 158, 20);
 		contentPane.add(Mota_box);
 		

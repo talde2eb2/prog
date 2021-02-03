@@ -1,16 +1,20 @@
 package Erronka2;
 
 import java.awt.EventQueue;
+import java.awt.Image;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -25,6 +29,8 @@ public class Login extends JFrame {
 	private JPanel contentPane;
 	private JPasswordField passwordField;
 	private JTextField textField;
+	private JLabel logoa;
+	public static String erabiltzailemota="";
 
 	/**
 	 * Launch the application.
@@ -78,6 +84,8 @@ public class Login extends JFrame {
 				for(int i=0;i<erabiltzaile_berria.langileaarray.size();i++) {
 					if(textField.getText().equals(erabiltzaile_berria.langileaarray.get(i).getErabiltzailea())&&(passwordField.getText().equals(erabiltzaile_berria.langileaarray.get(i).getPasahitza()))){
 					
+						erabiltzailemota=erabiltzaile_berria.langileaarray.get(i).getMota();
+						
 						if(erabiltzaile_berria.langileaarray.get(i).getMota().equals("admin")) {
 							menu frame = new menu();
 							frame.setVisible(true);
@@ -123,8 +131,21 @@ public class Login extends JFrame {
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(45, 11, 356, 107);
-		contentPane.add(panel);
+		
+		
+		
+		JLabel logoa = new JLabel();
+		File sourceimage = new File("../fotos/logoRA_psd.png");
+		Image image;
+		try {
+		image = ImageIO.read(sourceimage);
+		logoa = new JLabel(new ImageIcon(image));
+		} catch (IOException e1) {
+		logoa.setVisible(false);
+		}
+		logoa.setBounds(116, 26, 226, 94);
+		contentPane.add(logoa);
+		
+		
 	}
 }
