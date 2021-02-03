@@ -10,9 +10,6 @@ import javax.swing.JList;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.awt.event.ActionEvent;
 
 public class admin extends JFrame {
@@ -98,17 +95,8 @@ public class admin extends JFrame {
 		btn_atzera = new JButton("Itzuli");
 		btn_atzera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					FileOutputStream fos = new FileOutputStream ("Langileak.txt");
-					ObjectOutputStream oos=new ObjectOutputStream(fos);
-					for(int b=0;b<erabiltzaile_berria.langileaarray.size();b++) {
-						oos.writeObject(erabiltzaile_berria.langileaarray.get(b));
-					}
-					oos.close();
-
-				}catch(IOException ioe) {
-					
-				}
+				Fitxategi_class langile = new Fitxategi_class();
+				langile.gordeLangileak(erabiltzaile_berria.langileaarray);
 				menu frame = new menu();
 				frame.setVisible(true);
 				dispose();
