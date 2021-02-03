@@ -1,16 +1,21 @@
 package Erronka2;
 
 import java.awt.EventQueue;
+import java.awt.Image;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 public class Login extends JFrame {
@@ -23,6 +28,7 @@ public class Login extends JFrame {
 	private JPasswordField passwordField;
 	private JTextField textField;
 	private Fitxategi_class f;
+	public static String erabiltzailemota="";
 
 	/**
 	 * Launch the application.
@@ -61,8 +67,11 @@ public class Login extends JFrame {
 				//erabiltzaile_berria.langileaarray
 				for(int i=0;i<erabiltzaile_berria.langileaarray.size();i++) {
 					if(textField.getText().equals(erabiltzaile_berria.langileaarray.get(i).getErabiltzailea())&&(passwordField.getText().equals(erabiltzaile_berria.langileaarray.get(i).getPasahitza()))){
-					
-						if(erabiltzaile_berria.langileaarray.get(i).getMota().equals("admin")) {
+						erabiltzailemota=erabiltzaile_berria.langileaarray.get(i).getMota();
+						
+						
+						
+						if(erabiltzaile_berria.langileaarray.get(i).getMota().equals("Admin")) {
 							menu frame = new menu();
 							frame.setVisible(true);
 							dispose();
@@ -106,9 +115,18 @@ public class Login extends JFrame {
 		textField.setBounds(168, 131, 174, 24);
 		contentPane.add(textField);
 		textField.setColumns(10);
+
+		JLabel logoa = new JLabel();
+		File sourceimage = new File("fotos/logoRA_psd.png");
+		Image image;
+		try {
+		image = ImageIO.read(sourceimage);
+		logoa = new JLabel(new ImageIcon(image));
+		} catch (IOException e1) {
+		logoa.setVisible(false);
+		}
+		logoa.setBounds(0, 26, 450, 94);
+		contentPane.add(logoa);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(45, 11, 356, 107);
-		contentPane.add(panel);
 	}
 }
