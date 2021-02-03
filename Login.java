@@ -68,10 +68,9 @@ public class Login extends JFrame {
 				for(int i=0;i<erabiltzaile_berria.langileaarray.size();i++) {
 					if(textField.getText().equals(erabiltzaile_berria.langileaarray.get(i).getErabiltzailea())&&(passwordField.getText().equals(erabiltzaile_berria.langileaarray.get(i).getPasahitza()))){
 						erabiltzailemota=erabiltzaile_berria.langileaarray.get(i).getMota();
-						
-						
-						
+		
 						if(erabiltzaile_berria.langileaarray.get(i).getMota().equals("Admin")) {
+
 							menu frame = new menu();
 							frame.setVisible(true);
 							dispose();
