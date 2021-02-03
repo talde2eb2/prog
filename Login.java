@@ -135,7 +135,7 @@ public class Login extends JFrame {
 		
 		
 		JLabel logoa = new JLabel();
-		File sourceimage = new File("../fotos/logoRA_psd.png");
+		File sourceimage = new File("fotos/logoRA_psd.png");
 		Image image;
 		try {
 		image = ImageIO.read(sourceimage);
@@ -143,7 +143,7 @@ public class Login extends JFrame {
 		} catch (IOException e1) {
 		logoa.setVisible(false);
 		}
-		logoa.setBounds(116, 26, 226, 94);
+		logoa.setBounds(0, 26, 450, 94);
 		contentPane.add(logoa);
 		
 		
