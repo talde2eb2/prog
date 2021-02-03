@@ -3,11 +3,6 @@ package Erronka2;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -50,6 +45,7 @@ public class bezero_sortu extends JFrame implements Serializable {
 	private JLabel Label_telefonoa;
 	private JLabel Label_helbidea;
 	private JButton btn_gorde;
+	private Fitxategi_class f;
 
 
 	protected static ArrayList<bezero_class> bezeroarray = new ArrayList<bezero_class>();
@@ -74,23 +70,9 @@ public class bezero_sortu extends JFrame implements Serializable {
 	 * Create the frame.
 	 */
 	public bezero_sortu() {
+		f = new Fitxategi_class();
+		f.kargatuBezeroa(bezeroarray);
 		setUndecorated(true);
-		try {
-			FileInputStream fis = new FileInputStream ("Bezeroa.txt");
-			ObjectInputStream ois=new ObjectInputStream(fis);
-			Object o = (bezero_class)ois.readObject();
-			bezeroarray.add((bezero_class) o);
-			while(o != null) {
-				 o = (bezero_class)ois.readObject();
-				 bezeroarray.add((bezero_class) o);
-			}
-			
-			ois.close();
-
-		}catch(IOException | ClassNotFoundException ioe) {
-			
-		}	
-		System.out.print(bezeroarray.size());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 376, 300);
 		contentPane = new JPanel();
@@ -108,17 +90,8 @@ public class bezero_sortu extends JFrame implements Serializable {
 						if (birpaza==0) {
 								bezero_class bezeroa = new bezero_class(Izena_testua.getText(),Abizena_testua.getText(),Nan_testua.getText(),Integer.parseInt(Telefono_testua.getText()),Helbide_testua.getText(),Email_testua.getText());
 								bezeroarray.add(bezeroa);
-								try {
-									FileOutputStream fos = new FileOutputStream ("Bezeroa.txt");
-									ObjectOutputStream oos=new ObjectOutputStream(fos);
-									for(int b=0;b<bezeroarray.size();b++) {
-										oos.writeObject(bezeroarray.get(b));
-									}
-									oos.close();
-
-								}catch(IOException ioe) {
-									
-								}
+								Fitxategi_class bezero = new Fitxategi_class();
+								bezero.gordeBezeroa(bezeroarray);
 								registro1 frame = new registro1();
 								frame.setVisible(true);
 								dispose();	
