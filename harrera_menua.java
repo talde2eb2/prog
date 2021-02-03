@@ -60,7 +60,16 @@ public class harrera_menua extends JFrame {
 		JButton btn_itxi = new JButton("Itxi");
 		btn_itxi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				
+				
+				if(Login.erabiltzailemota.equals("admin")) {
+					menu frame = new menu();
+					frame.setVisible(true);
+					dispose();
+				}
+				if(Login.erabiltzailemota.equals("Harrera")) {
+					System.exit(0);
+				}
 			}
 		});
 		btn_itxi.setBounds(420, 49, 119, 35);
@@ -77,7 +86,7 @@ public class harrera_menua extends JFrame {
 		btn_faktura.setBounds(185, 49, 165, 35);
 		contentPane.add(btn_faktura);
 		
-		JLabel Label_izena = new JLabel("Kaixo \u201CErabiltzailearen izena\u201D");
+		JLabel Label_izena = new JLabel("Kaixo");
 		Label_izena.setBounds(10, 11, 285, 27);
 		contentPane.add(Label_izena);
 	}

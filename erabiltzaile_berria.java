@@ -40,9 +40,8 @@ public class erabiltzaile_berria extends JFrame {
 	private JTextField Pasahitza1_testua;
 	private JTextField Pasahitza2_testua;
 	private JButton btnNewButton;
-	private JComboBox Mota_box;
+	private JComboBox<String> Mota_box;
 	protected static ArrayList<langilea_class> langileaarray = new ArrayList<langilea_class>();
-	protected static ArrayList<langilea_class> langileaarrayr = new ArrayList<langilea_class>();
 	private boolean nankomp=false;
 	
 	/**
@@ -105,6 +104,9 @@ public class erabiltzaile_berria extends JFrame {
 					
 					
 				}
+			
+				
+				
 				
 				if(nankomp==false&&Erabiltzaile_testua.getText().length()>0 && Izena_testua.getText().length()>0 && Abizena_testua.getText().length()>0 && Dokumentazio_testua.getText().length()>0 && Pasahitza1_testua.getText().length()>0 && Pasahitza2_testua.getText().length()>0 && Pasahitza1_testua.getText().equals(Pasahitza2_testua.getText())&& KonprobatzaileaDokumentazioa()==true) {
 					int birpaza = JOptionPane.showConfirmDialog(null, (String)"Sartu dituzu datu guztiak ondo?","Leiho aldaketa",
@@ -113,9 +115,6 @@ public class erabiltzaile_berria extends JFrame {
 					if (birpaza==0) {
 				langilea_class langilea= new langilea_class(Izena_testua.getText(),Abizena_testua.getText(),Dokumentazio_testua.getText(),Erabiltzaile_testua.getText(),Pasahitza1_testua.getText(),Mota_box.getSelectedItem().toString());
 				langileaarray.add(langilea);
-				
-				langilea_class langilear= new langilea_class(Izena_testua.getText(),Abizena_testua.getText(),Dokumentazio_testua.getText(),Erabiltzaile_testua.getText(),Pasahitza1_testua.getText(),Mota_box.getSelectedItem().toString());
-				langileaarrayr.add(langilear);
 				
 								admin frame = new admin();
 								frame.setVisible(true);
@@ -140,7 +139,7 @@ public class erabiltzaile_berria extends JFrame {
 		Label_mota.setBounds(10, 157, 119, 14);
 		contentPane.add(Label_mota);
 		
-		Mota_box = new JComboBox();
+		Mota_box = new JComboBox<String>();
 		Mota_box.addItem("Mekanikaria");
 		Mota_box.addItem("Harrera");
 		Mota_box.addItem("admin");

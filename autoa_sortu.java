@@ -60,8 +60,10 @@ public class autoa_sortu extends JFrame {
 	 * Create the frame.
 	 */
 	public autoa_sortu() {
+
 		f = new Fitxategi_class();
 		f.kargatuAutoa(autoaarray);
+
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 370, 308);

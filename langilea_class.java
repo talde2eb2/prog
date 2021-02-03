@@ -1,9 +1,11 @@
 package Erronka2;
 
-import java.io.Serializable;
+public class langilea_class extends pertsona_class {
 
-public class langilea_class extends pertsona_class  implements Serializable{
-
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected String erabiltzailea;
 	protected String pasahitza;
 	protected String mota;
