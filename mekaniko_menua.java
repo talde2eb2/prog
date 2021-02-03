@@ -60,15 +60,7 @@ public class mekaniko_menua extends JFrame {
 		JButton btnNewButton_1 = new JButton("Itxi");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				if(Login.erabiltzailemota.equals("admin")) {
-					menu frame = new menu();
-					frame.setVisible(true);
-					dispose();
-				}
-				if(Login.erabiltzailemota.equals("Mekanikaria")) {
-					System.exit(0);
-				}
+				System.exit(0);
 			}
 		});
 		btnNewButton_1.setBounds(280, 47, 144, 35);

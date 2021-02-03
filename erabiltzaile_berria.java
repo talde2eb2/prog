@@ -113,9 +113,8 @@ public class erabiltzaile_berria extends JFrame {
 					JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,null);
 						try {
 					if (birpaza==0) {
-				langilea_class langilea= new langilea_class(Izena_testua.getText(),Abizena_testua.getText(),Dokumentazio_testua.getText(),Erabiltzaile_testua.getText(),Pasahitza1_testua.getText(),Mota_box.getSelectedItem().toString());
-				langileaarray.add(langilea);
-				
+								langilea_class langilea= new langilea_class(Izena_testua.getText(),Abizena_testua.getText(),Dokumentazio_testua.getText(),Erabiltzaile_testua.getText(),Pasahitza1_testua.getText(),Mota_box.getSelectedItem().toString());
+								langileaarray.add(langilea);
 								admin frame = new admin();
 								frame.setVisible(true);
 								dispose();
@@ -142,7 +141,7 @@ public class erabiltzaile_berria extends JFrame {
 		Mota_box = new JComboBox<String>();
 		Mota_box.addItem("Mekanikaria");
 		Mota_box.addItem("Harrera");
-		Mota_box.addItem("admin");
+		Mota_box.addItem("Admin");
 		Mota_box.setBounds(139, 154, 158, 20);
 		contentPane.add(Mota_box);
 		
