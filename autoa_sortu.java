@@ -12,11 +12,6 @@ import javax.swing.JOptionPane;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
@@ -45,8 +40,8 @@ public class autoa_sortu extends JFrame {
 	private boolean matrikulakomp=false;
 	protected static ArrayList<autoa_class> autoaarray = new ArrayList<autoa_class>();
 	protected static DefaultListModel<String> dlm_Nan= new DefaultListModel<String>();
-
 	protected static ArrayList<bezero_class> bezeroarray = new ArrayList<bezero_class>();
+	private Fitxategi_class f;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -65,35 +60,9 @@ public class autoa_sortu extends JFrame {
 	 * Create the frame.
 	 */
 	public autoa_sortu() {
-		try {
-			FileInputStream fis = new FileInputStream ("Bezeroa.txt");
-			ObjectInputStream ois=new ObjectInputStream(fis);
-			Object o = (bezero_class)ois.readObject();
-			bezeroarray.add((bezero_class) o);
-			while(o != null) {
-				 o = (bezero_class)ois.readObject();
-				 bezeroarray.add((bezero_class) o);
-			}
-			
-			ois.close();
-
-		}catch(IOException | ClassNotFoundException ioe) {
-			
-		}	
-		try {
-			FileInputStream fis = new FileInputStream ("Autoa.txt");
-			ObjectInputStream ois=new ObjectInputStream(fis);
-			Object o = (autoa_class)ois.readObject();
-			autoaarray.add((autoa_class) o);
-			while(o != null) {
-				 o = (autoa_class)ois.readObject();
-					autoaarray.add((autoa_class) o);
-			}
-			ois.close();
-
-		}catch(IOException | ClassNotFoundException ioe) {
-			
-		}	
+		f = new Fitxategi_class();
+		f.kargatuAutoa(autoaarray);
+		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 370, 308);
 		contentPane = new JPanel();
@@ -152,21 +121,12 @@ public class autoa_sortu extends JFrame {
 										
 										autoa_class autoa =new autoa_class(Marka_testua.getText(),Modeloa_testua.getText(),Matrikula_testua.getText(),comboBox.getSelectedItem().toString());
 										autoaarray.add(autoa);
-										try {
-											FileOutputStream fos = new FileOutputStream ("Autoa.txt");
-											ObjectOutputStream oos=new ObjectOutputStream(fos);
-											for(int a=0;a<autoaarray.size();a++) {
-												oos.writeObject(autoaarray.get(a));
-											}
-											oos.close();
-
-										}catch(IOException ioe) {
-											
-										}
+										Fitxategi_class auto = new Fitxategi_class();
+										auto.gordeAutoa(autoaarray);
 										registro1 frame = new registro1();
 										frame.setVisible(true);
 										dispose();	
-										System.out.println(autoa.bezero);
+										
 								}
 							}	
 						else {
