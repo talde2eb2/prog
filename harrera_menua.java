@@ -60,7 +60,14 @@ public class harrera_menua extends JFrame {
 		JButton btn_itxi = new JButton("Itxi");
 		btn_itxi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				if(Login.erabiltzailemota.equals("Admin")) {
+					menu frame = new menu();
+					frame.setVisible(true);
+					dispose();
+				}
+				if(Login.erabiltzailemota.equals("Harrera")) {
+					System.exit(0);
+				}
 			}
 		});
 		btn_itxi.setBounds(420, 49, 119, 35);

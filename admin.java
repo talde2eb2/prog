@@ -95,8 +95,6 @@ public class admin extends JFrame {
 		btn_atzera = new JButton("Itzuli");
 		btn_atzera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Fitxategi_class langile = new Fitxategi_class();
-				langile.gordeLangileak(erabiltzaile_berria.langileaarray);
 				menu frame = new menu();
 				frame.setVisible(true);
 				dispose();

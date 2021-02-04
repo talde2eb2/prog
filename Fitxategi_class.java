@@ -55,8 +55,8 @@ public class Fitxategi_class implements Serializable{
 		try {
 			fos = new FileOutputStream ("Langileak.txt");
 			oos=new ObjectOutputStream(fos);
-			for(int b=0;b<erabiltzaile_berria.langileaarray.size();b++) {
-				oos.writeObject(erabiltzaile_berria.langileaarray.get(b));
+			for(int b=0;b<langileaarray.size();b++) {
+				oos.writeObject(langileaarray.get(b));
 			}
 			}catch(IOException e) {
 			}	
