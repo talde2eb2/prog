@@ -52,7 +52,6 @@ public class Login extends JFrame {
 	public Login() {
 		f = new Fitxategi_class();
 		f.kargatuLangilea(erabiltzaile_berria.langileaarray);
-		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -68,8 +67,6 @@ public class Login extends JFrame {
 				for(int i=0;i<erabiltzaile_berria.langileaarray.size();i++) {
 					if(textField.getText().equals(erabiltzaile_berria.langileaarray.get(i).getErabiltzailea())&&(passwordField.getText().equals(erabiltzaile_berria.langileaarray.get(i).getPasahitza()))){
 						erabiltzailemota=erabiltzaile_berria.langileaarray.get(i).getMota();
-						
-						
 						
 						if(erabiltzaile_berria.langileaarray.get(i).getMota().equals("Admin")) {
 							menu frame = new menu();
