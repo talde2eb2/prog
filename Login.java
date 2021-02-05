@@ -67,32 +67,41 @@ public class Login extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				//erabiltzaile_berria.langileaarray
 				for(int i=0;i<erabiltzaile_berria.langileaarray.size();i++) {
-					if(textField.getText().equals(erabiltzaile_berria.langileaarray.get(i).getErabiltzailea())&&(passwordField.getText().equals(erabiltzaile_berria.langileaarray.get(i).getPasahitza()))){
-						erabiltzailemota=erabiltzaile_berria.langileaarray.get(i).getMota();
-						
-						if(erabiltzaile_berria.langileaarray.get(i).getMota().equals("Admin")) {
-							menu frame = new menu();
-							frame.setVisible(true);
-							dispose();
-						} 
-						if(erabiltzaile_berria.langileaarray.get(i).getMota().equals("Harrera")) {
-							harrera_menua frame = new harrera_menua();
-							frame.setVisible(true);
-							dispose();
-						}
-						if(erabiltzaile_berria.langileaarray.get(i).getMota().equals("Mekanikaria")) {
-							mekaniko_menua frame = new mekaniko_menua();
-							frame.setVisible(true);
-							dispose();
-						}
-					}
-					
-					else {
-							JOptionPane.showMessageDialog(null,(String)"txarto dago","Pasahitza edo erabiltzailea txarto dago",
+					if (erabiltzaile_berria.langileaarray.get(i).getErabiltzailea().toLowerCase().equals(textField.getText())) {
+						if (erabiltzaile_berria.langileaarray.get(i).getPasahitza().equals(new String(passwordField.getPassword()))) {
+							if (erabiltzaile_berria.langileaarray.get(i).getMota().equals("Admin")) {
+								menu frame = new menu();
+								frame.setVisible(true);
+								dispose();
+								erabiltzailemota=erabiltzaile_berria.langileaarray.get(i).getMota();
+							} else if (erabiltzaile_berria.langileaarray.get(i).getMota().equals("Harrera")) {
+								harrera_menua frame = new harrera_menua();
+								frame.setVisible(true);
+								dispose();
+								erabiltzailemota=erabiltzaile_berria.langileaarray.get(i).getMota();
+							} else if (erabiltzaile_berria.langileaarray.get(i).getMota().equals("Mekanikaria")) {
+								mekaniko_menua frame = new mekaniko_menua();
+								frame.setVisible(true);
+								dispose();
+								erabiltzailemota=erabiltzaile_berria.langileaarray.get(i).getMota();
+							}
+							break;
+
+						} else {
+							JOptionPane.showMessageDialog(null,(String)"Pasahitza txarra","Txarto dago",
 									JOptionPane.INFORMATION_MESSAGE,null);
+							break;
+						}
 						
+					} else {
+						
+						if ((erabiltzaile_berria.langileaarray.size())-1 == i) {
+							JOptionPane.showMessageDialog(null,(String)"Erabiltzailea ez da egokia","Txarto dago",
+									JOptionPane.INFORMATION_MESSAGE,null);
+						}
 					}
-				} 
+				}
+
 			}
 		});
 		btn_sartu.setBounds(323, 205, 90, 35);
@@ -100,36 +109,46 @@ public class Login extends JFrame {
 		
 		passwordField = new JPasswordField();
 		passwordField.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("deprecation")
 			@Override
 			public void keyPressed(KeyEvent e) {
-				 if(e.getKeyCode()==KeyEvent.VK_ENTER){
-					 for(int i=0;i<erabiltzaile_berria.langileaarray.size();i++) {
-							if(textField.getText().equals(erabiltzaile_berria.langileaarray.get(i).getErabiltzailea())&&(passwordField.getText().equals(erabiltzaile_berria.langileaarray.get(i).getPasahitza()))){
-								erabiltzailemota=erabiltzaile_berria.langileaarray.get(i).getMota();
-								
-							if(erabiltzaile_berria.langileaarray.get(i).getMota().equals("Admin")) {
-								menu frame = new menu();
-								frame.setVisible(true);
-								dispose();
-							} 
-							if(erabiltzaile_berria.langileaarray.get(i).getMota().equals("Harrera")) {
-								harrera_menua frame = new harrera_menua();
-								frame.setVisible(true);
-								dispose();
+				if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+					//erabiltzaile_berria.langileaarray
+					for(int i=0;i<erabiltzaile_berria.langileaarray.size();i++) {
+						if (erabiltzaile_berria.langileaarray.get(i).getErabiltzailea().toLowerCase().equals(textField.getText())) {
+							if (erabiltzaile_berria.langileaarray.get(i).getPasahitza().equals(new String(passwordField.getPassword()))) {
+								if (erabiltzaile_berria.langileaarray.get(i).getMota().equals("Admin")) {
+									menu frame = new menu();
+									frame.setVisible(true);
+									dispose();
+									erabiltzailemota=erabiltzaile_berria.langileaarray.get(i).getMota();
+								} else if (erabiltzaile_berria.langileaarray.get(i).getMota().equals("Harrera")) {
+									harrera_menua frame = new harrera_menua();
+									frame.setVisible(true);
+									dispose();
+									erabiltzailemota=erabiltzaile_berria.langileaarray.get(i).getMota();
+								} else if (erabiltzaile_berria.langileaarray.get(i).getMota().equals("Mekanikaria")) {
+									mekaniko_menua frame = new mekaniko_menua();
+									frame.setVisible(true);
+									dispose();
+									erabiltzailemota=erabiltzaile_berria.langileaarray.get(i).getMota();
+								}
+								break;
+
+							} else {
+								JOptionPane.showMessageDialog(null,(String)"Pasahitza txarra","Txarto dago",
+										JOptionPane.INFORMATION_MESSAGE,null);
+								break;
 							}
-							if(erabiltzaile_berria.langileaarray.get(i).getMota().equals("Mekanikaria")) {
-								mekaniko_menua frame = new mekaniko_menua();
-								frame.setVisible(true);
-								dispose();
+							
+						} else {
+							
+							if ((erabiltzaile_berria.langileaarray.size())-1 == i) {
+								JOptionPane.showMessageDialog(null,(String)"Erabiltzailea ez da egokia","Txarto dago",
+										JOptionPane.INFORMATION_MESSAGE,null);
 							}
-						}	
-						else {
-								JOptionPane.showMessageDialog(null,(String)"txarto dago","Pasahitza edo erabiltzailea txarto dago",
-										JOptionPane.INFORMATION_MESSAGE,null);		
 						}
-					} 
-				} 
+					}
+				}
 			}
 		});
 		passwordField.setBounds(168, 167, 174, 24);
