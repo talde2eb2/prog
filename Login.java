@@ -17,6 +17,8 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Login extends JFrame {
 
@@ -59,8 +61,8 @@ public class Login extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Sartu");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btn_sartu = new JButton("Sartu");
+		btn_sartu.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				//erabiltzaile_berria.langileaarray
@@ -93,10 +95,43 @@ public class Login extends JFrame {
 				} 
 			}
 		});
-		btnNewButton.setBounds(323, 205, 90, 35);
-		contentPane.add(btnNewButton);
+		btn_sartu.setBounds(323, 205, 90, 35);
+		contentPane.add(btn_sartu);
 		
 		passwordField = new JPasswordField();
+		passwordField.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("deprecation")
+			@Override
+			public void keyPressed(KeyEvent e) {
+				 if(e.getKeyCode()==KeyEvent.VK_ENTER){
+					 for(int i=0;i<erabiltzaile_berria.langileaarray.size();i++) {
+							if(textField.getText().equals(erabiltzaile_berria.langileaarray.get(i).getErabiltzailea())&&(passwordField.getText().equals(erabiltzaile_berria.langileaarray.get(i).getPasahitza()))){
+								erabiltzailemota=erabiltzaile_berria.langileaarray.get(i).getMota();
+								
+							if(erabiltzaile_berria.langileaarray.get(i).getMota().equals("Admin")) {
+								menu frame = new menu();
+								frame.setVisible(true);
+								dispose();
+							} 
+							if(erabiltzaile_berria.langileaarray.get(i).getMota().equals("Harrera")) {
+								harrera_menua frame = new harrera_menua();
+								frame.setVisible(true);
+								dispose();
+							}
+							if(erabiltzaile_berria.langileaarray.get(i).getMota().equals("Mekanikaria")) {
+								mekaniko_menua frame = new mekaniko_menua();
+								frame.setVisible(true);
+								dispose();
+							}
+						}	
+						else {
+								JOptionPane.showMessageDialog(null,(String)"txarto dago","Pasahitza edo erabiltzailea txarto dago",
+										JOptionPane.INFORMATION_MESSAGE,null);		
+						}
+					} 
+				} 
+			}
+		});
 		passwordField.setBounds(168, 167, 174, 24);
 		contentPane.add(passwordField);
 		

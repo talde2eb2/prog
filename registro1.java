@@ -31,6 +31,7 @@ public class registro1 extends JFrame implements Serializable {
 	protected static DefaultListModel<String> dlm_matrikula= new DefaultListModel<String>();
 	protected static ArrayList<bezero_class> bezeroarrayr = new ArrayList<bezero_class>();
 	protected static ArrayList<autoa_class> autoaarrayr = new ArrayList<autoa_class>();
+	private Fitxategi_class f;
 	
 
 	/**
@@ -54,36 +55,9 @@ public class registro1 extends JFrame implements Serializable {
 	 */
 	public registro1() {
 		setUndecorated(true);
-		try {
-			FileInputStream fis = new FileInputStream ("Bezeroa.txt");
-			ObjectInputStream ois=new ObjectInputStream(fis);
-			Object o = (bezero_class)ois.readObject();
-			bezeroarrayr.add((bezero_class) o);
-			while(o != null) {
-				 o = (bezero_class)ois.readObject();
-				 bezeroarrayr.add((bezero_class) o);
-			}
-			
-			ois.close();
-
-		}catch(IOException | ClassNotFoundException ioe) {
-			
-		}	
-		try {
-			FileInputStream fis = new FileInputStream ("Autoa.txt");
-			ObjectInputStream ois=new ObjectInputStream(fis);
-			Object o = (autoa_class)ois.readObject();
-			autoaarrayr.add((autoa_class) o);
-			while(o != null) {
-				 o = (autoa_class)ois.readObject();
-				 autoaarrayr.add((autoa_class) o);
-			}
-			
-			ois.close();
-
-		}catch(IOException | ClassNotFoundException ioe) {
-			
-		}	
+		f = new Fitxategi_class();
+		f.kargatuAutoa(autoaarrayr);
+		f.kargatuBezeroa(bezeroarrayr);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 540, 420);
 		contentPane = new JPanel();

@@ -74,6 +74,7 @@ public class registro2 extends JFrame {
 		contentPane.add(btnNewButton_1);
 		
 		JList<String> list = new JList<String>();
+		
 		list.setBounds(20, 37, 118, 166);
 		contentPane.add(list);
 		
