@@ -1,9 +1,17 @@
 package Erronka2;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.Serializable;
+import java.util.Date;
 
-public class langilea_class extends pertsona_class  implements Serializable{
+public class langilea_class extends pertsona_class implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected String erabiltzailea;
 	protected String pasahitza;
 	protected String mota;
@@ -57,7 +65,15 @@ public class langilea_class extends pertsona_class  implements Serializable{
 		this.mota = mota;
 	}
 
-
+	public void log() throws IOException {
+		Date objDate = new Date();
+		FileWriter fitxategia = null;
+			PrintWriter pw = null;
+				fitxategia = new FileWriter ("Log.txt");
+				pw = new PrintWriter (fitxategia);
+				pw.println(this.getErabiltzailea()+" "+objDate);
+				fitxategia.close();
+	}
 
 
 

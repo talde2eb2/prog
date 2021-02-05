@@ -3,6 +3,10 @@ package Erronka2;
 import java.io.Serializable;
 
 public abstract class pertsona_class implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected String izena;
 	protected String abizena;
 	protected String nan;

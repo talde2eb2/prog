@@ -38,7 +38,6 @@ public class mekaniko_menua extends JFrame {
 	 * Create the frame.
 	 */
 	public mekaniko_menua() {
-		
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 140);
@@ -61,7 +60,14 @@ public class mekaniko_menua extends JFrame {
 		JButton btnNewButton_1 = new JButton("Itxi");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				if(Login.erabiltzailemota.equals("Admin")) {
+					menu frame = new menu();
+					frame.setVisible(true);
+					dispose();
+				}
+				if(Login.erabiltzailemota.equals("Mekanikaria")) {
+					System.exit(0);
+				}
 			}
 		});
 		btnNewButton_1.setBounds(280, 47, 144, 35);

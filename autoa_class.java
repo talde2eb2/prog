@@ -1,6 +1,12 @@
 package Erronka2;
 
-public class autoa_class {
+import java.io.Serializable;
+
+public class autoa_class implements Serializable {
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 protected String marka; 
 protected String modelo; 
 protected String matrikula;

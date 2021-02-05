@@ -1,8 +1,13 @@
  package Erronka2;
 
+import java.io.Serializable;
 
-public class bezero_class extends pertsona_class {
+public class bezero_class extends pertsona_class implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected int telefonoa;
 	protected String helbidea;
 	protected String email;

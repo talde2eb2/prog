@@ -135,13 +135,18 @@ public class OT2 extends JFrame {
 		btnNewButton_2_1.setBounds(417, 327, 89, 35);
 		contentPane.add(btnNewButton_2_1);
 		
-		JComboBox<String> comboBox_1 = new JComboBox<String>();
-		comboBox_1.setBounds(106, 281, 201, 35);
-		contentPane.add(comboBox_1);
+		JComboBox<String> Lana_box = new JComboBox<String>();
+		for(int l=0;Lanak.lanaarray.size()>l;l++)
+			Lana_box.addItem(Lanak.lanaarray.get(l).getIzena());
 		
-		JComboBox<String> comboBox_1_1 = new JComboBox<String>();
-		comboBox_1_1.setBounds(106, 327, 201, 35);
-		contentPane.add(comboBox_1_1);
+		Lana_box.setBounds(106, 281, 201, 35);
+		contentPane.add(Lana_box);
+		
+		JComboBox<String> Pieza_box = new JComboBox<String>();
+		for(int p=0;Piezak.piezaarray.size()>p;p++)
+			Pieza_box.addItem(Piezak.piezaarray.get(p).getIzena());
+		Pieza_box.setBounds(106, 327, 201, 35);
+		contentPane.add(Pieza_box);
 		
 		JLabel lblNewLabel_2 = new JLabel("Piezak");
 		lblNewLabel_2.setBounds(10, 337, 46, 14);

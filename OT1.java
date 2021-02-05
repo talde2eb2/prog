@@ -15,6 +15,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollBar;
+import java.awt.event.MouseAdapter;
+import javax.swing.JScrollPane;
 
 public class OT1 extends JFrame {
 
@@ -26,7 +28,7 @@ public class OT1 extends JFrame {
 	private JTextField arazoa_text;
 	private JList arazoa_list;
 	protected  DefaultListModel<String> dlm_arazoa= new DefaultListModel<String>();
-	private int contador=0;
+	private int contador;
 
 	/**
 	 * Launch the application.
@@ -117,7 +119,7 @@ public class OT1 extends JFrame {
 		contentPane.add(lblNewLabel_12);
 		
 		arazoa_text = new JTextField();
-		arazoa_text.setBounds(250, 177, 213, 35);
+		arazoa_text.setBounds(250, 177, 198, 35);
 		contentPane.add(arazoa_text);
 		arazoa_text.setColumns(10);
 		
@@ -130,7 +132,7 @@ public class OT1 extends JFrame {
 			JOptionPane.showMessageDialog(null,"error");
 			}
 		else {
-				dlm_arazoa.addElement(arazoa_text.getText());
+			dlm_arazoa.addElement(arazoa_text.getText());
 			}
 				
 			}
@@ -139,42 +141,40 @@ public class OT1 extends JFrame {
 		contentPane.add(btnNewButton_3);
 		
 		arazoa_list = new JList<String>();
+		arazoa_list.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				contador=arazoa_list.getSelectedIndex();
+				System.out.println(contador);  
+			}
+		
+		});
 		arazoa_list.setModel(dlm_arazoa);
-		arazoa_list.setBounds(250, 223, 213, 236);
+		arazoa_list.setBounds(250, 223, 198, 236);
 		contentPane.add(arazoa_list);
 	
-		//contador=listlanak.getSelectedIndex();	
+		
 		
 		
 		
 		JButton btnNewButton_4 = new JButton("Ezabatu");
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
-				//Programari galdetzen diogu ia listlanak zerrendatik elementu bat aukeratu dugun
-					if (arazoa_list.getSelectedIndex()!=-1) {
-					
-						//Ezabatu aurreko elementua zerrendatik
-						JOptionPane.showMessageDialog(null,"error");
-
-					}
-					
-					//Lehenengo zerrendatik ez badugu elementu bat aukeratu 
-					//bigarren zerrendako elementuak aukeratu ditugun ala ez galdetu
-					else {
-						if(arazoa_list.getSelectedIndex()!=-1) {
-
-							//Ezabatu aurreko elementua zerrendatik
-							dlm_arazoa.removeElementAt(contador);
-						}
-						else {
-							//Atera mezua: ERROR
-							JOptionPane.showMessageDialog(null,"error");
-						}
-					}
-			}
+				try {
+				dlm_arazoa.removeElementAt(contador);
+				contador=-1;
+				
+				}
+				catch(ArrayIndexOutOfBoundsException si){
+					JOptionPane.showMessageDialog(null,"error");
+				}
+	}
 		});
 		btnNewButton_4.setBounds(473, 222, 101, 35);
 		contentPane.add(btnNewButton_4);
+		
+		JScrollPane scrollPane = new JScrollPane(arazoa_list);
+		scrollPane.setBounds(250, 223, 198, 236);
+		contentPane.add(scrollPane);
 	}
-}
+} 
