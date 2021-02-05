@@ -5,12 +5,16 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollBar;
 
 public class OT1 extends JFrame {
 
@@ -19,7 +23,10 @@ public class OT1 extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField_1;
+	private JTextField arazoa_text;
+	private JList arazoa_list;
+	protected  DefaultListModel<String> dlm_arazoa= new DefaultListModel<String>();
+	private int contador=0;
 
 	/**
 	 * Launch the application.
@@ -43,7 +50,7 @@ public class OT1 extends JFrame {
 	public OT1() {
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 410);
+		setBounds(100, 100, 600, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -54,7 +61,7 @@ public class OT1 extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton.setBounds(450, 306, 124, 35);
+		btnNewButton.setBounds(450, 486, 124, 35);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Itzuli");
@@ -65,7 +72,7 @@ public class OT1 extends JFrame {
 				dispose();
 			}
 		});
-		btnNewButton_1.setBounds(242, 306, 124, 35);
+		btnNewButton_1.setBounds(250, 486, 124, 35);
 		contentPane.add(btnNewButton_1);
 		
 		JLabel lblNewLabel = new JLabel("Erabilgailua (vehiculo)");
@@ -73,6 +80,7 @@ public class OT1 extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Auto");
+		
 		lblNewLabel_1.setBounds(250, 94, 46, 14);
 		contentPane.add(lblNewLabel_1);
 		
@@ -108,24 +116,64 @@ public class OT1 extends JFrame {
 		lblNewLabel_12.setBounds(250, 55, 213, 14);
 		contentPane.add(lblNewLabel_12);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(250, 177, 213, 35);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		arazoa_text = new JTextField();
+		arazoa_text.setBounds(250, 177, 213, 35);
+		contentPane.add(arazoa_text);
+		arazoa_text.setColumns(10);
 		
 		JButton btnNewButton_3 = new JButton("Sartu");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+			if(arazoa_text.getText().equals("")) {
+			
+			JOptionPane.showMessageDialog(null,"error");
+			}
+		else {
+				dlm_arazoa.addElement(arazoa_text.getText());
+			}
+				
 			}
 		});
 		btnNewButton_3.setBounds(473, 176, 101, 35);
 		contentPane.add(btnNewButton_3);
 		
-		JList<String> list_1 = new JList<String>();
-		list_1.setBounds(250, 223, 213, 58);
-		contentPane.add(list_1);
+		arazoa_list = new JList<String>();
+		arazoa_list.setModel(dlm_arazoa);
+		arazoa_list.setBounds(250, 223, 213, 236);
+		contentPane.add(arazoa_list);
+	
+		//contador=listlanak.getSelectedIndex();	
+		
+		
 		
 		JButton btnNewButton_4 = new JButton("Ezabatu");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				//Programari galdetzen diogu ia listlanak zerrendatik elementu bat aukeratu dugun
+					if (arazoa_list.getSelectedIndex()!=-1) {
+					
+						//Ezabatu aurreko elementua zerrendatik
+						JOptionPane.showMessageDialog(null,"error");
+
+					}
+					
+					//Lehenengo zerrendatik ez badugu elementu bat aukeratu 
+					//bigarren zerrendako elementuak aukeratu ditugun ala ez galdetu
+					else {
+						if(arazoa_list.getSelectedIndex()!=-1) {
+
+							//Ezabatu aurreko elementua zerrendatik
+							dlm_arazoa.removeElementAt(contador);
+						}
+						else {
+							//Atera mezua: ERROR
+							JOptionPane.showMessageDialog(null,"error");
+						}
+					}
+			}
+		});
 		btnNewButton_4.setBounds(473, 222, 101, 35);
 		contentPane.add(btnNewButton_4);
 	}
