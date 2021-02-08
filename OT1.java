@@ -140,7 +140,7 @@ public class OT1 extends JFrame {
 		btnNewButton_3.setBounds(473, 176, 101, 35);
 		contentPane.add(btnNewButton_3);
 		
-		arazoa_list = new JList<String>();
+		arazoa_list =  new JList<String>();
 		arazoa_list.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
