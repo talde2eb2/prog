@@ -11,12 +11,10 @@ import javax.swing.JTextField;
 import javax.swing.JList;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
 
 public class registro1 extends JFrame implements Serializable {
 
@@ -163,6 +161,14 @@ public class registro1 extends JFrame implements Serializable {
 		});
 		btn_atzera_1.setBounds(422, 333, 89, 35);
 		contentPane.add(btn_atzera_1);
+		
+		JScrollPane scrollPane = new JScrollPane(list);
+		scrollPane.setBounds(10, 86, 136, 222);
+		contentPane.add(scrollPane);
+		
+		JScrollPane scrollPane_1 = new JScrollPane(list_1);
+		scrollPane_1.setBounds(272, 86, 141, 222);
+		contentPane.add(scrollPane_1);
 		
 		if(bezero_sortu.bezeroarray.size()>0) {
 			for(int p=0;p<bezero_sortu.bezeroarray.size();p++) {
