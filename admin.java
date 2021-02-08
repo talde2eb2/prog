@@ -24,6 +24,7 @@ public class admin extends JFrame {
 	private JButton btn_berria;
 	private JButton btn_ezabatu;
 	private JButton btn_atzera;
+	private Fitxategi_class f1;
 	protected static DefaultListModel<String> dlm_erabiltzailea= new DefaultListModel<String>();
 	/**
 	 * Launch the application.
@@ -45,7 +46,14 @@ public class admin extends JFrame {
 	 * Create the frame.
 	 */
 	public admin() {
+		//ixteko programa eta minizatzeko botoiak kentzeko erabiltzen da 
 		setUndecorated(true);
+		
+		//langileak fitxategitik kagatzen ditu arrayra 
+		
+		f1 = new Fitxategi_class();
+		f1.kargatuLangilea(erabiltzaile_berria.langileaarray);
+		//hemen langileen erabiltzaileak arraytik dlmra jarri
 		if(erabiltzaile_berria.langileaarray.size()>0) {
 			for(int p=0;p<erabiltzaile_berria.langileaarray.size();p++) {
 				if(dlm_erabiltzailea.contains(erabiltzaile_berria.langileaarray.get(p).getErabiltzailea())){
@@ -57,6 +65,7 @@ public class admin extends JFrame {
 				
 			}
 		}
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -113,16 +122,8 @@ public class admin extends JFrame {
 		});
 		btnNewButton.setBounds(301, 200, 90, 32);
 		contentPane.add(btnNewButton);
+	
+			
 		
-		if(erabiltzaile_berria.langileaarray.size()>0) {
-			for(int p=0;p<erabiltzaile_berria.langileaarray.size();p++) {
-				if(dlm_erabiltzailea.contains(erabiltzaile_berria.langileaarray.get(p).getErabiltzailea())){
-					
-				}
-				else {
-					dlm_erabiltzailea.addElement(erabiltzaile_berria.langileaarray.get(p).getErabiltzailea());
-				}
-			}
-		}
 	}
 }
