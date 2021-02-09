@@ -33,7 +33,6 @@ public class Piezak extends JFrame {
 	private JTextField Hor_testua;
 	private JTextField Pieza_testua;
 	private JTextField PrezioaP_testua;
-	private JTextField Kode_testua;
 	private JLabel lblPieza_b;
 	private JLabel lblPrezioaP;
 	private JLabel lblHorni;
@@ -93,11 +92,6 @@ public class Piezak extends JFrame {
 		contentPane.add(Pieza_testua);
 		Pieza_testua.setColumns(10);
 		
-		Kode_testua = new JTextField();
-		Kode_testua.setBounds(159, 19, 86, 20);
-		contentPane.add(Kode_testua);
-		Kode_testua.setColumns(10);
-		
 		PrezioaP_testua = new JTextField();
 		PrezioaP_testua.setBounds(118, 128, 95, 20);
 		contentPane.add(PrezioaP_testua);
@@ -133,8 +127,6 @@ public class Piezak extends JFrame {
 		btn_gorde.setBounds(324, 341, 90, 35);
 		contentPane.add(btn_gorde);
 		
-		
-		
 		btn_itzuli = new JButton("Itzuli");
 		btn_itzuli.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -145,8 +137,6 @@ public class Piezak extends JFrame {
 		});
 		btn_itzuli.setBounds(23, 341, 90, 35);
 		contentPane.add(btn_itzuli);
-		
-		
 		
 		btn_ezabatu = new JButton("Ezabatu");
 		btn_ezabatu.addActionListener(new ActionListener() {
@@ -205,12 +195,16 @@ public class Piezak extends JFrame {
 			}
 		});
 		Pieza_list.setModel(dlm_pieza);
-		Pieza_list.setBounds(23, 183, 390, 142);
+		Pieza_list.setBounds(169, 1, 220, 210);
 		contentPane.add(Pieza_list);
 		
 		JScrollPane scrollPane = new JScrollPane(Pieza_list);
 		scrollPane.setBounds(24, 183, 390, 142);
 		contentPane.add(scrollPane);
+		
+		JLabel lbl_nkode = new JLabel("");
+		lbl_nkode.setBounds(167, 22, 46, 14);
+		contentPane.add(lbl_nkode);
 		
 
 

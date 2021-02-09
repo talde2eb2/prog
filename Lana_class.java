@@ -13,6 +13,11 @@ public class Lana_class extends PiezaLana_class implements Serializable{
 	 this.Langile = "";
  }
  
+ @Override
+public String toString() {
+	return super.toString() + " " + Langile;
+ }
+ 
  Lana_class(String Lana, String Langile,int prezioa){
 	 super(Lana,prezioa);
 	 this.Langile = Langile;
