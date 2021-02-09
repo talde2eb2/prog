@@ -15,7 +15,12 @@ public abstract class PiezaLana_class implements Serializable{
 	 this.Prezioa = 0;
  }
  
- PiezaLana_class(String Izena, int Prezioa) {
+ @Override
+public String toString() {
+	return Izena + " " + Prezioa;
+}
+
+PiezaLana_class(String Izena, int Prezioa) {
 	 
 	 this.Izena = Izena;
 	 this.Prezioa = Prezioa;

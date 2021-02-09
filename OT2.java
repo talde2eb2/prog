@@ -144,8 +144,8 @@ public class OT2 extends JFrame {
 		contentPane.add(Lana_box);
 		
 		JComboBox<String> Pieza_box = new JComboBox<String>();
-		for(int p=0;Piezak.piezaarray.size()>p;p++)
-			Pieza_box.addItem(Piezak.piezaarray.get(p).getIzena());
+		for(int p=0;Piezak.piezakarray.size()>p;p++)
+			Pieza_box.addItem(Piezak.piezakarray.get(p).getIzena());
 		Pieza_box.setBounds(106, 327, 201, 35);
 		contentPane.add(Pieza_box);
 		

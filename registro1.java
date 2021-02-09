@@ -25,11 +25,11 @@ public class registro1 extends JFrame implements Serializable {
 	private JPanel contentPane;
 	private JTextField bilatu_testua;
 	private JTextField bilatu_testua2;
+	private JList<String> list;
 	protected static DefaultListModel<String> dlm_Nan= new DefaultListModel<String>();
 	protected static DefaultListModel<String> dlm_matrikula= new DefaultListModel<String>();
 	protected static ArrayList<bezero_class> bezeroarrayr = new ArrayList<bezero_class>();
 	protected static ArrayList<autoa_class> autoaarrayr = new ArrayList<autoa_class>();
-	private Fitxategi_class f;
 	
 
 	/**
@@ -53,9 +53,6 @@ public class registro1 extends JFrame implements Serializable {
 	 */
 	public registro1() {
 		setUndecorated(true);
-		f = new Fitxategi_class();
-		f.kargatuAutoa(autoaarrayr);
-		f.kargatuBezeroa(bezeroarrayr);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 540, 420);
 		contentPane = new JPanel();
@@ -66,6 +63,13 @@ public class registro1 extends JFrame implements Serializable {
 		JButton btn_bilatu = new JButton("Bilatu");
 		btn_bilatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				boolean bil = false;
+				for(int i = 0;i < dlm_Nan.getSize() && bil==false;i++) {
+					if(dlm_Nan.getElementAt(i).equals(bilatu_testua.getText())) {
+						bil = true;
+						list.setSelectedIndex(i);
+					}
+				}
 			}
 		});
 		btn_bilatu.setBounds(172, 40, 90, 35);
@@ -74,6 +78,13 @@ public class registro1 extends JFrame implements Serializable {
 		JButton btn_sortu = new JButton("Sortu");
 		btn_sortu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				boolean bil2 = false;
+				for(int i = 0;i < dlm_matrikula.getSize() && bil2==false;i++) {
+					if(dlm_matrikula.getElementAt(i).equals(bilatu_testua2.getText())) {
+						bil2 = true;
+						list.setSelectedIndex(i);
+					}
+				}
 				bezero_sortu frame = new bezero_sortu();
 				frame.setVisible(true);
 				dispose();
@@ -85,6 +96,7 @@ public class registro1 extends JFrame implements Serializable {
 		JButton btn_bilatu2 = new JButton("Bilatu");
 		btn_bilatu2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		btn_bilatu2.setBounds(421, 40, 90, 35);
@@ -96,6 +108,8 @@ public class registro1 extends JFrame implements Serializable {
 				autoa_sortu frame = new autoa_sortu();
 				frame.setVisible(true);
 				dispose();
+				
+				
 			}
 		});
 		btn_sortu2.setBounds(421, 86, 90, 35);
@@ -141,7 +155,7 @@ public class registro1 extends JFrame implements Serializable {
 		Label_autoa.setBounds(275, 16, 136, 14);
 		contentPane.add(Label_autoa);
 		
-		JList<String> list = new JList<String>();
+		list = new JList<String>();
 		list.setModel(dlm_Nan);
 		list.setBounds(10, 86, 136, 222);
 		contentPane.add(list);

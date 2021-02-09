@@ -8,13 +8,20 @@ public class Pieza_class extends PiezaLana_class implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	protected String Hornitzailea;
+
 	
  Pieza_class(){
 	this.Hornitzailea = "";
+
  }
 
- Pieza_class(String Izena, String Hornitzailea, int prezioa){
-	super(Izena, prezioa);
+ @Override
+public String toString() {
+	return super.toString() + " " + Hornitzailea;
+}
+
+Pieza_class(String Pieza, String Hornitzailea, int prezioa){
+	super(Pieza, prezioa);
 	this.Hornitzailea = Hornitzailea;
  }
  

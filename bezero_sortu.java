@@ -45,8 +45,6 @@ public class bezero_sortu extends JFrame implements Serializable {
 	private JLabel Label_telefonoa;
 	private JLabel Label_helbidea;
 	private JButton btn_gorde;
-	private Fitxategi_class f;
-
 
 	protected static ArrayList<bezero_class> bezeroarray = new ArrayList<bezero_class>();
 	
@@ -70,8 +68,6 @@ public class bezero_sortu extends JFrame implements Serializable {
 	 * Create the frame.
 	 */
 	public bezero_sortu() {
-		f = new Fitxategi_class();
-		f.kargatuBezeroa(bezeroarray);
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 376, 300);
