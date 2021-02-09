@@ -65,6 +65,8 @@ public class Lanak extends JFrame {
 	 * Create the frame.
 	 */
 	public Lanak() {
+		f = new Fitxategi_class();
+		f.kargatuLanak(lanakarray);
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 400);
