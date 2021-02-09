@@ -47,7 +47,6 @@ public class autoa_sortu extends JFrame {
 	protected static ArrayList<autoa_class> autoaarray = new ArrayList<autoa_class>();
 	protected static DefaultListModel<String> dlm_Nan= new DefaultListModel<String>();
 	protected static ArrayList<bezero_class> bezeroarray = new ArrayList<bezero_class>();
-	private Fitxategi_class f;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -68,14 +67,8 @@ public class autoa_sortu extends JFrame {
 	public autoa_sortu() {
 
 		// System.out.println(comboBox.getItemCount());
-	
-		f = new Fitxategi_class();
-		f.kargatuAutoa(autoaarray);
-		f.kargatuBezeroa(bezeroarray);
-		System.out.println(bezeroarray.size());
 
-		
-		
+
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 370, 308);
@@ -173,7 +166,9 @@ public class autoa_sortu extends JFrame {
 		btn_itzuli.setBounds(248, 154, 90, 35);
 		contentPane.add(btn_itzuli);
 		
-		comboBox = new JComboBox();
+
+		comboBox = new JComboBox<String>();
+
 		comboBox.setBounds(10, 154, 163, 35);
 		contentPane.add(comboBox);
 		
@@ -189,14 +184,7 @@ public class autoa_sortu extends JFrame {
 	
 	}
 		
-		
-		
-		
-		
-		
-		
-		
-		
+
 			
 			
 			
