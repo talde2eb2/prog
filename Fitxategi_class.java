@@ -190,4 +190,4 @@ public class Fitxategi_class implements Serializable{
 			}catch(IOException | ClassNotFoundException ioe) {
 		}	
 	}
-}
+

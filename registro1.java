@@ -53,6 +53,8 @@ public class registro1 extends JFrame implements Serializable {
 	 */
 	public registro1() {
 		setUndecorated(true);
+
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 540, 420);
 		contentPane = new JPanel();
@@ -105,6 +107,8 @@ public class registro1 extends JFrame implements Serializable {
 		JButton btn_sortu2 = new JButton("Sortu");
 		btn_sortu2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				f.gordeBezeroa(bezeroarrayr);
+				bezeroarrayr.removeAll(bezeroarrayr);
 				autoa_sortu frame = new autoa_sortu();
 				frame.setVisible(true);
 				dispose();

@@ -6,6 +6,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
+
+
+import javax.swing.ListModel;
+
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -43,6 +47,9 @@ public class Piezak extends JFrame {
 	private JButton btn_itzuli;
 	private JButton btn_ezabatu;
 	private JButton btn_aldatu;
+
+	private Fitxategi_class f;
+
 	private int contador;
 	
 	protected static DefaultListModel<String> dlm_pieza = new DefaultListModel<String>();
@@ -69,6 +76,8 @@ public class Piezak extends JFrame {
 	 * Create the frame.
 	 */
 	public Piezak() {
+		f = new Fitxategi_class();
+		f.kargatuPiezak(piezakarray);
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 400);
@@ -129,8 +138,7 @@ public class Piezak extends JFrame {
 		btn_gorde.setBounds(324, 341, 90, 35);
 		contentPane.add(btn_gorde);
 		
-		
-		
+
 		btn_itzuli = new JButton("Itzuli");
 		btn_itzuli.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -216,4 +224,6 @@ public class Piezak extends JFrame {
 				}
 			}
 		}
+
 	}
+
