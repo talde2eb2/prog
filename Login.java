@@ -30,6 +30,7 @@ public class Login extends JFrame {
 	private JPasswordField passwordField;
 	private JTextField textField;
 	private Fitxategi_class f;
+	protected static String izen;
 	public static String erabiltzailemota="";
 
 	/**
@@ -75,6 +76,7 @@ public class Login extends JFrame {
 					if (erabiltzaile_berria.langileaarray.get(i).getErabiltzailea().equals(textField.getText())) {
 						if (erabiltzaile_berria.langileaarray.get(i).getPasahitza().equals(new String(passwordField.getPassword()))) {
 							if (erabiltzaile_berria.langileaarray.get(i).getMota().equals("Admin")) {
+								izen=textField.getText();
 								menu frame = new menu();
 								frame.setVisible(true);
 								dispose();
@@ -122,6 +124,7 @@ public class Login extends JFrame {
 						if (erabiltzaile_berria.langileaarray.get(i).getErabiltzailea().equals(textField.getText())) {
 							if (erabiltzaile_berria.langileaarray.get(i).getPasahitza().equals(new String(passwordField.getPassword()))) {
 								if (erabiltzaile_berria.langileaarray.get(i).getMota().equals("Admin")) {
+									izen=textField.getText();
 									menu frame = new menu();
 									frame.setVisible(true);
 									dispose();
