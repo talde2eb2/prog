@@ -48,6 +48,7 @@ public class Piezak extends JFrame {
 	
 	protected static DefaultListModel<String> dlm_pieza = new DefaultListModel<String>();
 	protected static ArrayList<Pieza_class> piezakarray = new ArrayList<Pieza_class>();
+	public static Object lanakarray;
 	
 
 	/**
@@ -93,7 +94,7 @@ public class Piezak extends JFrame {
 		Pieza_testua.setColumns(10);
 		
 		PrezioaP_testua = new JTextField();
-		PrezioaP_testua.setBounds(118, 128, 95, 20);
+		PrezioaP_testua.setBounds(118, 128, 296, 20);
 		contentPane.add(PrezioaP_testua);
 		PrezioaP_testua.setColumns(10);
 		

@@ -44,6 +44,7 @@ public class Lanak extends JFrame {
 
 	protected static DefaultListModel<String> dlm_lana = new DefaultListModel<String>();
 	protected static ArrayList<Lana_class> lanakarray = new ArrayList<Lana_class>();
+	private static Object Lanakarray;
 	
 	/**
 	 * Launch the application.
@@ -198,6 +199,7 @@ public class Lanak extends JFrame {
 		lbl_nkode_lana.setBounds(164, 22, 84, 14);
 		contentPane.add(lbl_nkode_lana);
 		
-
-	}
+		
+		}
+	
 }
