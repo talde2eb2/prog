@@ -34,14 +34,19 @@ public class autoa_sortu extends JFrame {
 	private JLabel Label_modeloa;
 	private JLabel Label_matrikula;
 	private JLabel Label_bezeroa;
+	
+	
+	
 	private JComboBox<String> comboBox;
+
+	
+	
 	private JButton btn_itzuli;
 	private JButton btn_gorde;
 	private boolean matrikulakomp=false;
 	protected static ArrayList<autoa_class> autoaarray = new ArrayList<autoa_class>();
 	protected static DefaultListModel<String> dlm_Nan= new DefaultListModel<String>();
 	protected static ArrayList<bezero_class> bezeroarray = new ArrayList<bezero_class>();
-	private Fitxategi_class f;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -60,9 +65,10 @@ public class autoa_sortu extends JFrame {
 	 * Create the frame.
 	 */
 	public autoa_sortu() {
-		f = new Fitxategi_class();
-		f.kargatuAutoa(autoaarray);
-		f.kargatuBezeroa(bezeroarray);
+
+		// System.out.println(comboBox.getItemCount());
+
+
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 370, 308);
@@ -148,6 +154,10 @@ public class autoa_sortu extends JFrame {
 		btn_itzuli = new JButton("Itzuli");
 		btn_itzuli.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				f.gordeBezeroa(bezeroarray);
+				bezeroarray.removeAll(bezeroarray);
+				
 				registro1 frame = new registro1();
 				frame.setVisible(true);
 				dispose();
@@ -156,14 +166,39 @@ public class autoa_sortu extends JFrame {
 		btn_itzuli.setBounds(248, 154, 90, 35);
 		contentPane.add(btn_itzuli);
 		
-	    comboBox = new JComboBox<String>();
-		for(int i=0;bezeroarray.size()>i;i++) {
-			comboBox.addItem(bezeroarray.get(i).getNan());
-		
-		}
-		comboBox.setBounds(10, 154, 161, 35);
+
+		comboBox = new JComboBox<String>();
+
+		comboBox.setBounds(10, 154, 163, 35);
 		contentPane.add(comboBox);
 		
+		
+		
+		if(comboBox.getItemCount()>0) {
+			comboBox.removeAllItems();
+			System.out.println("piusfeisef");
+		}
+		
+		for(int i=0;bezeroarray.size()>i;i++) {
+			comboBox.addItem(bezeroarray.get(i).getNan());
+	
+	}
+		
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 		if(bezero_sortu.bezeroarray.size()>0) {
 			for(int p=0;p<bezero_sortu.bezeroarray.size();p++) {
 				if(dlm_Nan.contains(bezero_sortu.bezeroarray.get(p).getNan())){

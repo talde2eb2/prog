@@ -11,12 +11,10 @@ import javax.swing.JTextField;
 import javax.swing.JList;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
 
 public class registro1 extends JFrame implements Serializable {
 
@@ -27,6 +25,8 @@ public class registro1 extends JFrame implements Serializable {
 	private JPanel contentPane;
 	private JTextField bilatu_testua;
 	private JTextField bilatu_testua2;
+	private JList<String> list;
+	private JList<String> list_1;
 	protected static DefaultListModel<String> dlm_Nan= new DefaultListModel<String>();
 	protected static DefaultListModel<String> dlm_matrikula= new DefaultListModel<String>();
 	protected static ArrayList<bezero_class> bezeroarrayr = new ArrayList<bezero_class>();
@@ -54,36 +54,6 @@ public class registro1 extends JFrame implements Serializable {
 	 */
 	public registro1() {
 		setUndecorated(true);
-		try {
-			FileInputStream fis = new FileInputStream ("Bezeroa.txt");
-			ObjectInputStream ois=new ObjectInputStream(fis);
-			Object o = (bezero_class)ois.readObject();
-			bezeroarrayr.add((bezero_class) o);
-			while(o != null) {
-				 o = (bezero_class)ois.readObject();
-				 bezeroarrayr.add((bezero_class) o);
-			}
-			
-			ois.close();
-
-		}catch(IOException | ClassNotFoundException ioe) {
-			
-		}	
-		try {
-			FileInputStream fis = new FileInputStream ("Autoa.txt");
-			ObjectInputStream ois=new ObjectInputStream(fis);
-			Object o = (autoa_class)ois.readObject();
-			autoaarrayr.add((autoa_class) o);
-			while(o != null) {
-				 o = (autoa_class)ois.readObject();
-				 autoaarrayr.add((autoa_class) o);
-			}
-			
-			ois.close();
-
-		}catch(IOException | ClassNotFoundException ioe) {
-			
-		}	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 540, 420);
 		contentPane = new JPanel();
@@ -94,6 +64,13 @@ public class registro1 extends JFrame implements Serializable {
 		JButton btn_bilatu = new JButton("Bilatu");
 		btn_bilatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				boolean bil = false;
+				for(int i = 0;i < dlm_Nan.getSize() && bil==false;i++) {
+					if(dlm_Nan.getElementAt(i).equals(bilatu_testua.getText())) {
+						bil = true;
+						list.setSelectedIndex(i);
+					}
+				}
 			}
 		});
 		btn_bilatu.setBounds(172, 40, 90, 35);
@@ -113,6 +90,13 @@ public class registro1 extends JFrame implements Serializable {
 		JButton btn_bilatu2 = new JButton("Bilatu");
 		btn_bilatu2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				boolean bil2 = false;
+				for(int i = 0;i < dlm_matrikula.getSize() && bil2==false;i++) {
+					if(dlm_matrikula.getElementAt(i).equals(bilatu_testua2.getText())) {
+						bil2 = true;
+						list_1.setSelectedIndex(i);
+					}
+				}
 			}
 		});
 		btn_bilatu2.setBounds(421, 40, 90, 35);
@@ -124,6 +108,8 @@ public class registro1 extends JFrame implements Serializable {
 				autoa_sortu frame = new autoa_sortu();
 				frame.setVisible(true);
 				dispose();
+				
+				
 			}
 		});
 		btn_sortu2.setBounds(421, 86, 90, 35);
@@ -169,12 +155,12 @@ public class registro1 extends JFrame implements Serializable {
 		Label_autoa.setBounds(275, 16, 136, 14);
 		contentPane.add(Label_autoa);
 		
-		JList<String> list = new JList<String>();
+		list = new JList<String>();
 		list.setModel(dlm_Nan);
 		list.setBounds(10, 86, 136, 222);
 		contentPane.add(list);
 		
-		JList<String> list_1 = new JList<String>();
+		list_1 = new JList<String>();
 		list_1.setModel(dlm_matrikula);
 		list_1.setBounds(275, 86, 136, 222);
 		contentPane.add(list_1);
@@ -189,6 +175,14 @@ public class registro1 extends JFrame implements Serializable {
 		});
 		btn_atzera_1.setBounds(422, 333, 89, 35);
 		contentPane.add(btn_atzera_1);
+		
+		JScrollPane scrollPane = new JScrollPane(list);
+		scrollPane.setBounds(10, 86, 136, 222);
+		contentPane.add(scrollPane);
+		
+		JScrollPane scrollPane_1 = new JScrollPane(list_1);
+		scrollPane_1.setBounds(272, 86, 141, 222);
+		contentPane.add(scrollPane_1);
 		
 		if(bezero_sortu.bezeroarray.size()>0) {
 			for(int p=0;p<bezero_sortu.bezeroarray.size();p++) {

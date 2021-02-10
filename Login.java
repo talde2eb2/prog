@@ -17,6 +17,8 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Login extends JFrame {
 
@@ -28,6 +30,7 @@ public class Login extends JFrame {
 	private JPasswordField passwordField;
 	private JTextField textField;
 	private Fitxategi_class f;
+	protected static String izen;
 	public static String erabiltzailemota="";
 
 	/**
@@ -52,6 +55,12 @@ public class Login extends JFrame {
 	public Login() {
 		f = new Fitxategi_class();
 		f.kargatuLangilea(erabiltzaile_berria.langileaarray);
+		f.kargatuAutoa(registro1.autoaarrayr);
+		f.kargatuBezeroa(registro1.bezeroarrayr);
+		f.kargatuBezeroa(bezero_sortu.bezeroarray);
+		f.kargatuAutoa(autoa_sortu.autoaarray);
+		f.kargatuBezeroa(autoa_sortu.bezeroarray);
+		f.kargatuPiezak(Piezak.piezakarray);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -59,44 +68,97 @@ public class Login extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Sartu");
-		btnNewButton.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
+		JButton btn_sartu = new JButton("Sartu");
+		btn_sartu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//erabiltzaile_berria.langileaarray
 				for(int i=0;i<erabiltzaile_berria.langileaarray.size();i++) {
-					if(textField.getText().equals(erabiltzaile_berria.langileaarray.get(i).getErabiltzailea())&&(passwordField.getText().equals(erabiltzaile_berria.langileaarray.get(i).getPasahitza()))){
-						erabiltzailemota=erabiltzaile_berria.langileaarray.get(i).getMota();
-						
-						if(erabiltzaile_berria.langileaarray.get(i).getMota().equals("Admin")) {
-							menu frame = new menu();
-							frame.setVisible(true);
-							dispose();
-						} 
-						if(erabiltzaile_berria.langileaarray.get(i).getMota().equals("Harrera")) {
-							harrera_menua frame = new harrera_menua();
-							frame.setVisible(true);
-							dispose();
-						}
-						if(erabiltzaile_berria.langileaarray.get(i).getMota().equals("Mekanikaria")) {
-							mekaniko_menua frame = new mekaniko_menua();
-							frame.setVisible(true);
-							dispose();
-						}
-					}
-					
-					else {
-							JOptionPane.showMessageDialog(null,(String)"txarto dago","Pasahitza edo erabiltzailea txarto dago",
+					if (erabiltzaile_berria.langileaarray.get(i).getErabiltzailea().equals(textField.getText())) {
+						if (erabiltzaile_berria.langileaarray.get(i).getPasahitza().equals(new String(passwordField.getPassword()))) {
+							if (erabiltzaile_berria.langileaarray.get(i).getMota().equals("Admin")) {
+								izen=textField.getText();
+								menu frame = new menu();
+								frame.setVisible(true);
+								dispose();
+								erabiltzailemota=erabiltzaile_berria.langileaarray.get(i).getMota();
+							} else if (erabiltzaile_berria.langileaarray.get(i).getMota().equals("Harrera")) {
+								harrera_menua frame = new harrera_menua();
+								frame.setVisible(true);
+								dispose();
+								erabiltzailemota=erabiltzaile_berria.langileaarray.get(i).getMota();
+							} else if (erabiltzaile_berria.langileaarray.get(i).getMota().equals("Mekanikaria")) {
+								mekaniko_menua frame = new mekaniko_menua();
+								frame.setVisible(true);
+								dispose();
+								erabiltzailemota=erabiltzaile_berria.langileaarray.get(i).getMota();
+							}
+							break;
+
+						} else {
+							JOptionPane.showMessageDialog(null,(String)"Pasahitza txarra","Txarto dago",
 									JOptionPane.INFORMATION_MESSAGE,null);
+							break;
+						}
 						
+					} else {
+						
+						if ((erabiltzaile_berria.langileaarray.size())-1 == i) {
+							JOptionPane.showMessageDialog(null,(String)"Erabiltzailea ez da egokia","Txarto dago",
+									JOptionPane.INFORMATION_MESSAGE,null);
+						}
 					}
-				} 
+				}
+
 			}
 		});
-		btnNewButton.setBounds(323, 205, 90, 35);
-		contentPane.add(btnNewButton);
+		btn_sartu.setBounds(323, 205, 90, 35);
+		contentPane.add(btn_sartu);
 		
 		passwordField = new JPasswordField();
+		passwordField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+					//erabiltzaile_berria.langileaarray
+					for(int i=0;i<erabiltzaile_berria.langileaarray.size();i++) {
+						if (erabiltzaile_berria.langileaarray.get(i).getErabiltzailea().equals(textField.getText())) {
+							if (erabiltzaile_berria.langileaarray.get(i).getPasahitza().equals(new String(passwordField.getPassword()))) {
+								if (erabiltzaile_berria.langileaarray.get(i).getMota().equals("Admin")) {
+									izen=textField.getText();
+									menu frame = new menu();
+									frame.setVisible(true);
+									dispose();
+									erabiltzailemota=erabiltzaile_berria.langileaarray.get(i).getMota();
+								} else if (erabiltzaile_berria.langileaarray.get(i).getMota().equals("Harrera")) {
+									harrera_menua frame = new harrera_menua();
+									frame.setVisible(true);
+									dispose();
+									erabiltzailemota=erabiltzaile_berria.langileaarray.get(i).getMota();
+								} else if (erabiltzaile_berria.langileaarray.get(i).getMota().equals("Mekanikaria")) {
+									mekaniko_menua frame = new mekaniko_menua();
+									frame.setVisible(true);
+									dispose();
+									erabiltzailemota=erabiltzaile_berria.langileaarray.get(i).getMota();
+								}
+								break;
+
+							} else {
+								JOptionPane.showMessageDialog(null,(String)"Pasahitza txarra","Txarto dago",
+										JOptionPane.INFORMATION_MESSAGE,null);
+								break;
+							}
+							
+						} else {
+							
+							if ((erabiltzaile_berria.langileaarray.size())-1 == i) {
+								JOptionPane.showMessageDialog(null,(String)"Erabiltzailea ez da egokia","Txarto dago",
+										JOptionPane.INFORMATION_MESSAGE,null);
+							}
+						}
+					}
+				}
+			}
+		});
 		passwordField.setBounds(168, 167, 174, 24);
 		contentPane.add(passwordField);
 		

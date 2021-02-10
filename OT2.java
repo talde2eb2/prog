@@ -13,6 +13,7 @@ import javax.swing.JList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
+import javax.swing.JScrollPane;
 
 public class OT2 extends JFrame {
 
@@ -143,8 +144,8 @@ public class OT2 extends JFrame {
 		contentPane.add(Lana_box);
 		
 		JComboBox<String> Pieza_box = new JComboBox<String>();
-		for(int p=0;Piezak.piezaarray.size()>p;p++)
-			Pieza_box.addItem(Piezak.piezaarray.get(p).getIzena());
+		for(int p=0;Piezak.piezakarray.size()>p;p++)
+			Pieza_box.addItem(Piezak.piezakarray.get(p).getIzena());
 		Pieza_box.setBounds(106, 327, 201, 35);
 		contentPane.add(Pieza_box);
 		
@@ -173,5 +174,13 @@ public class OT2 extends JFrame {
 		textField_1.setColumns(10);
 		textField_1.setBounds(317, 327, 90, 35);
 		contentPane.add(textField_1);
+		
+		JScrollPane scrollPane = new JScrollPane(list_1);
+		scrollPane.setBounds(106, 373, 201, 132);
+		contentPane.add(scrollPane);
+		
+		JScrollPane scrollPane_1 = new JScrollPane(list_2);
+		scrollPane_1.setBounds(317, 373, 89, 132);
+		contentPane.add(scrollPane_1);
 	}
 }
