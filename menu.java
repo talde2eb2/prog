@@ -38,6 +38,7 @@ public class menu extends JFrame {
 	 * Create the frame.
 	 */
 	public menu() {
+		
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 593, 194);
@@ -54,7 +55,7 @@ public class menu extends JFrame {
 				dispose();
 			}
 		});
-		btnNewButton.setBounds(10, 40, 130, 35);
+		btnNewButton.setBounds(10, 69, 130, 35);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Faktura");
@@ -65,7 +66,7 @@ public class menu extends JFrame {
 				dispose();
 			}
 		});
-		btnNewButton_1.setBounds(434, 40, 130, 35);
+		btnNewButton_1.setBounds(434, 69, 130, 35);
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Mekanikoa");
@@ -76,7 +77,7 @@ public class menu extends JFrame {
 				dispose();
 			}
 		});
-		btnNewButton_2.setBounds(150, 40, 130, 35);
+		btnNewButton_2.setBounds(150, 69, 130, 35);
 		contentPane.add(btnNewButton_2);
 		
 		JButton btnNewButton_4 = new JButton("Administradorea");
@@ -87,7 +88,7 @@ public class menu extends JFrame {
 				dispose();
 			}
 		});
-		btnNewButton_4.setBounds(294, 40, 130, 35);
+		btnNewButton_4.setBounds(290, 69, 130, 35);
 		contentPane.add(btnNewButton_4);
 		
 		JButton btnNewButton_5 = new JButton("Itxi");
@@ -96,11 +97,13 @@ public class menu extends JFrame {
 				System.exit(0);
 			}
 		});
-		btnNewButton_5.setBounds(434, 86, 130, 35);
+		btnNewButton_5.setBounds(434, 130, 130, 35);
 		contentPane.add(btnNewButton_5);
 		
-		JLabel lblNewLabel = new JLabel("nombre del usuario xd");
-		lblNewLabel.setBounds(197, 11, 190, 14);
+		JLabel lblNewLabel = new JLabel("");
+		System.out.println(Login.izen);
+		lblNewLabel.setText("Kaixo "+Login.izen);
+		lblNewLabel.setBounds(205, 11, 190, 47);
 		contentPane.add(lblNewLabel);
 		
 		JButton btnNewButton_3 = new JButton("Pieza/Lana");
@@ -111,7 +114,7 @@ public class menu extends JFrame {
 				dispose();
 			}
 		});
-		btnNewButton_3.setBounds(10, 86, 130, 35);
+		btnNewButton_3.setBounds(10, 130, 130, 35);
 		contentPane.add(btnNewButton_3);
 	}
 }

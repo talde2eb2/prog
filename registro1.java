@@ -26,6 +26,7 @@ public class registro1 extends JFrame implements Serializable {
 	private JTextField bilatu_testua;
 	private JTextField bilatu_testua2;
 	private JList<String> list;
+	private JList<String> list_1;
 	protected static DefaultListModel<String> dlm_Nan= new DefaultListModel<String>();
 	protected static DefaultListModel<String> dlm_matrikula= new DefaultListModel<String>();
 	protected static ArrayList<bezero_class> bezeroarrayr = new ArrayList<bezero_class>();
@@ -53,8 +54,6 @@ public class registro1 extends JFrame implements Serializable {
 	 */
 	public registro1() {
 		setUndecorated(true);
-
-
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 540, 420);
 		contentPane = new JPanel();
@@ -80,13 +79,6 @@ public class registro1 extends JFrame implements Serializable {
 		JButton btn_sortu = new JButton("Sortu");
 		btn_sortu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				boolean bil2 = false;
-				for(int i = 0;i < dlm_matrikula.getSize() && bil2==false;i++) {
-					if(dlm_matrikula.getElementAt(i).equals(bilatu_testua2.getText())) {
-						bil2 = true;
-						list.setSelectedIndex(i);
-					}
-				}
 				bezero_sortu frame = new bezero_sortu();
 				frame.setVisible(true);
 				dispose();
@@ -98,7 +90,13 @@ public class registro1 extends JFrame implements Serializable {
 		JButton btn_bilatu2 = new JButton("Bilatu");
 		btn_bilatu2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				boolean bil2 = false;
+				for(int i = 0;i < dlm_matrikula.getSize() && bil2==false;i++) {
+					if(dlm_matrikula.getElementAt(i).equals(bilatu_testua2.getText())) {
+						bil2 = true;
+						list_1.setSelectedIndex(i);
+					}
+				}
 			}
 		});
 		btn_bilatu2.setBounds(421, 40, 90, 35);
@@ -107,8 +105,6 @@ public class registro1 extends JFrame implements Serializable {
 		JButton btn_sortu2 = new JButton("Sortu");
 		btn_sortu2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				f.gordeBezeroa(bezeroarrayr);
-				bezeroarrayr.removeAll(bezeroarrayr);
 				autoa_sortu frame = new autoa_sortu();
 				frame.setVisible(true);
 				dispose();
@@ -164,7 +160,7 @@ public class registro1 extends JFrame implements Serializable {
 		list.setBounds(10, 86, 136, 222);
 		contentPane.add(list);
 		
-		JList<String> list_1 = new JList<String>();
+		list_1 = new JList<String>();
 		list_1.setModel(dlm_matrikula);
 		list_1.setBounds(275, 86, 136, 222);
 		contentPane.add(list_1);
