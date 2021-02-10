@@ -101,7 +101,6 @@ public class menu extends JFrame {
 		contentPane.add(btnNewButton_5);
 		
 		JLabel lblNewLabel = new JLabel("");
-		System.out.println(Login.izen);
 		lblNewLabel.setText("Kaixo "+Login.izen);
 		lblNewLabel.setBounds(205, 11, 190, 47);
 		contentPane.add(lblNewLabel);

@@ -17,7 +17,7 @@ public class Pieza_class extends PiezaLana_class implements Serializable{
 
  @Override
 public String toString() {
-	return super.toString() + " " + Hornitzailea;
+	return Hornitzailea + " " + super.getIzena() + " " + super.getPrezioa();
 }
 
 Pieza_class(String Pieza, String Hornitzailea, int prezioa){
