@@ -39,12 +39,10 @@ public class Lanak extends JFrame {
 	private JButton btn_itzuli_1;
 	private JButton btn_ezabatu_1;
 	private JButton btn_aldatu_1;
-	private Fitxategi_class f;
 	private int contador;
 
 	protected static DefaultListModel<String> dlm_lana = new DefaultListModel<String>();
 	protected static ArrayList<Lana_class> lanakarray = new ArrayList<Lana_class>();
-	private static Object Lanakarray;
 	
 	/**
 	 * Launch the application.
@@ -66,8 +64,6 @@ public class Lanak extends JFrame {
 	 * Create the frame.
 	 */
 	public Lanak() {
-		f = new Fitxategi_class();
-		f.kargatuLanak(lanakarray);
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 400);
@@ -116,6 +112,10 @@ public class Lanak extends JFrame {
 						lanakarray.add(lana);
 						Fitxategi_class lanak = new Fitxategi_class();
 						lanak.gordeLanak(lanakarray);
+						dlm_lana.addElement(lana.toString());
+						Lana_testua.setText(" ");
+						Langile_testua.setText(" ");
+						PrezioaL_testua.setText(" ");
 					}
 						
 				else {
@@ -136,6 +136,9 @@ public class Lanak extends JFrame {
 		btn_itzuli_1 = new JButton("Itzuli");
 		btn_itzuli_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dlm_lana.removeAllElements();
+				Fitxategi_class lanak = new Fitxategi_class();
+				lanak.gordeLanak(lanakarray);
 				pieza_lana frame = new pieza_lana();
 				frame.setVisible(true);
 				dispose();
@@ -150,6 +153,7 @@ public class Lanak extends JFrame {
 				
 				try {
 				dlm_lana.removeElementAt(contador);
+				lanakarray.remove(contador);
 				contador=-1;
 				
 				}
@@ -165,7 +169,12 @@ public class Lanak extends JFrame {
 		btn_aldatu_1 = new JButton("Aldatu");
 		btn_aldatu_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				Lana_class lana = new Lana_class(Lana_testua.getText(),Langile_testua.getText(),Integer.parseInt(PrezioaL_testua.getText()));
+				lanakarray.get(contador).setIzena(Lana_testua.getText());
+				lanakarray.get(contador).setLangile(Langile_testua.getText());
+				lanakarray.get(contador).setPrezioa(Integer.parseInt(PrezioaL_testua.getText()));
+				dlm_lana.removeElementAt(contador);
+				dlm_lana.add(contador, lana.toString());
 			}
 		});
 		btn_aldatu_1.setBounds(126, 353, 90, 35);
@@ -177,6 +186,9 @@ public class Lanak extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				contador=Lana_list.getSelectedIndex();
+				Lana_testua.setText(lanakarray.get(contador).getIzena());
+				Langile_testua.setText(lanakarray.get(contador).getLangile());
+				PrezioaL_testua.setText(String.valueOf(lanakarray.get(contador).getPrezioa()));
 			}
 		});
 	    Lana_list.setModel(dlm_lana);
@@ -199,7 +211,11 @@ public class Lanak extends JFrame {
 		lbl_nkode_lana.setBounds(164, 22, 84, 14);
 		contentPane.add(lbl_nkode_lana);
 		
-		
+		if(Lanak.lanakarray.size()>0) {
+			for(int p=0;p<Lanak.lanakarray.size();p++) {
+				dlm_lana.addElement(Lanak.lanakarray.get(p).toString());
+				}
+			}
 		}
-	
+
 }
