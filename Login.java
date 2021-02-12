@@ -92,7 +92,7 @@ public class Login extends JFrame {
 								dispose();
 								erabiltzailemota=erabiltzaile_berria.langileaarray.get(i).getMota();
 							} else if (erabiltzaile_berria.langileaarray.get(i).getMota().equals("Mekanikaria")) {
-								mekaniko_menua frame = new mekaniko_menua();
+								registro2 frame = new registro2();
 								frame.setVisible(true);
 								dispose();
 								erabiltzailemota=erabiltzaile_berria.langileaarray.get(i).getMota();
@@ -141,7 +141,7 @@ public class Login extends JFrame {
 									dispose();
 									erabiltzailemota=erabiltzaile_berria.langileaarray.get(i).getMota();
 								} else if (erabiltzaile_berria.langileaarray.get(i).getMota().equals("Mekanikaria")) {
-									mekaniko_menua frame = new mekaniko_menua();
+									registro2 frame = new registro2();
 									frame.setVisible(true);
 									dispose();
 									erabiltzailemota=erabiltzaile_berria.langileaarray.get(i).getMota();

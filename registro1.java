@@ -15,6 +15,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class registro1 extends JFrame implements Serializable {
 
@@ -150,6 +152,7 @@ public class registro1 extends JFrame implements Serializable {
 		});
 		btn_OT.setBounds(322, 333, 89, 35);
 		contentPane.add(btn_OT);
+		btn_OT.setVisible(false);
 		
 		bilatu_testua = new JTextField();
 		bilatu_testua.setBounds(10, 41, 136, 34);
@@ -175,6 +178,12 @@ public class registro1 extends JFrame implements Serializable {
 		contentPane.add(list);
 		
 		list_1 = new JList<String>();
+		list_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				btn_OT.setVisible(true);
+			}
+		});
 		list_1.setModel(dlm_matrikula);
 		list_1.setBounds(275, 86, 136, 222);
 		contentPane.add(list_1);

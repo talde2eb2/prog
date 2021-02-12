@@ -18,6 +18,8 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class Piezak extends JFrame {
 
@@ -96,6 +98,14 @@ public class Piezak extends JFrame {
 		Kode_testua.setColumns(10);
 		
 		PrezioaP_testua = new JTextField();
+		PrezioaP_testua.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if(Hor_testua.getText().length()>0 && Pieza_testua.getText().length()>0 && PrezioaP_testua.getText().length()>0) {
+					btn_gorde.setVisible(true);
+				}
+			}
+		});
 		PrezioaP_testua.setBounds(118, 128, 95, 20);
 		contentPane.add(PrezioaP_testua);
 		PrezioaP_testua.setColumns(10);

@@ -79,7 +79,7 @@ public class menu extends JFrame {
 		btn_mekanikaria = new JButton("Mekanikoa");
 		btn_mekanikaria.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				mekaniko_menua frame = new mekaniko_menua();
+				registro2 frame = new registro2();
 				frame.setVisible(true);
 				dispose();
 			}
