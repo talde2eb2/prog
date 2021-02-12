@@ -32,6 +32,23 @@ public class Fitxategi_class implements Serializable{
 			e.printStackTrace();
 		}
 	}
+	void GordeOt(ArrayList <OT_class> otarray) {
+		FileOutputStream fos = null;
+		ObjectOutputStream oos=null;
+		try {
+			fos = new FileOutputStream("ot.txt");
+			oos = new ObjectOutputStream(fos);
+		for(int a=0;a<otarray.size();a++) {
+			oos.writeObject(otarray.get(a));
+		}
+		}catch(IOException e) {
+		}	
+	try {
+		oos.close();
+	} catch(IOException e) {
+		e.printStackTrace();
+	}
+}
 	void gordeBezeroa(ArrayList<bezero_class> bezeroarray) {
 			FileOutputStream fos = null;
 			ObjectOutputStream oos=null;
@@ -66,7 +83,6 @@ public class Fitxategi_class implements Serializable{
 			e.printStackTrace();
 		}
 	}
-	
 	void gordePiezak(ArrayList<Pieza_class> piezakarray) {
 		FileOutputStream fos = null;
 		ObjectOutputStream oos=null;
@@ -154,7 +170,24 @@ public class Fitxategi_class implements Serializable{
 			}catch(IOException | ClassNotFoundException ioe) {
 		}	
 	}
-	
+
+	void kargatuOt(ArrayList<OT_class> otarray) {
+		FileInputStream fis = null;
+		ObjectInputStream ois = null;
+		Object obj = null;
+		try {
+			fis = new FileInputStream ("ot.txt");
+			ois=new ObjectInputStream(fis);
+			obj = (OT_class)ois.readObject();
+			OT1.otarray.add((OT_class) obj);
+			while(obj != null) {
+				obj = (langilea_class)ois.readObject();
+				OT1.otarray.add((OT_class) obj);
+			}
+			ois.close();
+			}catch(IOException | ClassNotFoundException ioe) {
+			}	
+	}
 	void kargatuPiezak(ArrayList<Pieza_class> piezakarray) {
 		FileInputStream fis = null;
 		ObjectInputStream ois = null;
@@ -172,7 +205,6 @@ public class Fitxategi_class implements Serializable{
 			}catch(IOException | ClassNotFoundException ioe) {
 		}	
 	}
-	
 	void kargatuLanak(ArrayList<Lana_class> lanakarray) {
 		FileInputStream fis = null;
 		ObjectInputStream ois = null;
@@ -190,4 +222,5 @@ public class Fitxategi_class implements Serializable{
 			}catch(IOException | ClassNotFoundException ioe) {
 		}	
 	}
+}
 

@@ -27,8 +27,12 @@ public class Login extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JPasswordField passwordField;
-	private JTextField textField;
+	private JButton btn_sartu;
+	private JPasswordField Pasahitza;
+	private JTextField Erabiltzaile_testua;
+	private JLabel Label_erabiltzailea;
+	private JLabel Label_Pasahitza;
+	private JLabel logoa;
 	private Fitxategi_class f;
 	protected static String izen;
 	public static String erabiltzailemota="";
@@ -61,6 +65,7 @@ public class Login extends JFrame {
 		f.kargatuAutoa(autoa_sortu.autoaarray);
 		f.kargatuBezeroa(autoa_sortu.bezeroarray);
 		f.kargatuPiezak(Piezak.piezakarray);
+		f.kargatuLanak(Lanak.lanakarray);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -68,15 +73,15 @@ public class Login extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btn_sartu = new JButton("Sartu");
+		btn_sartu = new JButton("Sartu");
 		btn_sartu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//erabiltzaile_berria.langileaarray
 				for(int i=0;i<erabiltzaile_berria.langileaarray.size();i++) {
-					if (erabiltzaile_berria.langileaarray.get(i).getErabiltzailea().equals(textField.getText())) {
-						if (erabiltzaile_berria.langileaarray.get(i).getPasahitza().equals(new String(passwordField.getPassword()))) {
+					if (erabiltzaile_berria.langileaarray.get(i).getErabiltzailea().equals(Erabiltzaile_testua.getText())) {
+						if (erabiltzaile_berria.langileaarray.get(i).getPasahitza().equals(new String(Pasahitza.getPassword()))) {
 							if (erabiltzaile_berria.langileaarray.get(i).getMota().equals("Admin")) {
-								izen=textField.getText();
+								izen=Erabiltzaile_testua.getText();
 								menu frame = new menu();
 								frame.setVisible(true);
 								dispose();
@@ -108,23 +113,24 @@ public class Login extends JFrame {
 						}
 					}
 				}
+				
 
 			}
 		});
 		btn_sartu.setBounds(323, 205, 90, 35);
 		contentPane.add(btn_sartu);
 		
-		passwordField = new JPasswordField();
-		passwordField.addKeyListener(new KeyAdapter() {
+		Pasahitza = new JPasswordField();
+		Pasahitza.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode()==KeyEvent.VK_ENTER) {
 					//erabiltzaile_berria.langileaarray
 					for(int i=0;i<erabiltzaile_berria.langileaarray.size();i++) {
-						if (erabiltzaile_berria.langileaarray.get(i).getErabiltzailea().equals(textField.getText())) {
-							if (erabiltzaile_berria.langileaarray.get(i).getPasahitza().equals(new String(passwordField.getPassword()))) {
+						if (erabiltzaile_berria.langileaarray.get(i).getErabiltzailea().equals(Erabiltzaile_testua.getText())) {
+							if (erabiltzaile_berria.langileaarray.get(i).getPasahitza().equals(new String(Pasahitza.getPassword()))) {
 								if (erabiltzaile_berria.langileaarray.get(i).getMota().equals("Admin")) {
-									izen=textField.getText();
+									izen=Erabiltzaile_testua.getText();
 									menu frame = new menu();
 									frame.setVisible(true);
 									dispose();
@@ -159,23 +165,23 @@ public class Login extends JFrame {
 				}
 			}
 		});
-		passwordField.setBounds(168, 167, 174, 24);
-		contentPane.add(passwordField);
+		Pasahitza.setBounds(168, 167, 174, 24);
+		contentPane.add(Pasahitza);
 		
-		JLabel lblNewLabel = new JLabel("Erabiltzailea");
-		lblNewLabel.setBounds(45, 129, 113, 28);
-		contentPane.add(lblNewLabel);
+		Label_erabiltzailea = new JLabel("Erabiltzailea");
+		Label_erabiltzailea.setBounds(45, 129, 113, 28);
+		contentPane.add(Label_erabiltzailea);
 		
-		JLabel lblNewLabel_1 = new JLabel("Pasahitza");
-		lblNewLabel_1.setBounds(45, 168, 113, 23);
-		contentPane.add(lblNewLabel_1);
+		Label_Pasahitza = new JLabel("Pasahitza");
+		Label_Pasahitza.setBounds(45, 168, 113, 23);
+		contentPane.add(Label_Pasahitza);
 		
-		textField = new JTextField();
-		textField.setBounds(168, 131, 174, 24);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		Erabiltzaile_testua = new JTextField();
+		Erabiltzaile_testua.setBounds(168, 131, 174, 24);
+		contentPane.add(Erabiltzaile_testua);
+		Erabiltzaile_testua.setColumns(10);
 
-		JLabel logoa = new JLabel();
+		logoa = new JLabel();
 		File sourceimage = new File("fotos/logoRA_psd.png");
 		Image image;
 		try {

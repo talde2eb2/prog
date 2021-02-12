@@ -34,13 +34,7 @@ public class autoa_sortu extends JFrame {
 	private JLabel Label_modeloa;
 	private JLabel Label_matrikula;
 	private JLabel Label_bezeroa;
-	
-	
-	
 	private JComboBox<String> comboBox;
-
-	
-	
 	private JButton btn_itzuli;
 	private JButton btn_gorde;
 	private boolean matrikulakomp=false;
@@ -67,8 +61,6 @@ public class autoa_sortu extends JFrame {
 	public autoa_sortu() {
 
 		// System.out.println(comboBox.getItemCount());
-
-
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 370, 308);
@@ -112,12 +104,13 @@ public class autoa_sortu extends JFrame {
 		btn_gorde = new JButton("Gorde");
 		btn_gorde.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+							matrikulakomp=false;
 		if(autoaarray.size()>0) {
-			matrikulakomp=false;
 			for(int i=0;i<autoaarray.size() && matrikulakomp==false ;i++) {
-				if(Matrikula_testua.getText().equals(autoaarray.get(i).getMatrikula()));
-				matrikulakomp=true;		
+				if(Matrikula_testua.getText().equals(autoaarray.get(i).getMatrikula())) {
+					matrikulakomp=true;	
+				}
+					
 			}
 		}		
 				try {
@@ -154,10 +147,6 @@ public class autoa_sortu extends JFrame {
 		btn_itzuli = new JButton("Itzuli");
 		btn_itzuli.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				f.gordeBezeroa(bezeroarray);
-				bezeroarray.removeAll(bezeroarray);
-				
 				registro1 frame = new registro1();
 				frame.setVisible(true);
 				dispose();
@@ -166,9 +155,7 @@ public class autoa_sortu extends JFrame {
 		btn_itzuli.setBounds(248, 154, 90, 35);
 		contentPane.add(btn_itzuli);
 		
-
 		comboBox = new JComboBox<String>();
-
 		comboBox.setBounds(10, 154, 163, 35);
 		contentPane.add(comboBox);
 		
@@ -182,23 +169,7 @@ public class autoa_sortu extends JFrame {
 		for(int i=0;bezeroarray.size()>i;i++) {
 			comboBox.addItem(bezeroarray.get(i).getNan());
 	
-	}
-		
-
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+		}
 		if(bezero_sortu.bezeroarray.size()>0) {
 			for(int p=0;p<bezero_sortu.bezeroarray.size();p++) {
 				if(dlm_Nan.contains(bezero_sortu.bezeroarray.get(p).getNan())){
@@ -223,7 +194,7 @@ public class autoa_sortu extends JFrame {
 				}
 			}
 			bezero_sortu.c=Matrikula.charAt(4);
-			if(bezero_sortu.c=='-'&& bezero_sortu.x==true) {
+			if(bezero_sortu.c==' '&& bezero_sortu.x==true) {
 				bezero_sortu.x=true;	
 			}
 			else {

@@ -45,6 +45,7 @@ public class bezero_sortu extends JFrame implements Serializable {
 	private JLabel Label_telefonoa;
 	private JLabel Label_helbidea;
 	private JButton btn_gorde;
+	private JButton btn_itzuli;
 
 	protected static ArrayList<bezero_class> bezeroarray = new ArrayList<bezero_class>();
 	
@@ -160,16 +161,16 @@ public class bezero_sortu extends JFrame implements Serializable {
 		contentPane.add(Nan_testua);
 		Nan_testua.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Itzuli");
-		btnNewButton.addActionListener(new ActionListener() {
+		btn_itzuli = new JButton("Itzuli");
+		btn_itzuli.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				registro1 frame = new registro1();
 				frame.setVisible(true);
 				dispose();
 			}
 		});
-		btnNewButton.setBounds(160, 215, 90, 35);
-		contentPane.add(btnNewButton);
+		btn_itzuli.setBounds(160, 215, 90, 35);
+		contentPane.add(btn_itzuli);
 	}
 	private boolean KonprobatzaileaTelef() {//Funtzio hau Konprobatuko du telefono JTextField-ean bakarrik zenbakiak egongo direla
         boolean emaitza;

@@ -1,4 +1,3 @@
-
 package Erronka2;
 
 import java.awt.EventQueue;
@@ -7,7 +6,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
-import javax.swing.ListModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -34,6 +32,7 @@ public class Piezak extends JFrame {
 	private JTextField Hor_testua;
 	private JTextField Pieza_testua;
 	private JTextField PrezioaP_testua;
+	private JTextField Kode_testua;
 	private JLabel lblPieza_b;
 	private JLabel lblPrezioaP;
 	private JLabel lblHorni;
@@ -44,12 +43,11 @@ public class Piezak extends JFrame {
 	private JButton btn_itzuli;
 	private JButton btn_ezabatu;
 	private JButton btn_aldatu;
-	private Fitxategi_class f;
+	private JScrollPane scrollPane;
 	private int contador;
 	
 	protected static DefaultListModel<String> dlm_pieza = new DefaultListModel<String>();
 	protected static ArrayList<Pieza_class> piezakarray = new ArrayList<Pieza_class>();
-	public static Object lanakarray;
 	
 
 	/**
@@ -72,8 +70,6 @@ public class Piezak extends JFrame {
 	 * Create the frame.
 	 */
 	public Piezak() {
-		f = new Fitxategi_class();
-		f.kargatuPiezak(piezakarray);
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 400);
@@ -94,8 +90,13 @@ public class Piezak extends JFrame {
 		contentPane.add(Pieza_testua);
 		Pieza_testua.setColumns(10);
 		
+		Kode_testua = new JTextField();
+		Kode_testua.setBounds(159, 19, 86, 20);
+		contentPane.add(Kode_testua);
+		Kode_testua.setColumns(10);
+		
 		PrezioaP_testua = new JTextField();
-		PrezioaP_testua.setBounds(118, 128, 296, 20);
+		PrezioaP_testua.setBounds(118, 128, 95, 20);
 		contentPane.add(PrezioaP_testua);
 		PrezioaP_testua.setColumns(10);
 		
@@ -107,11 +108,14 @@ public class Piezak extends JFrame {
 					JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,null);
 						try {
 					if(birpaza==0) {
-						Pieza_class pieza = new Pieza_class(Hor_testua.getText(),Pieza_testua.getText(),Integer.parseInt(PrezioaP_testua.getText()));
+						Pieza_class pieza = new Pieza_class(Pieza_testua.getText(),Hor_testua.getText(),Integer.parseInt(PrezioaP_testua.getText()));
 						piezakarray.add(pieza);
 						Fitxategi_class piezak = new Fitxategi_class();
 						piezak.gordePiezak(piezakarray);
-						
+						dlm_pieza.addElement(pieza.toString());
+						Hor_testua.setText(" ");
+						Pieza_testua.setText(" ");
+						PrezioaP_testua.setText(" ");
 					}
 						
 				else {
@@ -129,9 +133,14 @@ public class Piezak extends JFrame {
 		btn_gorde.setBounds(324, 341, 90, 35);
 		contentPane.add(btn_gorde);
 		
+		
+		
 		btn_itzuli = new JButton("Itzuli");
 		btn_itzuli.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dlm_pieza.removeAllElements();
+				Fitxategi_class piezak = new Fitxategi_class();
+				piezak.gordePiezak(piezakarray);
 				pieza_lana frame = new pieza_lana();
 				frame.setVisible(true);
 				dispose();
@@ -140,12 +149,15 @@ public class Piezak extends JFrame {
 		btn_itzuli.setBounds(23, 341, 90, 35);
 		contentPane.add(btn_itzuli);
 		
+		
+		
 		btn_ezabatu = new JButton("Ezabatu");
 		btn_ezabatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				try {
 				dlm_pieza.removeElementAt(contador);
+				piezakarray.remove(contador);
 				contador=-1;
 				
 				}
@@ -162,7 +174,12 @@ public class Piezak extends JFrame {
 		btn_aldatu = new JButton("Aldatu");
 		btn_aldatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				Pieza_class pieza= new Pieza_class(Pieza_testua.getText(),Hor_testua.getText(),Integer.parseInt(PrezioaP_testua.getText()));
+				piezakarray.get(contador).setHornitzailea(Hor_testua.getText());
+				piezakarray.get(contador).setIzena(Pieza_testua.getText());
+				piezakarray.get(contador).setPrezioa(Integer.parseInt(PrezioaP_testua.getText()));
+				dlm_pieza.removeElementAt(contador);
+				dlm_pieza.add(contador, pieza.toString());
 			}
 		});
 		btn_aldatu.setBounds(123, 341, 90, 35);
@@ -194,19 +211,18 @@ public class Piezak extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				contador=Pieza_list.getSelectedIndex();
+				Hor_testua.setText(piezakarray.get(contador).getHornitzailea());
+				Pieza_testua.setText(piezakarray.get(contador).getIzena());
+				PrezioaP_testua.setText(String.valueOf(piezakarray.get(contador).getPrezioa()));
 			}
 		});
 		Pieza_list.setModel(dlm_pieza);
-		Pieza_list.setBounds(169, 1, 220, 210);
+		Pieza_list.setBounds(23, 183, 390, 142);
 		contentPane.add(Pieza_list);
 		
-		JScrollPane scrollPane = new JScrollPane(Pieza_list);
+		scrollPane = new JScrollPane(Pieza_list);
 		scrollPane.setBounds(24, 183, 390, 142);
 		contentPane.add(scrollPane);
-		
-		JLabel lbl_nkode = new JLabel("");
-		lbl_nkode.setBounds(167, 22, 46, 14);
-		contentPane.add(lbl_nkode);
 		
 
 

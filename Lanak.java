@@ -39,6 +39,7 @@ public class Lanak extends JFrame {
 	private JButton btn_itzuli_1;
 	private JButton btn_ezabatu_1;
 	private JButton btn_aldatu_1;
+	private JScrollPane scrollLista;
 	private int contador;
 
 	protected static DefaultListModel<String> dlm_lana = new DefaultListModel<String>();
@@ -195,9 +196,9 @@ public class Lanak extends JFrame {
 		Lana_list.setBounds(12, 166, 412, 156);
 		contentPane.add(Lana_list);
 		
-		JScrollPane scrollPane = new JScrollPane(Lana_list);
-		scrollPane.setBounds(24, 183, 412, 156);
-		contentPane.add(scrollPane);
+		scrollLista = new JScrollPane(Lana_list);
+		scrollLista.setBounds(24, 183, 412, 156);
+		contentPane.add(scrollLista);
 		
 		lblLana = new JLabel("LANA");
 		lblLana.setBounds(12, 22, 95, 14);

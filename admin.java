@@ -7,9 +7,12 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 
 public class admin extends JFrame {
@@ -24,7 +27,8 @@ public class admin extends JFrame {
 	private JButton btn_berria;
 	private JButton btn_ezabatu;
 	private JButton btn_atzera;
-	private Fitxategi_class f1;
+	private int contador;
+	Fitxategi_class langile = new Fitxategi_class();
 	protected static DefaultListModel<String> dlm_erabiltzailea= new DefaultListModel<String>();
 	/**
 	 * Launch the application.
@@ -51,8 +55,7 @@ public class admin extends JFrame {
 		
 		//langileak fitxategitik kagatzen ditu arrayra 
 		
-		f1 = new Fitxategi_class();
-		f1.kargatuLangilea(erabiltzaile_berria.langileaarray);
+
 		//hemen langileen erabiltzaileak arraytik dlmra jarri
 		if(erabiltzaile_berria.langileaarray.size()>0) {
 			for(int p=0;p<erabiltzaile_berria.langileaarray.size();p++) {
@@ -78,6 +81,12 @@ public class admin extends JFrame {
 		contentPane.add(label_erabiltzailea);
 		
 		list = new JList<String>();
+		list.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				contador=list.getSelectedIndex();
+			}
+		});
 		list.setModel(dlm_erabiltzailea);
 		list.setBounds(15, 48, 257, 202);
 		contentPane.add(list);
@@ -96,6 +105,15 @@ public class admin extends JFrame {
 		btn_ezabatu = new JButton("Ezabatu");
 		btn_ezabatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				try {
+					dlm_erabiltzailea.removeElementAt(contador);	
+					erabiltzaile_berria.langileaarray.remove(contador);
+					contador=-1;
+					}
+					catch(ArrayIndexOutOfBoundsException si){
+						JOptionPane.showMessageDialog(null,"error");
+					}
+				
 			}
 		});
 		btn_ezabatu.setBounds(300, 94, 90, 35);
@@ -104,24 +122,15 @@ public class admin extends JFrame {
 		btn_atzera = new JButton("Itzuli");
 		btn_atzera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				langile.gordeLangileak(erabiltzaile_berria.langileaarray);
 				menu frame = new menu();
 				frame.setVisible(true);
-				dispose();
+				dispose();				
+				
 			}
 		});
 		btn_atzera.setBounds(300, 140, 90, 35);
 		contentPane.add(btn_atzera);
-		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			Login frame = new Login();
-			frame.setVisible(true);
-			dispose();
-			}
-		});
-		btnNewButton.setBounds(301, 200, 90, 32);
-		contentPane.add(btnNewButton);
 	
 			
 		

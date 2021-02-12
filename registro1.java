@@ -27,6 +27,18 @@ public class registro1 extends JFrame implements Serializable {
 	private JTextField bilatu_testua2;
 	private JList<String> list;
 	private JList<String> list_1;
+	private JButton btn_bilatu;
+	private JButton btn_sortu;
+	private JButton btn_bilatu2;
+	private JButton btn_sortu2;
+	private JButton btn_atzera;
+	private JButton btn_atzera_1;
+	private JButton btn_OT;
+	private JLabel Label_nan;
+	private JLabel Label_autoa;
+	private JScrollPane scrollPane;
+	private JScrollPane scrollPane_1;
+	private Fitxategi_class f;
 	protected static DefaultListModel<String> dlm_Nan= new DefaultListModel<String>();
 	protected static DefaultListModel<String> dlm_matrikula= new DefaultListModel<String>();
 	protected static ArrayList<bezero_class> bezeroarrayr = new ArrayList<bezero_class>();
@@ -53,6 +65,8 @@ public class registro1 extends JFrame implements Serializable {
 	 * Create the frame.
 	 */
 	public registro1() {
+		f = new Fitxategi_class();
+		f.kargatuBezeroa(bezero_sortu.bezeroarray);
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 540, 420);
@@ -61,7 +75,7 @@ public class registro1 extends JFrame implements Serializable {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btn_bilatu = new JButton("Bilatu");
+		btn_bilatu = new JButton("Bilatu");
 		btn_bilatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean bil = false;
@@ -76,7 +90,7 @@ public class registro1 extends JFrame implements Serializable {
 		btn_bilatu.setBounds(172, 40, 90, 35);
 		contentPane.add(btn_bilatu);
 		
-		JButton btn_sortu = new JButton("Sortu");
+		btn_sortu = new JButton("Sortu");
 		btn_sortu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				bezero_sortu frame = new bezero_sortu();
@@ -87,7 +101,7 @@ public class registro1 extends JFrame implements Serializable {
 		btn_sortu.setBounds(172, 86, 90, 35);
 		contentPane.add(btn_sortu);
 		
-		JButton btn_bilatu2 = new JButton("Bilatu");
+		btn_bilatu2 = new JButton("Bilatu");
 		btn_bilatu2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean bil2 = false;
@@ -102,7 +116,7 @@ public class registro1 extends JFrame implements Serializable {
 		btn_bilatu2.setBounds(421, 40, 90, 35);
 		contentPane.add(btn_bilatu2);
 		
-		JButton btn_sortu2 = new JButton("Sortu");
+		btn_sortu2 = new JButton("Sortu");
 		btn_sortu2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				autoa_sortu frame = new autoa_sortu();
@@ -115,7 +129,7 @@ public class registro1 extends JFrame implements Serializable {
 		btn_sortu2.setBounds(421, 86, 90, 35);
 		contentPane.add(btn_sortu2);
 		
-		JButton btn_atzera = new JButton("Itzuli");
+		btn_atzera = new JButton("Itzuli");
 		btn_atzera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				harrera_menua frame = new harrera_menua();
@@ -126,7 +140,7 @@ public class registro1 extends JFrame implements Serializable {
 		btn_atzera.setBounds(223, 333, 89, 35);
 		contentPane.add(btn_atzera);
 		
-		JButton btn_OT = new JButton("Sartu OT");
+		btn_OT = new JButton("Sartu OT");
 		btn_OT.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				OT1 frame = new OT1();
@@ -147,11 +161,11 @@ public class registro1 extends JFrame implements Serializable {
 		contentPane.add(bilatu_testua2);
 		bilatu_testua2.setColumns(10);
 		
-		JLabel Label_nan = new JLabel("Bezeroa NAN, NIE edo IFK");
+		Label_nan = new JLabel("Bezeroa NAN, NIE edo IFK");
 		Label_nan.setBounds(10, 16, 155, 14);
 		contentPane.add(Label_nan);
 		
-		JLabel Label_autoa = new JLabel("Autoa matrikula");
+		Label_autoa = new JLabel("Autoa matrikula");
 		Label_autoa.setBounds(275, 16, 136, 14);
 		contentPane.add(Label_autoa);
 		
@@ -165,7 +179,7 @@ public class registro1 extends JFrame implements Serializable {
 		list_1.setBounds(275, 86, 136, 222);
 		contentPane.add(list_1);
 		
-		JButton btn_atzera_1 = new JButton("Faktura");
+		btn_atzera_1 = new JButton("Faktura");
 		btn_atzera_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				faktura_aukeratu frame = new faktura_aukeratu();
@@ -176,11 +190,11 @@ public class registro1 extends JFrame implements Serializable {
 		btn_atzera_1.setBounds(422, 333, 89, 35);
 		contentPane.add(btn_atzera_1);
 		
-		JScrollPane scrollPane = new JScrollPane(list);
+		scrollPane = new JScrollPane(list);
 		scrollPane.setBounds(10, 86, 136, 222);
 		contentPane.add(scrollPane);
 		
-		JScrollPane scrollPane_1 = new JScrollPane(list_1);
+		scrollPane_1 = new JScrollPane(list_1);
 		scrollPane_1.setBounds(272, 86, 141, 222);
 		contentPane.add(scrollPane_1);
 		
