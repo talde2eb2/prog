@@ -39,7 +39,7 @@ public class erabiltzaile_berria extends JFrame {
 	private JTextField Dokumentazio_testua;
 	private JTextField Pasahitza1_testua;
 	private JTextField Pasahitza2_testua;
-	private JButton btnNewButton;
+	private JButton btn_itzuli;
 	private JComboBox<String> Mota_box;
 	protected static ArrayList<langilea_class> langileaarray = new ArrayList<langilea_class>();
 	private boolean nankomp=false;
@@ -187,16 +187,16 @@ public class erabiltzaile_berria extends JFrame {
 		contentPane.add(Pasahitza2_testua);
 		Pasahitza2_testua.setColumns(10);
 		
-		btnNewButton = new JButton("Itzuli");
-		btnNewButton.addActionListener(new ActionListener() {
+		btn_itzuli = new JButton("Itzuli");
+		btn_itzuli.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				admin frame = new admin();
 				frame.setVisible(true);
 				dispose();
 			}
 		});
-		btnNewButton.setBounds(234, 325, 90, 35);
-		contentPane.add(btnNewButton);
+		btn_itzuli.setBounds(234, 325, 90, 35);
+		contentPane.add(btn_itzuli);
 	}
 	private boolean KonprobatzaileaDokumentazioa() {//Funtzio hau konprobatuko du combo box-an zein akueratu den eta Faktura6-an JLabel-a aldatuko du 
 		boolean Konpr=true; 

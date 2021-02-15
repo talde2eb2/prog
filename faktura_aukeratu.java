@@ -17,6 +17,10 @@ public class faktura_aukeratu extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JList<String> list;
+	private JButton btn_aukeratu;
+	private JButton btn_itzuli;
+	
 
 	/**
 	 * Launch the application.
@@ -46,11 +50,11 @@ public class faktura_aukeratu extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JList<String> list = new JList<String>();
+		list = new JList<String>();
 		list.setBounds(10, 11, 257, 162);
 		contentPane.add(list);
 		
-		JButton btn_aukeratu = new JButton("Aukeratu");
+		btn_aukeratu = new JButton("Aukeratu");
 		btn_aukeratu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Faktura frame = new Faktura();
@@ -61,7 +65,7 @@ public class faktura_aukeratu extends JFrame {
 		btn_aukeratu.setBounds(307, 11, 90, 35);
 		contentPane.add(btn_aukeratu);
 		
-		JButton btn_itzuli = new JButton("Itzuli");
+		btn_itzuli = new JButton("Itzuli");
 		btn_itzuli.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				harrera_menua frame = new harrera_menua();

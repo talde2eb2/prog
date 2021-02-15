@@ -13,6 +13,7 @@ import javax.swing.JList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
+import javax.swing.JScrollPane;
 
 public class OT2 extends JFrame {
 
@@ -21,8 +22,35 @@ public class OT2 extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField Konpoketa_testua;
+	private JTextField Pieza_testua;
+	private JButton btn_gorde;
+	private JButton btn_itzuli;
+	private JButton btn_Ezabatu;
+	private JButton btn_sartu;
+	private JButton btn_sartu2;
+	private JRadioButton rdbtn_BaiEz;
+	private JLabel Label_Konponketa;
+	private JLabel Label_OT1;
+	private JLabel Label_Data;
+	private JLabel Label_idlana;
+	private JLabel Label_langilea;
+	private JLabel Label_Langile;
+	private JLabel Label_ID;
+	private JLabel Label_fecha;
+	private JLabel Label_autoa;
+	private JLabel Label_bezeroa;
+	private JLabel Label_konponketak;
+	private JLabel Label_OT2;
+	private JLabel Label_eginda;
+	private JLabel Label_Piezak;
+	private JComboBox<String> Lana_box;
+	private JComboBox<String> Pieza_box;
+	private JList<String> list_arazoak;
+	private JList<String> list_1;
+	private JList<String> list_2;
+	private JScrollPane scrollPane;
+	private JScrollPane scrollPane_1;
 
 	/**
 	 * Launch the application.
@@ -52,126 +80,134 @@ public class OT2 extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Gorde");
-		btnNewButton.setBounds(74, 526, 89, 35);
-		contentPane.add(btnNewButton);
+		btn_gorde = new JButton("Gorde");
+		btn_gorde.setBounds(74, 526, 89, 35);
+		contentPane.add(btn_gorde);
 		
-		JButton btnNewButton_1 = new JButton("Itzuli");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		btn_itzuli = new JButton("Itzuli");
+		btn_itzuli.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				registro2 frame = new registro2();
 				frame.setVisible(true);
 				dispose();
 			}
 		});
-		btnNewButton_1.setBounds(208, 526, 89, 35);
-		contentPane.add(btnNewButton_1);
+		btn_itzuli.setBounds(208, 526, 89, 35);
+		contentPane.add(btn_itzuli);
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("BAI/EZ");
-		rdbtnNewRadioButton.setBounds(424, 440, 82, 23);
-		contentPane.add(rdbtnNewRadioButton);
+		rdbtn_BaiEz = new JRadioButton("BAI/EZ");
+		rdbtn_BaiEz.setBounds(424, 440, 82, 23);
+		contentPane.add(rdbtn_BaiEz);
 		
-		JLabel lblNewLabel = new JLabel("Konponketa");
-		lblNewLabel.setBounds(10, 291, 112, 14);
-		contentPane.add(lblNewLabel);
+		Label_Konponketa = new JLabel("Konponketa");
+		Label_Konponketa.setBounds(10, 291, 112, 14);
+		contentPane.add(Label_Konponketa);
 		
-		JLabel lblNewLabel_1 = new JLabel("OT1 \u201Carazoa\u201D");
-		lblNewLabel_1.setBounds(74, 191, 124, 14);
-		contentPane.add(lblNewLabel_1);
+		Label_OT1 = new JLabel("OT1 \u201Carazoa\u201D");
+		Label_OT1.setBounds(74, 191, 124, 14);
+		contentPane.add(Label_OT1);
 		
-		JLabel lblNewLabel_3 = new JLabel("Data");
-		lblNewLabel_3.setBounds(74, 166, 112, 14);
-		contentPane.add(lblNewLabel_3);
+		Label_Data = new JLabel("Data");
+		Label_Data.setBounds(74, 166, 112, 14);
+		contentPane.add(Label_Data);
 		
-		JLabel lblNewLabel_4 = new JLabel("IdLana");
-		lblNewLabel_4.setBounds(74, 141, 112, 14);
-		contentPane.add(lblNewLabel_4);
+		Label_idlana = new JLabel("IdLana");
+		Label_idlana.setBounds(74, 141, 112, 14);
+		contentPane.add(Label_idlana);
 		
-		JLabel lblNewLabel_5 = new JLabel("Langilea");
-		lblNewLabel_5.setBounds(74, 116, 112, 14);
-		contentPane.add(lblNewLabel_5);
+		Label_langilea = new JLabel("Langilea");
+		Label_langilea.setBounds(74, 116, 112, 14);
+		contentPane.add(Label_langilea);
 		
-		JLabel lblNewLabel_6 = new JLabel("Auto");
-		lblNewLabel_6.setBounds(208, 116, 199, 14);
-		contentPane.add(lblNewLabel_6);
+		Label_Langile = new JLabel("Auto");
+		Label_Langile.setBounds(208, 116, 199, 14);
+		contentPane.add(Label_Langile);
 		
-		JLabel lblNewLabel_7 = new JLabel("Auto");
-		lblNewLabel_7.setBounds(208, 141, 199, 14);
-		contentPane.add(lblNewLabel_7);
+		Label_ID = new JLabel("Auto");
+		Label_ID.setBounds(208, 141, 199, 14);
+		contentPane.add(Label_ID);
 		
-		JLabel lblNewLabel_8 = new JLabel("Auto");
-		lblNewLabel_8.setBounds(208, 166, 199, 14);
-		contentPane.add(lblNewLabel_8);
+		Label_fecha = new JLabel("Auto");
+		Label_fecha.setBounds(208, 166, 199, 14);
+		contentPane.add(Label_fecha);
 		
-		JLabel lblNewLabel_9 = new JLabel("Erabilgailua (vehiculo)");
-		lblNewLabel_9.setBounds(208, 40, 199, 14);
-		contentPane.add(lblNewLabel_9);
+		Label_autoa = new JLabel("Erabilgailua (vehiculo)");
+		Label_autoa.setBounds(208, 40, 199, 14);
+		contentPane.add(Label_autoa);
 		
-		JLabel lblNewLabel_10 = new JLabel("Bezeroa");
-		lblNewLabel_10.setBounds(208, 65, 199, 14);
-		contentPane.add(lblNewLabel_10);
+		Label_bezeroa = new JLabel("Bezeroa");
+		Label_bezeroa.setBounds(208, 65, 199, 14);
+		contentPane.add(Label_bezeroa);
 		
-		JLabel lblNewLabel_11 = new JLabel("Konponketak");
-		lblNewLabel_11.setBounds(74, 65, 112, 14);
-		contentPane.add(lblNewLabel_11);
+		Label_konponketak = new JLabel("Konponketak");
+		Label_konponketak.setBounds(74, 65, 112, 14);
+		contentPane.add(Label_konponketak);
 		
-		JLabel lblNewLabel_12 = new JLabel("LAN AGINDUA (OT) 2");
-		lblNewLabel_12.setBounds(74, 33, 112, 28);
-		contentPane.add(lblNewLabel_12);
+		Label_OT2 = new JLabel("LAN AGINDUA (OT) 2");
+		Label_OT2.setBounds(74, 33, 112, 28);
+		contentPane.add(Label_OT2);
 		
-		JLabel lblNewLabel_13 = new JLabel("Eginda");
-		lblNewLabel_13.setBounds(424, 419, 46, 14);
-		contentPane.add(lblNewLabel_13);
+		Label_eginda = new JLabel("Eginda");
+		Label_eginda.setBounds(424, 419, 46, 14);
+		contentPane.add(Label_eginda);
 		
-		JList<String> list = new JList<String>();
-		list.setBounds(208, 191, 199, 69);
-		contentPane.add(list);
+		list_arazoak = new JList<String>();
+		list_arazoak.setBounds(208, 191, 199, 69);
+		contentPane.add(list_arazoak);
 		
-		JButton btnNewButton_2 = new JButton("Sartu");
-		btnNewButton_2.setBounds(417, 281, 89, 35);
-		contentPane.add(btnNewButton_2);
+		btn_sartu = new JButton("Sartu");
+		btn_sartu.setBounds(417, 281, 89, 35);
+		contentPane.add(btn_sartu);
 		
-		JButton btnNewButton_2_1 = new JButton("Sartu");
-		btnNewButton_2_1.setBounds(417, 327, 89, 35);
-		contentPane.add(btnNewButton_2_1);
+		btn_sartu2 = new JButton("Sartu");
+		btn_sartu2.setBounds(417, 327, 89, 35);
+		contentPane.add(btn_sartu2);
 		
-		JComboBox<String> Lana_box = new JComboBox<String>();
-		for(int l=0;Lanak.lanaarray.size()>l;l++)
-			Lana_box.addItem(Lanak.lanaarray.get(l).getIzena());
+		Lana_box = new JComboBox<String>();
+		for(int l=0;Lanak.lanakarray.size()>l;l++)
+			Lana_box.addItem(Lanak.lanakarray.get(l).getIzena());
 		
 		Lana_box.setBounds(106, 281, 201, 35);
 		contentPane.add(Lana_box);
 		
-		JComboBox<String> Pieza_box = new JComboBox<String>();
-		for(int p=0;Piezak.piezaarray.size()>p;p++)
-			Pieza_box.addItem(Piezak.piezaarray.get(p).getIzena());
+		Pieza_box = new JComboBox<String>();
+		for(int p=0;Piezak.piezakarray.size()>p;p++)
+			Pieza_box.addItem(Piezak.piezakarray.get(p).getIzena());
 		Pieza_box.setBounds(106, 327, 201, 35);
 		contentPane.add(Pieza_box);
 		
-		JLabel lblNewLabel_2 = new JLabel("Piezak");
-		lblNewLabel_2.setBounds(10, 337, 46, 14);
-		contentPane.add(lblNewLabel_2);
+		Label_Piezak = new JLabel("Piezak");
+		Label_Piezak.setBounds(10, 337, 46, 14);
+		contentPane.add(Label_Piezak);
 		
-		JList<String> list_1 = new JList<String>();
+		list_1 = new JList<String>();
 		list_1.setBounds(106, 373, 201, 132);
 		contentPane.add(list_1);
 		
-		JList<String> list_2 = new JList<String>();
+		list_2 = new JList<String>();
 		list_2.setBounds(317, 373, 90, 132);
 		contentPane.add(list_2);
 		
-		JButton btnNewButton_2_1_1 = new JButton("Ezabatu");
-		btnNewButton_2_1_1.setBounds(417, 373, 89, 35);
-		contentPane.add(btnNewButton_2_1_1);
+		btn_Ezabatu = new JButton("Ezabatu");
+		btn_Ezabatu.setBounds(417, 373, 89, 35);
+		contentPane.add(btn_Ezabatu);
 		
-		textField = new JTextField();
-		textField.setBounds(317, 280, 90, 35);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		Konpoketa_testua = new JTextField();
+		Konpoketa_testua.setBounds(317, 280, 90, 35);
+		contentPane.add(Konpoketa_testua);
+		Konpoketa_testua.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(317, 327, 90, 35);
-		contentPane.add(textField_1);
+		Pieza_testua = new JTextField();
+		Pieza_testua.setColumns(10);
+		Pieza_testua.setBounds(317, 327, 90, 35);
+		contentPane.add(Pieza_testua);
+		
+		scrollPane = new JScrollPane(list_1);
+		scrollPane.setBounds(106, 373, 201, 132);
+		contentPane.add(scrollPane);
+		
+		scrollPane_1 = new JScrollPane(list_2);
+		scrollPane_1.setBounds(317, 373, 89, 132);
+		contentPane.add(scrollPane_1);
 	}
 }

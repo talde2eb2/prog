@@ -67,6 +67,7 @@ public class Login extends JFrame {
 		f.kargatuBezeroa(autoa_sortu.bezeroarray);
 		f.kargatuPiezak(Piezak.piezakarray);
 		f.kargatuLanak(Lanak.lanakarray);
+
 		
 		
 	
@@ -74,13 +75,14 @@ public class Login extends JFrame {
 		//lehenengo instalazioa
 		if(erabiltzaile_berria.langileaarray.size()>=1) {
 			
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-	
+
 		btn_sartu = new JButton("Sartu");
 		btn_sartu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
