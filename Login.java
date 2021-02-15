@@ -57,6 +57,7 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
+		
 		f = new Fitxategi_class();
 		f.kargatuLangilea(erabiltzaile_berria.langileaarray);
 		f.kargatuAutoa(registro1.autoaarrayr);
@@ -66,17 +67,25 @@ public class Login extends JFrame {
 		f.kargatuBezeroa(autoa_sortu.bezeroarray);
 		f.kargatuPiezak(Piezak.piezakarray);
 		f.kargatuLanak(Lanak.lanakarray);
+
+		
+		
+	
+		
+		//lehenengo instalazioa
+		if(erabiltzaile_berria.langileaarray.size()>=1) {
+			
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		btn_sartu = new JButton("Sartu");
 		btn_sartu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//erabiltzaile_berria.langileaarray
 				for(int i=0;i<erabiltzaile_berria.langileaarray.size();i++) {
 					if (erabiltzaile_berria.langileaarray.get(i).getErabiltzailea().equals(Erabiltzaile_testua.getText())) {
 						if (erabiltzaile_berria.langileaarray.get(i).getPasahitza().equals(new String(Pasahitza.getPassword()))) {
@@ -126,6 +135,11 @@ public class Login extends JFrame {
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode()==KeyEvent.VK_ENTER) {
 					//erabiltzaile_berria.langileaarray
+			
+					
+					
+					
+					
 					for(int i=0;i<erabiltzaile_berria.langileaarray.size();i++) {
 						if (erabiltzaile_berria.langileaarray.get(i).getErabiltzailea().equals(Erabiltzaile_testua.getText())) {
 							if (erabiltzaile_berria.langileaarray.get(i).getPasahitza().equals(new String(Pasahitza.getPassword()))) {
@@ -192,6 +206,15 @@ public class Login extends JFrame {
 		}
 		logoa.setBounds(0, 26, 450, 94);
 		contentPane.add(logoa);
+		}
+		else {
+			try {
+				erabiltzaile_berria frame = new erabiltzaile_berria();
+				frame.setVisible(true);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
+		}
 	}
-}
