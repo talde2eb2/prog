@@ -1,22 +1,22 @@
-package Erronka2;
+	package Erronka2;
 
 public class OT_class {
 	protected String Idlana;
 	protected String Arazoa;
-	protected String Eginda;
+	protected boolean Eginda;
 
-
-OT_class() {
-	this.Idlana = "";
-	this.Arazoa = "";
-	this.Eginda = "";
-}
-
-OT_class(String Idlana, String Arazoa, String Eginda) {
+OT_class(String Idlana, String Arazoa, boolean Eginda) {
 	this.Idlana = Idlana;
 	this.Arazoa = Arazoa;
 	this.Eginda = Eginda;
 }
+
+OT_class() {
+	this.Idlana = "";
+	this.Arazoa = "";
+	this.Eginda = false;
+}
+
 
 public String getIdlana() {
 	return Idlana;
@@ -34,11 +34,11 @@ public void setArazoa(String arazoa) {
 	Arazoa = arazoa;
 }
 
-public String getEginda() {
+public boolean getEginda() {
 	return Eginda;
 }
 
-public void setEginda(String eginda) {
+public void setEginda(boolean eginda) {
 	Eginda = eginda;
 }
 

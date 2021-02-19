@@ -39,6 +39,7 @@ public class Lanak extends JFrame {
 	private JButton btn_itzuli_1;
 	private JButton btn_ezabatu_1;
 	private JButton btn_aldatu_1;
+	private JScrollPane scrollLista;
 	private int contador;
 
 	protected static DefaultListModel<String> dlm_lana = new DefaultListModel<String>();
@@ -139,7 +140,7 @@ public class Lanak extends JFrame {
 				dlm_lana.removeAllElements();
 				Fitxategi_class lanak = new Fitxategi_class();
 				lanak.gordeLanak(lanakarray);
-				pieza_lana frame = new pieza_lana();
+				Admin_menu frame = new Admin_menu();
 				frame.setVisible(true);
 				dispose();
 			}
@@ -164,7 +165,7 @@ public class Lanak extends JFrame {
 		});
 		btn_ezabatu_1.setBounds(227, 353, 90, 35);
 		contentPane.add(btn_ezabatu_1);
-		
+		btn_ezabatu_1.setVisible(false);
 		
 		btn_aldatu_1 = new JButton("Aldatu");
 		btn_aldatu_1.addActionListener(new ActionListener() {
@@ -179,25 +180,29 @@ public class Lanak extends JFrame {
 		});
 		btn_aldatu_1.setBounds(126, 353, 90, 35);
 		contentPane.add(btn_aldatu_1);
+		btn_aldatu_1.setVisible(false);
 		
 
 		Lana_list = new JList<String>();
 	    Lana_list.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				btn_aldatu_1.setVisible(true);
+				btn_ezabatu_1.setVisible(true);
 				contador=Lana_list.getSelectedIndex();
 				Lana_testua.setText(lanakarray.get(contador).getIzena());
 				Langile_testua.setText(lanakarray.get(contador).getLangile());
 				PrezioaL_testua.setText(String.valueOf(lanakarray.get(contador).getPrezioa()));
+				
 			}
 		});
 	    Lana_list.setModel(dlm_lana);
 		Lana_list.setBounds(12, 166, 412, 156);
 		contentPane.add(Lana_list);
 		
-		JScrollPane scrollPane = new JScrollPane(Lana_list);
-		scrollPane.setBounds(24, 183, 412, 156);
-		contentPane.add(scrollPane);
+		scrollLista = new JScrollPane(Lana_list);
+		scrollLista.setBounds(24, 183, 412, 156);
+		contentPane.add(scrollLista);
 		
 		lblLana = new JLabel("LANA");
 		lblLana.setBounds(12, 22, 95, 14);

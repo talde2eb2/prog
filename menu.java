@@ -17,6 +17,11 @@ public class menu extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JButton btn_Harrera;
+	private JButton btn_mekanikaria;
+	private JButton btn_Admin;
+	private JButton btn_Itxi;
+	private JLabel Label_Kaixo;
 
 	/**
 	 * Launch the application.
@@ -41,79 +46,57 @@ public class menu extends JFrame {
 		
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 593, 194);
+		setBounds(100, 100, 593, 137);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Harrera");
-		btnNewButton.addActionListener(new ActionListener() {
+		btn_Harrera = new JButton("Harrera");
+		btn_Harrera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				harrera_menua frame = new harrera_menua();
 				frame.setVisible(true);
 				dispose();
 			}
 		});
-		btnNewButton.setBounds(10, 69, 130, 35);
-		contentPane.add(btnNewButton);
+		btn_Harrera.setBounds(10, 49, 130, 35);
+		contentPane.add(btn_Harrera);
 		
-		JButton btnNewButton_1 = new JButton("Faktura");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		btn_mekanikaria = new JButton("Mekanikoa");
+		btn_mekanikaria.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				faktura_aukeratu frame = new faktura_aukeratu();
+				registro2 frame = new registro2();
 				frame.setVisible(true);
 				dispose();
 			}
 		});
-		btnNewButton_1.setBounds(434, 69, 130, 35);
-		contentPane.add(btnNewButton_1);
+		btn_mekanikaria.setBounds(150, 49, 130, 35);
+		contentPane.add(btn_mekanikaria);
 		
-		JButton btnNewButton_2 = new JButton("Mekanikoa");
-		btnNewButton_2.addActionListener(new ActionListener() {
+		btn_Admin = new JButton("Administradorea");
+		btn_Admin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				mekaniko_menua frame = new mekaniko_menua();
+				Admin_menu frame = new Admin_menu();
 				frame.setVisible(true);
 				dispose();
 			}
 		});
-		btnNewButton_2.setBounds(150, 69, 130, 35);
-		contentPane.add(btnNewButton_2);
+		btn_Admin.setBounds(290, 49, 130, 35);
+		contentPane.add(btn_Admin);
 		
-		JButton btnNewButton_4 = new JButton("Administradorea");
-		btnNewButton_4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				admin frame = new admin();
-				frame.setVisible(true);
-				dispose();
-			}
-		});
-		btnNewButton_4.setBounds(290, 69, 130, 35);
-		contentPane.add(btnNewButton_4);
-		
-		JButton btnNewButton_5 = new JButton("Itxi");
-		btnNewButton_5.addActionListener(new ActionListener() {
+		btn_Itxi = new JButton("Itxi");
+		btn_Itxi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		});
-		btnNewButton_5.setBounds(434, 130, 130, 35);
-		contentPane.add(btnNewButton_5);
+		btn_Itxi.setBounds(430, 49, 130, 35);
+		contentPane.add(btn_Itxi);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setText("Kaixo "+Login.izen);
-		lblNewLabel.setBounds(205, 11, 190, 47);
-		contentPane.add(lblNewLabel);
-		
-		JButton btnNewButton_3 = new JButton("Pieza/Lana");
-		btnNewButton_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				pieza_lana frame = new pieza_lana();
-				frame.setVisible(true);
-				dispose();
-			}
-		});
-		btnNewButton_3.setBounds(10, 130, 130, 35);
-		contentPane.add(btnNewButton_3);
+		Label_Kaixo = new JLabel("");
+		Label_Kaixo.setText("Kaixo "+Login.izen);
+		Label_Kaixo.setBounds(230, 11, 190, 47);
+		contentPane.add(Label_Kaixo);
 	}
 }

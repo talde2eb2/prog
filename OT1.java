@@ -11,13 +11,13 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollBar;
 import java.awt.event.MouseAdapter;
 import javax.swing.JScrollPane;
-
 public class OT1 extends JFrame {
 
 	/**
@@ -25,10 +25,26 @@ public class OT1 extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JButton btn_gorde;
+	private JButton btn_itzuli;
+	private JButton btn_ezabatu;
+	private JLabel Label_Autoa;
+	private JLabel Label_LanIzena;
+	private JLabel Label_ID;
+	private JLabel Label_Fecha;
+	private JLabel Label_Langilea;
+	private JLabel Label_id;
+	private JLabel Label_Data;
+	private JLabel Label_Arazoak;
+	private JLabel Label_LA;
+	private JLabel Label_Bezeroa;
+	private JScrollPane scroll_lis;
 	private JTextField arazoa_text;
-	private JList arazoa_list;
+	private JList<String> arazoa_list;
 	protected  DefaultListModel<String> dlm_arazoa= new DefaultListModel<String>();
+	protected static ArrayList<OT_class> otarray = new ArrayList<OT_class>();
 	private int contador;
+	private String ParteZenb;
 
 	/**
 	 * Launch the application.
@@ -58,73 +74,95 @@ public class OT1 extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Gorde");
-		btnNewButton.addActionListener(new ActionListener() {
+		btn_gorde = new JButton("Gorde");
+		btn_gorde.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			
+				try {
+				
+			OT_class ot=new OT_class(partezenb(),dlm_arazoa.getElementAt(0),false);
+			otarray.add(ot);
+			
+			Fitxategi_class ot1 = new Fitxategi_class();
+			ot1.GordeOt(otarray);
+			
+				System.out.println(otarray.get(0).Arazoa);
+				
+			
+				faktura_aukeratu frame = new faktura_aukeratu();
+				frame.setVisible(true);
+				dispose();}
+				catch(ArrayIndexOutOfBoundsException e2) {
+					JOptionPane.showMessageDialog(null,"error");
+					
+				}
+				
+				
 			}
 		});
-		btnNewButton.setBounds(450, 486, 124, 35);
-		contentPane.add(btnNewButton);
+		btn_gorde.setBounds(450, 486, 124, 35);
+		contentPane.add(btn_gorde);
 		
-		JButton btnNewButton_1 = new JButton("Itzuli");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		btn_itzuli = new JButton("Itzuli");
+		btn_itzuli.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				registro1 frame = new registro1();
 				frame.setVisible(true);
 				dispose();
 			}
 		});
-		btnNewButton_1.setBounds(250, 486, 124, 35);
-		contentPane.add(btnNewButton_1);
+		btn_itzuli.setBounds(250, 486, 124, 35);
+		contentPane.add(btn_itzuli);
 		
-		JLabel lblNewLabel = new JLabel("Erabilgailua (vehiculo)");
-		lblNewLabel.setBounds(250, 30, 213, 14);
-		contentPane.add(lblNewLabel);
+		Label_Autoa = new JLabel("Erabilgailua (vehiculo)");
+		Label_Autoa.setBounds(250, 30, 213, 14);
+		contentPane.add(Label_Autoa);
 		
-		JLabel lblNewLabel_1 = new JLabel("Auto");
+		Label_LanIzena = new JLabel("Auto");
 		
-		lblNewLabel_1.setBounds(250, 94, 46, 14);
-		contentPane.add(lblNewLabel_1);
+		Label_LanIzena.setBounds(250, 94, 46, 14);
+		contentPane.add(Label_LanIzena);
 		
-		JLabel lblNewLabel_2 = new JLabel("Auto");
-		lblNewLabel_2.setBounds(250, 119, 46, 14);
-		contentPane.add(lblNewLabel_2);
+		Label_ID = new JLabel(partezenb());
 		
-		JLabel lblNewLabel_3 = new JLabel("Auto");
-		lblNewLabel_3.setBounds(250, 144, 46, 14);
-		contentPane.add(lblNewLabel_3);
+		Label_ID.setBounds(250, 119, 77, 14);
+		contentPane.add(Label_ID);
 		
-		JLabel lblNewLabel_5 = new JLabel("Langilea");
-		lblNewLabel_5.setBounds(46, 94, 77, 14);
-		contentPane.add(lblNewLabel_5);
+		Label_Fecha = new JLabel(""+LocalDate.now());
+		Label_Fecha.setBounds(250, 144, 77, 14);
+		contentPane.add(Label_Fecha);
 		
-		JLabel lblNewLabel_6 = new JLabel("IdLana");
-		lblNewLabel_6.setBounds(46, 119, 77, 14);
-		contentPane.add(lblNewLabel_6);
+		Label_Langilea = new JLabel("Langilea");
+		Label_Langilea.setBounds(46, 94, 77, 14);
+		contentPane.add(Label_Langilea);
 		
-		JLabel lblNewLabel_7 = new JLabel("Data");
-		lblNewLabel_7.setBounds(46, 144, 77, 14);
-		contentPane.add(lblNewLabel_7);
+		Label_id = new JLabel("IdLana");
+		Label_id.setBounds(46, 119, 77, 14);
+		contentPane.add(Label_id);
 		
-		JLabel lblNewLabel_8 = new JLabel("Arazoak");
-		lblNewLabel_8.setBounds(46, 180, 77, 14);
-		contentPane.add(lblNewLabel_8);
+		Label_Data = new JLabel("Data");
+		Label_Data.setBounds(46, 144, 77, 14);
+		contentPane.add(Label_Data);
 		
-		JLabel lblNewLabel_9 = new JLabel("LAN AGINDUA (OT) 1");
-		lblNewLabel_9.setBounds(46, 30, 185, 58);
-		contentPane.add(lblNewLabel_9);
+		Label_Arazoak = new JLabel("Arazoak");
+		Label_Arazoak.setBounds(46, 180, 77, 14);
+		contentPane.add(Label_Arazoak);
 		
-		JLabel lblNewLabel_12 = new JLabel("Bezeroa");
-		lblNewLabel_12.setBounds(250, 55, 213, 14);
-		contentPane.add(lblNewLabel_12);
+		Label_LA = new JLabel("LAN AGINDUA (OT) 1");
+		Label_LA.setBounds(46, 30, 185, 58);
+		contentPane.add(Label_LA);
+		
+		Label_Bezeroa = new JLabel("Bezeroa");
+		Label_Bezeroa.setBounds(250, 55, 213, 14);
+		contentPane.add(Label_Bezeroa);
 		
 		arazoa_text = new JTextField();
 		arazoa_text.setBounds(250, 177, 198, 35);
 		contentPane.add(arazoa_text);
 		arazoa_text.setColumns(10);
-		
-		JButton btnNewButton_3 = new JButton("Sartu");
-		btnNewButton_3.addActionListener(new ActionListener() {
+		//boton falta que solo se pueda meter 1 entrada
+		JButton btn_sartu = new JButton("Sartu");
+		btn_sartu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 			if(arazoa_text.getText().equals("")) {
@@ -137,8 +175,8 @@ public class OT1 extends JFrame {
 				
 			}
 		});
-		btnNewButton_3.setBounds(473, 176, 101, 35);
-		contentPane.add(btnNewButton_3);
+		btn_sartu.setBounds(473, 176, 101, 35);
+		contentPane.add(btn_sartu);
 		
 		arazoa_list =  new JList<String>();
 		arazoa_list.addMouseListener(new MouseAdapter() {
@@ -157,8 +195,8 @@ public class OT1 extends JFrame {
 		
 		
 		
-		JButton btnNewButton_4 = new JButton("Ezabatu");
-		btnNewButton_4.addActionListener(new ActionListener() {
+		btn_ezabatu = new JButton("Ezabatu");
+		btn_ezabatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 				dlm_arazoa.removeElementAt(contador);
@@ -170,11 +208,44 @@ public class OT1 extends JFrame {
 				}
 	}
 		});
-		btnNewButton_4.setBounds(473, 222, 101, 35);
-		contentPane.add(btnNewButton_4);
+		btn_ezabatu.setBounds(473, 222, 101, 35);
+		contentPane.add(btn_ezabatu);
 		
-		JScrollPane scrollPane = new JScrollPane(arazoa_list);
-		scrollPane.setBounds(250, 223, 198, 236);
-		contentPane.add(scrollPane);
+		scroll_lis = new JScrollPane(arazoa_list);
+		scroll_lis.setBounds(250, 223, 198, 236);
+		contentPane.add(scroll_lis);
 	}
+	public String partezenb() {
+		
+		//ID lan agindua sortu
+		//lan agindualgordeta badaude:
+		if (otarray.size()>=1) {
+		String x;
+		//arraylistaren azken elementuaren idBezeroa atera eta x bariablean gorde
+		x=otarray.get(otarray.size()-1).getIdlana();
+
+		//katearen lehenengo letra kendu (B123)
+		x= x.substring(2, x.length());
+
+		//Zzenbakieei bat gehitu
+		int zenb=Integer.parseInt(x);
+		zenb=zenb+1;
+		System.out.println(zenb);
+		//katea sortu eta baliablean gorde
+		x="LA"+(zenb);
+		ParteZenb=x;
+		System.out.println(x);
+
+
+		}
+		else {
+		//lehenendo bezeroaren id sortzeko
+		String x="LA1";
+		ParteZenb=x;
+		System.out.println(ParteZenb);
+		}
+		return ParteZenb;
+
+		}
+
 } 
