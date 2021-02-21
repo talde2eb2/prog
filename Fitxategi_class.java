@@ -2,14 +2,11 @@ package Erronka2;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Fitxategi_class implements Serializable{
 
@@ -184,7 +181,7 @@ public class Fitxategi_class implements Serializable{
 			obj = (OT_class)ois.readObject();
 			OT1.otarray.add((OT_class) obj);
 			while(obj != null) {
-				obj = (langilea_class)ois.readObject();
+				obj = (OT_class)ois.readObject();
 				OT1.otarray.add((OT_class) obj);
 			}
 			ois.close();
@@ -224,15 +221,6 @@ public class Fitxategi_class implements Serializable{
 			ois.close();
 			}catch(IOException | ClassNotFoundException ioe) {
 		}	
-	}
-	public void log() throws IOException {
-		Date objDate = new Date();
-		FileWriter fitxategia = null;
-			PrintWriter pw = null;
-				fitxategia = new FileWriter ("Fichero/log.txt", true);
-				pw = new PrintWriter (fitxategia);
-				pw.println(this.getClass() +" "+ objDate);
-				fitxategia.close();
 	}
 }
 

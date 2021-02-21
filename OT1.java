@@ -41,10 +41,10 @@ public class OT1 extends JFrame {
 	private JScrollPane scroll_lis;
 	private JTextField arazoa_text;
 	private JList<String> arazoa_list;
-	protected  DefaultListModel<String> dlm_arazoa= new DefaultListModel<String>();
+	protected static DefaultListModel<String> dlm_arazoa= new DefaultListModel<String>();
 	protected static ArrayList<OT_class> otarray = new ArrayList<OT_class>();
-	private int contador;
-	private String ParteZenb;
+	protected static int contador;
+	//private String ParteZenb;
 
 	/**
 	 * Launch the application.
@@ -80,20 +80,17 @@ public class OT1 extends JFrame {
 			
 				try {
 				
-			OT_class ot=new OT_class(partezenb(),dlm_arazoa.getElementAt(0),false);
-			otarray.add(ot);
+					OT_class ot=new OT_class(arazoa_text.getText(),Label_Bezeroa.getText());
+					otarray.add(ot);
 			
-			Fitxategi_class ot1 = new Fitxategi_class();
-			ot1.GordeOt(otarray);
+					Fitxategi_class ot1 = new Fitxategi_class();
+					ot1.GordeOt(otarray);			
 			
-				System.out.println(otarray.get(0).Arazoa);
-				
-			
-				faktura_aukeratu frame = new faktura_aukeratu();
-				frame.setVisible(true);
-				dispose();}
-				catch(ArrayIndexOutOfBoundsException e2) {
-					JOptionPane.showMessageDialog(null,"error");
+					faktura_aukeratu frame = new faktura_aukeratu();
+					frame.setVisible(true);
+					dispose();}
+					catch(ArrayIndexOutOfBoundsException e2) {
+						JOptionPane.showMessageDialog(null,"error");
 					
 				}
 				
@@ -113,17 +110,16 @@ public class OT1 extends JFrame {
 		});
 		btn_itzuli.setBounds(250, 486, 124, 35);
 		contentPane.add(btn_itzuli);
-		
-		Label_Autoa = new JLabel("Erabilgailua (vehiculo)");
+		Label_Autoa = new JLabel(registro1.autoaarrayr.get(registro1.contador).getMatrikula());
 		Label_Autoa.setBounds(250, 30, 213, 14);
 		contentPane.add(Label_Autoa);
 		
 		Label_LanIzena = new JLabel("Auto");
-		
+		Label_LanIzena.setText(Login.izena);
 		Label_LanIzena.setBounds(250, 94, 46, 14);
 		contentPane.add(Label_LanIzena);
 		
-		Label_ID = new JLabel(partezenb());
+		Label_ID = new JLabel(/*partezenb()*/);
 		
 		Label_ID.setBounds(250, 119, 77, 14);
 		contentPane.add(Label_ID);
@@ -149,10 +145,10 @@ public class OT1 extends JFrame {
 		contentPane.add(Label_Arazoak);
 		
 		Label_LA = new JLabel("LAN AGINDUA (OT) 1");
-		Label_LA.setBounds(46, 30, 185, 58);
+		Label_LA.setBounds(46, 8, 185, 58);
 		contentPane.add(Label_LA);
 		
-		Label_Bezeroa = new JLabel("Bezeroa");
+		Label_Bezeroa = new JLabel(registro1.autoaarrayr.get(registro1.contador).getBezero());
 		Label_Bezeroa.setBounds(250, 55, 213, 14);
 		contentPane.add(Label_Bezeroa);
 		
@@ -215,7 +211,7 @@ public class OT1 extends JFrame {
 		scroll_lis.setBounds(250, 223, 198, 236);
 		contentPane.add(scroll_lis);
 	}
-	public String partezenb() {
+	/*public String partezenb() {
 		
 		//ID lan agindua sortu
 		//lan agindualgordeta badaude:
@@ -235,8 +231,8 @@ public class OT1 extends JFrame {
 		x="LA"+(zenb);
 		ParteZenb=x;
 		System.out.println(x);
-
-
+		
+		
 		}
 		else {
 		//lehenendo bezeroaren id sortzeko
@@ -246,6 +242,6 @@ public class OT1 extends JFrame {
 		}
 		return ParteZenb;
 
-		}
+		}*/
 
 } 

@@ -35,6 +35,7 @@ public class Login extends JFrame {
 	private JLabel logoa;
 	private Fitxategi_class f;
 	protected static String izen;
+	protected static String izena;
 	public static String erabiltzailemota="";
 
 	/**
@@ -62,12 +63,11 @@ public class Login extends JFrame {
 		f.kargatuLangilea(erabiltzaile_berria.langileaarray);
 		f.kargatuAutoa(registro1.autoaarrayr);
 		f.kargatuBezeroa(registro1.bezeroarrayr);
-		f.kargatuBezeroa(bezero_sortu.bezeroarray);
 		f.kargatuAutoa(autoa_sortu.autoaarray);
 		f.kargatuBezeroa(autoa_sortu.bezeroarray);
 		f.kargatuPiezak(Piezak.piezakarray);
 		f.kargatuLanak(Lanak.lanakarray);
-
+		f.kargatuOt(OT1.otarray);
 		
 		
 	
@@ -95,6 +95,8 @@ public class Login extends JFrame {
 								dispose();
 								erabiltzailemota=erabiltzaile_berria.langileaarray.get(i).getMota();
 							} else if (erabiltzaile_berria.langileaarray.get(i).getMota().equals("Harrera")) {
+								izena=erabiltzaile_berria.langileaarray.get(i).getIzena();
+								System.out.print(izena);
 								harrera_menua frame = new harrera_menua();
 								frame.setVisible(true);
 								dispose();
@@ -104,6 +106,12 @@ public class Login extends JFrame {
 								frame.setVisible(true);
 								dispose();
 								erabiltzailemota=erabiltzaile_berria.langileaarray.get(i).getMota();
+							}
+							try {
+								erabiltzaile_berria.langileaarray.get(i).log();
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
 							}
 							break;
 
@@ -134,11 +142,6 @@ public class Login extends JFrame {
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode()==KeyEvent.VK_ENTER) {
 					//erabiltzaile_berria.langileaarray
-			
-					
-					
-					
-					
 					for(int i=0;i<erabiltzaile_berria.langileaarray.size();i++) {
 						if (erabiltzaile_berria.langileaarray.get(i).getErabiltzailea().equals(Erabiltzaile_testua.getText())) {
 							if (erabiltzaile_berria.langileaarray.get(i).getPasahitza().equals(new String(Pasahitza.getPassword()))) {
@@ -149,6 +152,8 @@ public class Login extends JFrame {
 									dispose();
 									erabiltzailemota=erabiltzaile_berria.langileaarray.get(i).getMota();
 								} else if (erabiltzaile_berria.langileaarray.get(i).getMota().equals("Harrera")) {
+									izena=erabiltzaile_berria.langileaarray.get(i).getIzena();
+									System.out.print(izena);
 									harrera_menua frame = new harrera_menua();
 									frame.setVisible(true);
 									dispose();
@@ -158,6 +163,12 @@ public class Login extends JFrame {
 									frame.setVisible(true);
 									dispose();
 									erabiltzailemota=erabiltzaile_berria.langileaarray.get(i).getMota();
+								}
+								try {
+									erabiltzaile_berria.langileaarray.get(i).log();
+								} catch (IOException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
 								}
 								break;
 

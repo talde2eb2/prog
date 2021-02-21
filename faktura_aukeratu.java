@@ -51,6 +51,7 @@ public class faktura_aukeratu extends JFrame {
 		contentPane.setLayout(null);
 		
 		list = new JList<String>();
+		
 		list.setBounds(10, 11, 257, 162);
 		contentPane.add(list);
 		

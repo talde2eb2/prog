@@ -41,13 +41,14 @@ public class registro1 extends JFrame implements Serializable {
 	private JLabel Label_autoa;
 	private JScrollPane scrollPane;
 	private JScrollPane scrollPane_1;
-	private int contador;
+	protected static int contador;
 	Fitxategi_class bezero = new Fitxategi_class();
 	Fitxategi_class auto = new Fitxategi_class();
 	protected static DefaultListModel<String> dlm_Nan= new DefaultListModel<String>();
 	protected static DefaultListModel<String> dlm_matrikula= new DefaultListModel<String>();
 	protected static ArrayList<bezero_class> bezeroarrayr = new ArrayList<bezero_class>();
 	protected static ArrayList<autoa_class> autoaarrayr = new ArrayList<autoa_class>();
+
 	
 
 	/**
@@ -220,14 +221,14 @@ public class registro1 extends JFrame implements Serializable {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					dlm_Nan.removeElementAt(contador);
-					bezero_sortu.bezeroarray.remove(contador);
+					registro1.bezeroarrayr.remove(contador);
 					contador=-1;
-					bezero.gordeBezeroa(bezero_sortu.bezeroarray);
+					bezero.gordeBezeroa(registro1.bezeroarrayr);
 					}
 					catch(ArrayIndexOutOfBoundsException si){
 						JOptionPane.showMessageDialog(null,"error");
 				}
-				dlm_Nan.removeElement(contador);
+				
 				
 			}
 		});
@@ -253,7 +254,7 @@ public class registro1 extends JFrame implements Serializable {
 		btn_ezabatu2.setBounds(421, 132, 90, 35);
 		contentPane.add(btn_ezabatu2);
 		
-		if(bezero_sortu.bezeroarray.size()>0) {
+	/*	if(bezero_sortu.bezeroarray.size()>0) {
 			for(int p=0;p<bezero_sortu.bezeroarray.size();p++) {
 				if(dlm_Nan.contains(bezero_sortu.bezeroarray.get(p).getNan())){
 					
@@ -262,7 +263,7 @@ public class registro1 extends JFrame implements Serializable {
 					dlm_Nan.addElement(bezero_sortu.bezeroarray.get(p).getNan());
 				}
 			}
-		}
+		}*/
 		if(registro1.bezeroarrayr.size()>0) {
 			for(int p=0;p<registro1.bezeroarrayr.size();p++) {
 				if(dlm_Nan.contains(registro1.bezeroarrayr.get(p).getNan())){

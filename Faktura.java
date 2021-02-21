@@ -6,11 +6,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
-import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.awt.event.ActionEvent;
+import javax.swing.JList;
 
 
 public class Faktura extends JFrame {
@@ -24,11 +24,6 @@ public class Faktura extends JFrame {
 	protected static int bez=0;
 	protected static int beztotala=0;
 	private JPanel contentPane;
-	private JTextField textField_1;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
 
 	/**
 	 * Launch the application.
@@ -50,20 +45,16 @@ public class Faktura extends JFrame {
 	 * Create the frame.
 	 */
 	public Faktura() {
-		setUndecorated(true);
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 539);
+		setBounds(100, 100, 451, 654);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton_2 = new JButton("Ezabatu");
-		btnNewButton_2.setBounds(319, 226, 90, 35);
-		contentPane.add(btnNewButton_2);
-		
-		JButton btnNewButton_3 = new JButton("????");
-		btnNewButton_3.setBounds(77, 454, 104, 35);
+		JButton btnNewButton_3 = new JButton("Gorde");
+		btnNewButton_3.setBounds(52, 569, 104, 35);
 		contentPane.add(btnNewButton_3);
 		
 		JButton btnNewButton_4 = new JButton("Itzuli");
@@ -74,104 +65,155 @@ public class Faktura extends JFrame {
 				dispose();
 			}
 		});
-		btnNewButton_4.setBounds(191, 454, 104, 35);
+		btnNewButton_4.setBounds(166, 569, 104, 35);
 		contentPane.add(btnNewButton_4);
 		
 		JButton btnNewButton_5 = new JButton("PDF Sortu");
-		btnNewButton_5.setBounds(305, 454, 104, 35);
+		btnNewButton_5.setBounds(282, 569, 104, 35);
 		contentPane.add(btnNewButton_5);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(10, 226, 171, 124);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
-		
-		textField_3 = new JTextField();
-		textField_3.setBounds(191, 226, 104, 125);
-		contentPane.add(textField_3);
-		textField_3.setColumns(10);
-		
-		textField_4 = new JTextField();
-		textField_4.setBounds(191, 362, 104, 35);
-		contentPane.add(textField_4);
-		textField_4.setColumns(10);
-		
-		textField_5 = new JTextField();
-		textField_5.setBounds(191, 408, 104, 35);
-		contentPane.add(textField_5);
-		textField_5.setColumns(10);
-		
-		textField_6 = new JTextField();
-		textField_6.setBounds(305, 408, 104, 35);
-		contentPane.add(textField_6);
-		textField_6.setColumns(10);
-		
 		JLabel lblNewLabel = new JLabel("Totala");
-		lblNewLabel.setBounds(120, 372, 46, 14);
+		lblNewLabel.setBounds(120, 460, 46, 30);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("BEZ-a");
-		lblNewLabel_1.setBounds(120, 418, 46, 14);
+		lblNewLabel_1.setBounds(120, 501, 46, 30);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Totala");
-		lblNewLabel_2.setBounds(305, 383, 86, 14);
+		lblNewLabel_2.setBounds(249, 460, 86, 30);
 		contentPane.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("\u20AC");
-		lblNewLabel_3.setBounds(191, 201, 46, 14);
+		lblNewLabel_3.setBounds(305, 290, 46, 14);
 		contentPane.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("Lanak");
-		lblNewLabel_4.setBounds(10, 201, 46, 14);
+		lblNewLabel_4.setBounds(10, 290, 46, 14);
 		contentPane.add(lblNewLabel_4);
 		
-		JLabel lblNewLabel_5 = new JLabel("OT lan agindua");
-		lblNewLabel_5.setBounds(10, 146, 86, 14);
+		JLabel lblNewLabel_16 = new JLabel(""+LocalDate.now());
+		lblNewLabel_16.setBounds(345, 36, 86, 14);
+		contentPane.add(lblNewLabel_16);
+		
+		JLabel lblNewLabel_5 = new JLabel("Data");
+		lblNewLabel_5.setBounds(249, 36, 86, 14);
 		contentPane.add(lblNewLabel_5);
 		
-		JLabel lblNewLabel_6 = new JLabel("Datuak ibilgailua");
-		lblNewLabel_6.setBounds(10, 121, 86, 14);
+		JLabel lblNewLabel_6 = new JLabel("Faktura zkia");
+		lblNewLabel_6.setBounds(249, 11, 86, 14);
 		contentPane.add(lblNewLabel_6);
 		
-		JLabel lblNewLabel_7 = new JLabel("Datuak bezeroa");
-		lblNewLabel_7.setBounds(10, 96, 86, 14);
+		JLabel lblNewLabel_7 = new JLabel("Auto");
+		lblNewLabel_7.setBounds(345, 11, 86, 14);
 		contentPane.add(lblNewLabel_7);
 		
-		JLabel lblNewLabel_8 = new JLabel("Auto");
-		lblNewLabel_8.setBounds(191, 96, 233, 14);
+		JList<String> list = new JList<String>();
+		list.setBounds(10, 315, 234, 134);
+		contentPane.add(list);
+		
+		JList<String> list_1 = new JList<String>();
+		list_1.setBounds(249, 315, 51, 134);
+		contentPane.add(list_1);
+		
+		JList<String> list_2 = new JList<String>();
+		list_2.setBounds(305, 315, 120, 134);
+		contentPane.add(list_2);
+		
+		JLabel lblNewLabel_8 = new JLabel("n\u00BA");
+		lblNewLabel_8.setBounds(249, 290, 46, 14);
 		contentPane.add(lblNewLabel_8);
 		
-		JLabel lblNewLabel_9 = new JLabel("Auto");
-		lblNewLabel_9.setBounds(191, 121, 233, 14);
+		JLabel lblNewLabel_9 = new JLabel("t");
+		lblNewLabel_9.setBounds(166, 460, 73, 30);
 		contentPane.add(lblNewLabel_9);
 		
-		JLabel lblNewLabel_10 = new JLabel("Auto");
-		lblNewLabel_10.setBounds(191, 146, 233, 14);
+		JLabel lblNewLabel_10 = new JLabel("b");
+		lblNewLabel_10.setBounds(166, 501, 78, 30);
 		contentPane.add(lblNewLabel_10);
 		
-		JLabel lblNewLabel_11 = new JLabel("Datuak rekord autoak");
-		lblNewLabel_11.setBounds(10, 11, 141, 14);
+		JLabel lblNewLabel_11 = new JLabel("New label");
+		lblNewLabel_11.setBounds(249, 501, 86, 30);
 		contentPane.add(lblNewLabel_11);
 		
-		JLabel lblNewLabel_12 = new JLabel("Faktura zkia");
-		lblNewLabel_12.setBounds(10, 36, 141, 14);
+		JLabel lblNewLabel_12 = new JLabel("REKORD AUTORAK S.L.");
+		lblNewLabel_12.setBounds(10, 11, 143, 14);
 		contentPane.add(lblNewLabel_12);
 		
-		JLabel lblNewLabel_13 = new JLabel("Auto");
-		lblNewLabel_13.setBounds(191, 11, 233, 14);
+		JLabel lblNewLabel_13 = new JLabel("Zumarralakarregi kalea, 13");
+		lblNewLabel_13.setBounds(10, 25, 161, 14);
 		contentPane.add(lblNewLabel_13);
 		
-		JLabel lblNewLabel_14 = new JLabel("Auto");
-		lblNewLabel_14.setBounds(191, 36, 233, 14);
+		JLabel lblNewLabel_14 = new JLabel("Tfnoa: 6589003948");
+		lblNewLabel_14.setBounds(10, 39, 143, 14);
 		contentPane.add(lblNewLabel_14);
 		
-		JLabel lblNewLabel_15 = new JLabel("Data");
-		lblNewLabel_15.setBounds(10, 61, 141, 14);
+		JLabel lblNewLabel_15 = new JLabel("NIF: 47839940F");
+		lblNewLabel_15.setBounds(10, 53, 131, 14);
 		contentPane.add(lblNewLabel_15);
 		
-		JLabel lblNewLabel_16 = new JLabel(""+LocalDate.now());
-		lblNewLabel_16.setBounds(191, 61, 233, 14);
-		contentPane.add(lblNewLabel_16);
+		JLabel lblNewLabel_17 = new JLabel("BEZEROAREN DATUAK:");
+		lblNewLabel_17.setBounds(10, 78, 189, 14);
+		contentPane.add(lblNewLabel_17);
+		
+		JLabel lblNewLabel_18 = new JLabel("Izena");
+		lblNewLabel_18.setBounds(30, 96, 80, 14);
+		contentPane.add(lblNewLabel_18);
+		
+		JLabel lblNewLabel_18_1 = new JLabel("Abizena");
+		lblNewLabel_18_1.setBounds(30, 116, 80, 14);
+		contentPane.add(lblNewLabel_18_1);
+		
+		JLabel lblNewLabel_18_2 = new JLabel("NAN/IFK");
+		lblNewLabel_18_2.setBounds(30, 136, 80, 14);
+		contentPane.add(lblNewLabel_18_2);
+		
+		JLabel lblNewLabel_18_3 = new JLabel("Helbidea");
+		lblNewLabel_18_3.setBounds(30, 156, 80, 14);
+		contentPane.add(lblNewLabel_18_3);
+		
+		JLabel lblNewLabel_18_4 = new JLabel("Telefonoa");
+		lblNewLabel_18_4.setBounds(30, 176, 80, 14);
+		contentPane.add(lblNewLabel_18_4);
+		
+		JLabel lblNewLabel_19 = new JLabel("Auto");
+		lblNewLabel_19.setBounds(120, 96, 214, 14);
+		contentPane.add(lblNewLabel_19);
+		
+		JLabel lblNewLabel_19_1 = new JLabel("Auto");
+		lblNewLabel_19_1.setBounds(121, 116, 214, 14);
+		contentPane.add(lblNewLabel_19_1);
+		
+		JLabel lblNewLabel_19_2 = new JLabel("Auto");
+		lblNewLabel_19_2.setBounds(121, 136, 214, 14);
+		contentPane.add(lblNewLabel_19_2);
+		
+		JLabel lblNewLabel_19_3 = new JLabel("Auto");
+		lblNewLabel_19_3.setBounds(120, 156, 214, 14);
+		contentPane.add(lblNewLabel_19_3);
+		
+		JLabel lblNewLabel_19_4 = new JLabel("Auto");
+		lblNewLabel_19_4.setBounds(121, 176, 214, 14);
+		contentPane.add(lblNewLabel_19_4);
+		
+		JLabel lblNewLabel_20 = new JLabel("IBILGAILUAREN DATUAK");
+		lblNewLabel_20.setBounds(10, 201, 189, 14);
+		contentPane.add(lblNewLabel_20);
+		
+		JLabel lblNewLabel_21 = new JLabel("Matrikula");
+		lblNewLabel_21.setBounds(30, 226, 80, 14);
+		contentPane.add(lblNewLabel_21);
+		
+		JLabel lblNewLabel_22 = new JLabel("Modeloa");
+		lblNewLabel_22.setBounds(30, 251, 80, 14);
+		contentPane.add(lblNewLabel_22);
+		
+		JLabel lblNewLabel_23 = new JLabel("Auto");
+		lblNewLabel_23.setBounds(121, 226, 214, 14);
+		contentPane.add(lblNewLabel_23);
+		
+		JLabel lblNewLabel_24 = new JLabel("Auto");
+		lblNewLabel_24.setBounds(120, 251, 214, 14);
+		contentPane.add(lblNewLabel_24);
 	}
 }

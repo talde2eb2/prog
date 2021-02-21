@@ -34,12 +34,10 @@ public class Piezak extends JFrame {
 	private JTextField Hor_testua;
 	private JTextField Pieza_testua;
 	private JTextField PrezioaP_testua;
-	private JTextField Kode_testua;
 	private JLabel lblPieza_b;
 	private JLabel lblPrezioaP;
 	private JLabel lblHorni;
 	private JLabel lblPieza;
-	private JLabel lblKodea;
 	private JList<String> Pieza_list;
 	private JButton btn_gorde;
 	private JButton btn_itzuli;
@@ -92,16 +90,11 @@ public class Piezak extends JFrame {
 		contentPane.add(Pieza_testua);
 		Pieza_testua.setColumns(10);
 		
-		Kode_testua = new JTextField();
-		Kode_testua.setBounds(159, 19, 86, 20);
-		contentPane.add(Kode_testua);
-		Kode_testua.setColumns(10);
-		
 		PrezioaP_testua = new JTextField();
 		PrezioaP_testua.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				if(Hor_testua.getText().length()>0 && Pieza_testua.getText().length()>0 && PrezioaP_testua.getText().length()>0) {
+				if(Hor_testua.getText().length()>0 && Pieza_testua.getText().length()>0) {
 					btn_gorde.setVisible(true);
 				}
 			}
@@ -126,6 +119,7 @@ public class Piezak extends JFrame {
 						Hor_testua.setText(" ");
 						Pieza_testua.setText(" ");
 						PrezioaP_testua.setText(" ");
+						btn_gorde.setVisible(false);
 					}
 						
 				else {
@@ -138,15 +132,12 @@ public class Piezak extends JFrame {
 					JOptionPane.showMessageDialog(null,(String)"Zenbakiak sartu!!","Ez duzu amaitu",
 							JOptionPane.INFORMATION_MESSAGE,null);
 				}
-				/*if(Hor_testua.getText().length()>0 && Pieza_testua.getText().length()>0 && PrezioaP_testua.getText().length()>0) {
-					btn_gorde.setVisible(true);
-				}*/
 				}
 				
 		}});
 		btn_gorde.setBounds(324, 341, 90, 35);
 		contentPane.add(btn_gorde);
-		/*btn_gorde.setVisible(false);*/
+		btn_gorde.setVisible(false);
 		
 		
 		btn_itzuli = new JButton("Itzuli");
@@ -215,10 +206,6 @@ public class Piezak extends JFrame {
 		lblPieza = new JLabel("PIEZA");
 		lblPieza.setBounds(13, 22, 95, 14);
 		contentPane.add(lblPieza);
-		
-		lblKodea = new JLabel("Kodea:");
-		lblKodea.setBounds(118, 22, 41, 14);
-		contentPane.add(lblKodea);
 		
 		Pieza_list = new JList<String>();
 		Pieza_list.addMouseListener(new MouseAdapter() {

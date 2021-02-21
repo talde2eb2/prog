@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
 import java.awt.event.ActionListener;
@@ -26,7 +27,9 @@ public class registro2 extends JFrame {
 	private JButton btn_Itxi;
 	private JList<String> list;
 	private JList<String> list_1;
-
+	protected static String mat;
+	protected static DefaultListModel<String> dlm_Mat= new DefaultListModel<String>();
+	
 	/**
 	 * Launch the application.
 	 */
@@ -90,10 +93,12 @@ public class registro2 extends JFrame {
 			}
 		});
 		list.setBounds(20, 37, 118, 166);
+		list.setModel(dlm_Mat);
 		contentPane.add(list);
 		
 		list_1 = new JList<String>();
 		list_1.setBounds(160, 37, 250, 166);
+		list_1.setModel(OT1.dlm_arazoa);
 		contentPane.add(list_1);
 		
 		btn_Itxi = new JButton("Itxi");
@@ -111,5 +116,28 @@ public class registro2 extends JFrame {
 		});
 		btn_Itxi.setBounds(10, 214, 90, 35);
 		contentPane.add(btn_Itxi);
+		
+		
+		if(autoa_sortu.autoaarray.size()>0) {
+			for(int p=0;p<autoa_sortu.autoaarray.size();p++) {
+				if(dlm_Mat.contains(autoa_sortu.autoaarray.get(p).getMatrikula())){
+					
+				}
+				else {
+					dlm_Mat.addElement(autoa_sortu.autoaarray.get(p).getMatrikula());
+				}
+			}
+		}
+		System.out.print(OT1.otarray.get(0).getArazoa());
+		if(OT1.otarray.size()>0) {
+			for(int p=0;p<OT1.otarray.size();p++) {
+				if(OT1.dlm_arazoa.contains(OT1.otarray.get(p).getArazoa())){
+					
+				}
+				else {
+					OT1.dlm_arazoa.addElement(OT1.otarray.get(p).getArazoa());
+				}
+			}
+		}
 	}
 }

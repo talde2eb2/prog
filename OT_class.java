@@ -1,6 +1,12 @@
-	package Erronka2;
+package Erronka2;
 
-public class OT_class {
+import java.io.Serializable;
+
+public class OT_class implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected String Idlana;
 	protected String Arazoa;
 	protected boolean Eginda;
@@ -11,9 +17,9 @@ OT_class(String Idlana, String Arazoa, boolean Eginda) {
 	this.Eginda = Eginda;
 }
 
-OT_class() {
+OT_class(String string, String autoa) {
 	this.Idlana = "";
-	this.Arazoa = "";
+	this.Arazoa = string;
 	this.Eginda = false;
 }
 

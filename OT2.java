@@ -5,15 +5,21 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class OT2 extends JFrame {
 
@@ -51,7 +57,12 @@ public class OT2 extends JFrame {
 	private JList<String> list_2;
 	private JScrollPane scrollPane;
 	private JScrollPane scrollPane_1;
-
+	protected static DefaultListModel<String> dlm_ara= new DefaultListModel<String>();
+	protected static DefaultListModel<String> dlm_lana= new DefaultListModel<String>();
+	protected static DefaultListModel<String> dlm_pieza= new DefaultListModel<String>();
+	//private String ParteZenb;
+	private int contador;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -124,18 +135,19 @@ public class OT2 extends JFrame {
 		contentPane.add(Label_Langile);
 		
 		Label_ID = new JLabel("Auto");
+		Label_ID = new JLabel(/*partezenb()*/);
 		Label_ID.setBounds(208, 141, 199, 14);
 		contentPane.add(Label_ID);
 		
-		Label_fecha = new JLabel("Auto");
+		Label_fecha = new JLabel(""+LocalDate.now());
 		Label_fecha.setBounds(208, 166, 199, 14);
 		contentPane.add(Label_fecha);
 		
-		Label_autoa = new JLabel("Erabilgailua (vehiculo)");
+		Label_autoa = new JLabel(registro1.autoaarrayr.get(registro1.contador).getMatrikula());
 		Label_autoa.setBounds(208, 40, 199, 14);
 		contentPane.add(Label_autoa);
 		
-		Label_bezeroa = new JLabel("Bezeroa");
+		Label_bezeroa = new JLabel(registro1.autoaarrayr.get(registro1.contador).getBezero());
 		Label_bezeroa.setBounds(208, 65, 199, 14);
 		contentPane.add(Label_bezeroa);
 		
@@ -144,7 +156,7 @@ public class OT2 extends JFrame {
 		contentPane.add(Label_konponketak);
 		
 		Label_OT2 = new JLabel("LAN AGINDUA (OT) 2");
-		Label_OT2.setBounds(74, 33, 112, 28);
+		Label_OT2.setBounds(74, 33, 124, 28);
 		contentPane.add(Label_OT2);
 		
 		Label_eginda = new JLabel("Eginda");
@@ -153,13 +165,40 @@ public class OT2 extends JFrame {
 		
 		list_arazoak = new JList<String>();
 		list_arazoak.setBounds(208, 191, 199, 69);
+		list_arazoak.setModel(dlm_ara);
+		dlm_ara.addElement(OT1.otarray.get(OT1.contador).getArazoa());
 		contentPane.add(list_arazoak);
 		
 		btn_sartu = new JButton("Sartu");
+		btn_sartu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(Konpoketa_testua.getText().equals("")) {
+					
+					JOptionPane.showMessageDialog(null,"error");
+					}
+				else {
+					dlm_lana.addElement(Konpoketa_testua.getText());
+					}
+							
+			}
+		});
 		btn_sartu.setBounds(417, 281, 89, 35);
+		
 		contentPane.add(btn_sartu);
 		
 		btn_sartu2 = new JButton("Sartu");
+		btn_sartu2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(Pieza_testua.getText().equals("")) {
+					
+					JOptionPane.showMessageDialog(null,"error");
+					}
+				else {
+					dlm_pieza.addElement(Pieza_testua.getText());
+					}
+					
+			}
+		});
 		btn_sartu2.setBounds(417, 327, 89, 35);
 		contentPane.add(btn_sartu2);
 		
@@ -185,7 +224,16 @@ public class OT2 extends JFrame {
 		contentPane.add(list_1);
 		
 		list_2 = new JList<String>();
+		list_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				contador=list_2.getSelectedIndex();
+				System.out.println(contador);  
+			}
+		});
 		list_2.setBounds(317, 373, 90, 132);
+		list_2.setModel(dlm_lana);
+		list_2.setModel(dlm_pieza);
 		contentPane.add(list_2);
 		
 		btn_Ezabatu = new JButton("Ezabatu");
@@ -209,5 +257,49 @@ public class OT2 extends JFrame {
 		scrollPane_1 = new JScrollPane(list_2);
 		scrollPane_1.setBounds(317, 373, 89, 132);
 		contentPane.add(scrollPane_1);
+		
+		if(OT1.otarray.size()>0) {
+			for(int p=0;p<OT1.otarray.size();p++) {
+				if(OT1.dlm_arazoa.contains(OT1.otarray.get(p).getArazoa())){
+					
+				}
+				else {
+					OT1.dlm_arazoa.addElement(OT1.otarray.get(p).getArazoa());
+				}
+			}
+		}
 	}
+
+/*public String partezenb() {
+		
+		//ID lan agindua sortu
+		//lan agindualgordeta badaude:
+		if (OT1.otarray.size()>=1) {
+		String x;
+		//arraylistaren azken elementuaren idBezeroa atera eta x bariablean gorde
+		x=OT1.otarray.get(OT1.otarray.size()-1).getIdlana();
+
+		//katearen lehenengo letra kendu (B123)
+		x= x.substring(2, x.length());
+
+		//Zzenbakieei bat gehitu
+		int zenb=Integer.parseInt(x);
+		zenb=zenb+1;
+		System.out.println(zenb);
+		//katea sortu eta baliablean gorde
+		x="LA"+(zenb);
+		ParteZenb=x;
+		System.out.println(x);
+
+
+		}
+		else {
+		//lehenendo bezeroaren id sortzeko
+		String x="LA1";
+		ParteZenb=x;
+		System.out.println(ParteZenb);
+		}
+		return ParteZenb;
+
+		}*/
 }

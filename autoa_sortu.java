@@ -37,7 +37,7 @@ public class autoa_sortu extends JFrame {
 	private JComboBox<String> comboBox;
 	private JButton btn_itzuli;
 	private JButton btn_gorde;
-	private Fitxategi_class f;
+	//private Fitxategi_class f;
 	private boolean matrikulakomp=false;
 	protected static ArrayList<autoa_class> autoaarray = new ArrayList<autoa_class>();
 	protected static DefaultListModel<String> dlm_Nan= new DefaultListModel<String>();
@@ -62,9 +62,7 @@ public class autoa_sortu extends JFrame {
 	public autoa_sortu() {
 
 		// System.out.println(comboBox.getItemCount());
-		f = new Fitxategi_class();
-		f.kargatuBezeroa(bezero_sortu.bezeroarray);
-		f.kargatuBezeroa(registro1.bezeroarrayr);
+		//f.kargatuBezeroa(registro1.bezeroarrayr);
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 370, 308);
@@ -161,28 +159,27 @@ public class autoa_sortu extends JFrame {
 		
 		comboBox = new JComboBox<String>();
 		comboBox.setBounds(10, 154, 163, 35);
+		if(comboBox.getItemCount()>0) {
+			comboBox.removeAllItems();
+		}
+		for(int p=0;registro1.bezeroarrayr.size()>p;p++) {
+				comboBox.addItem(registro1.bezeroarrayr.get(p).getNan());
+		}
 		contentPane.add(comboBox);
 		
 		
 		
-		if(comboBox.getItemCount()>0) {
-			comboBox.removeAllItems();
-		}
 		
-		for(int i=0;bezeroarray.size()>i;i++) {
-			comboBox.addItem(bezeroarray.get(i).getNan());
-	
-		}
-		if(bezero_sortu.bezeroarray.size()>0) {
-			for(int p=0;p<bezero_sortu.bezeroarray.size();p++) {
-				if(dlm_Nan.contains(bezero_sortu.bezeroarray.get(p).getNan())){
+		/*if(registro1.bezeroarrayr.size()>0) {
+			for(int p=0;p<registro1.bezeroarrayr.size();p++) {
+				if(dlm_Nan.contains(registro1.bezeroarrayr.get(p).getNan())){
 					
 				}
 				else {
-					dlm_Nan.addElement(bezero_sortu.bezeroarray.get(p).getNan());
+					dlm_Nan.addElement(registro1.bezeroarrayr.get(p).getNan());
 				}
 			}
-		}
+		}*/
 	}
 	private boolean MatrikulaKonprobatzailea() {//Funtzio hau konprobatuko du ea lehenengo 4 digitoak zenbakiak diren gero - dagoela eta azken 3 digitoak letrak direla
 		Matrikula=Matrikula_testua.getText();
