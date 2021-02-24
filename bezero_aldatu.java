@@ -3,7 +3,6 @@ package Erronka2;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.Serializable;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -13,12 +12,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JList;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-public class bezero_sortu extends JFrame implements Serializable {
+public class bezero_aldatu extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	protected static String Izena="";
 	protected static String Abizena="";
@@ -43,10 +42,12 @@ public class bezero_sortu extends JFrame implements Serializable {
 	private JLabel Label_email;
 	private JLabel Label_telefonoa;
 	private JLabel Label_helbidea;
-	private JButton btn_gorde;
 	private JButton btn_itzuli;
-	
-	
+	private JButton btn_gorde_1;
+	private JList<String> list;
+	private int contador;
+
+
 	/**
 	 * Launch the application.
 	 */
@@ -54,7 +55,7 @@ public class bezero_sortu extends JFrame implements Serializable {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					bezero_sortu frame = new bezero_sortu();
+					bezero_aldatu frame = new bezero_aldatu();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -66,41 +67,14 @@ public class bezero_sortu extends JFrame implements Serializable {
 	/**
 	 * Create the frame.
 	 */
-	public bezero_sortu() {
+	public bezero_aldatu() {
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 376, 300);
+		setBounds(100, 100, 428, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		btn_gorde = new JButton("Gorde");
-		btn_gorde.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (Izena_testua.getText().length()>0 && Nan_testua.getText().length()>0 && Helbide_testua.getText().length()>0 && Telefono_testua.getText().length()>0 &&Helbide_testua.getText().length()>0 && Telefono_testua.getText().length()==9  && KonprobatzaileaTelef()==true && KonprobatzaileaDokumentazioa()==true) {			
-					//JTextField-ren bat ez badago hutsik NAN-a ondo badago sartuta eta telefonoa ere ondo sartuta badago
-					int birpaza = JOptionPane.showConfirmDialog(null, (String)"Sartu dituzu datu guztiak ondo?","Leiho aldaketa",
-					JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,null);
-						if (birpaza==0) {
-								bezero_class bezeroa = new bezero_class(Izena_testua.getText(),Abizena_testua.getText(),Nan_testua.getText(),Integer.parseInt(Telefono_testua.getText()),Helbide_testua.getText(),Email_testua.getText());
-								registro1.bezeroarrayr.add(bezeroa);
-								Fitxategi_class bezero = new Fitxategi_class();
-								bezero.gordeBezeroa(registro1.bezeroarrayr);
-								registro1 frame = new registro1();
-								frame.setVisible(true);
-								dispose();	
-						}
-					}	
-				else {
-					JOptionPane.showMessageDialog(null,(String)"Zerbait falta zaizu!!","Ez duzu amaitu",
-								JOptionPane.INFORMATION_MESSAGE,null);
-					}
-				
-			}
-		});
-		btn_gorde.setBounds(260, 215, 90, 35);
-		contentPane.add(btn_gorde);
 		
 		Label_izena = new JLabel("Izena");
 		Label_izena.setBounds(10, 33, 70, 14);
@@ -167,8 +141,49 @@ public class bezero_sortu extends JFrame implements Serializable {
 				dispose();
 			}
 		});
-		btn_itzuli.setBounds(160, 215, 90, 35);
+		btn_itzuli.setBounds(10, 187, 90, 35);
 		contentPane.add(btn_itzuli);
+		
+		btn_gorde_1 = new JButton("Aldatu");
+		btn_gorde_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (Izena_testua.getText().length()>0 && Nan_testua.getText().length()>0 && Helbide_testua.getText().length()>0 && Telefono_testua.getText().length()>0 &&Helbide_testua.getText().length()>0 && Telefono_testua.getText().length()==9  && KonprobatzaileaTelef()==true && KonprobatzaileaDokumentazioa()==true) {
+					registro1.bezeroarrayr.get(contador).setIzena(Izena_testua.getText());
+					registro1.bezeroarrayr.get(contador).setAbizena(Abizena_testua.getText());
+					registro1.bezeroarrayr.get(contador).setEmail(Email_testua.getText());
+					registro1.bezeroarrayr.get(contador).setTelefonoa(Integer.parseInt(Telefono_testua.getText()));
+					registro1.bezeroarrayr.get(contador).setHelbidea(Helbide_testua.getText());
+					registro1.bezeroarrayr.get(contador).setNan(Nan_testua.getText());
+					Fitxategi_class bezero = new Fitxategi_class();
+					bezero.gordeBezeroa(registro1.bezeroarrayr);
+					
+				}
+				else {
+					JOptionPane.showMessageDialog(null,(String)"Zerbait falta zaizu!!","Ez duzu amaitu",
+								JOptionPane.INFORMATION_MESSAGE,null);
+				}
+			}
+		});
+		btn_gorde_1.setBounds(312, 187, 90, 35);
+		contentPane.add(btn_gorde_1);
+		
+		list = new JList<String>();
+		list.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				contador=list.getSelectedIndex();
+				Izena_testua.setText(registro1.bezeroarrayr.get(contador).getIzena());
+				Abizena_testua.setText(registro1.bezeroarrayr.get(contador).getAbizena());
+				Email_testua.setText(registro1.bezeroarrayr.get(contador).getEmail());
+				Telefono_testua.setText(String.valueOf(registro1.bezeroarrayr.get(contador).getTelefonoa()));
+				Helbide_testua.setText(registro1.bezeroarrayr.get(contador).getHelbidea());
+				Nan_testua.setText(registro1.bezeroarrayr.get(contador).getNan());
+				
+			}
+		});
+		list.setModel(registro1.dlm_Nan);
+		list.setBounds(276, 29, 126, 147);
+		contentPane.add(list);
 	}
 	private boolean KonprobatzaileaTelef() {//Funtzio hau Konprobatuko du telefono JTextField-ean bakarrik zenbakiak egongo direla
         boolean emaitza;
@@ -238,7 +253,7 @@ public class bezero_sortu extends JFrame implements Serializable {
 	        else {
 	        	x=false;
 	        }
-			sum=Integer.parseInt(bezero_sortu.NAN.substring(0,8));
+			sum=Integer.parseInt(bezero_aldatu.NAN.substring(0,8));
 			resto=sum % 23;
 			Letra_array=letrak[resto];
 			if(Letra==Letra_array && x==true) {
@@ -314,7 +329,7 @@ public class bezero_sortu extends JFrame implements Serializable {
 			else {
 				x=false;
 			}
-			sum=Integer.parseInt(bezero_sortu.NIE.substring(1,8));
+			sum=Integer.parseInt(bezero_aldatu.NIE.substring(1,8));
 			resto=sum % 23;
 			Letra_array=letrak[resto];
 			if(Letra==Letra_array && x==true) {

@@ -9,8 +9,17 @@ public abstract class PiezaLana_class implements Serializable{
 	private static final long serialVersionUID = 1L;
 	protected String Izena;
 	protected int Prezioa;
+	protected int kant;
 	
- PiezaLana_class() {
+ public int getKant() {
+		return kant;
+	}
+
+	public void setKant(int kant) {
+		this.kant = kant;
+	}
+
+PiezaLana_class() {
 	 this.Izena = "";
 	 this.Prezioa = 0;
  }

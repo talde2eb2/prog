@@ -8,6 +8,11 @@ import java.util.Date;
 
 public class langilea_class extends pertsona_class implements Serializable {
 
+	@Override
+	public String toString() {
+		return   erabiltzailea + " " + pasahitza + " " + mota + super.getIzena() + " " + super.getAbizena() + " " + super.getNan();
+	}
+
 	/**
 	 * 
 	 */

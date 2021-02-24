@@ -36,6 +36,11 @@ public class bezero_class extends pertsona_class implements Serializable {
 	}
 
 
+	@Override
+	public String toString() {
+		return super.getIzena() + " " + super.getAbizena() + " " +  email + " " + telefonoa + " " + helbidea + " " +super.getNan();
+	}
+
 	public String getHelbidea() {
 		return helbidea;
 	}

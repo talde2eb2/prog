@@ -18,7 +18,11 @@ public String getBezero() {
 public void setBezero(String bezero) {
 	this.bezero = bezero;
 }
-autoa_class(){
+@Override
+public String toString() {
+	return  marka + " " + modelo + " " + matrikula;
+}
+autoa_class(String marka, String modelo, String matrikula){
 	this.marka="";
 	this.modelo="";
 	this.matrikula="";

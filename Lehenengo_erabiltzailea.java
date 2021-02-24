@@ -1,29 +1,20 @@
 package Erronka2;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.DefaultListModel;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
 
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-import java.awt.event.ActionEvent;
+public class Lehenengo_erabiltzailea extends JFrame {
 
-public class admin extends JFrame {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	protected static String Izena="";
 	protected static String Abizena="";
@@ -44,17 +35,8 @@ public class admin extends JFrame {
 	private JTextField Dokumentazio_testua;
 	private JTextField Pasahitza1_testua;
 	private JTextField Pasahitza2_testua;
-	private JComboBox<String> Mota_box;
 	private boolean nankomp=false;
-	private JLabel label_erabiltzailea;
-	private JList<String> list;
-	private JButton btn_ezabatu;
-	private JButton btn_atzera;
-	private JButton btn_aldatu;
-	private int contador;
-	Fitxategi_class langile = new Fitxategi_class();
-	protected static DefaultListModel<String> dlm_erabiltzailea= new DefaultListModel<String>();
-	protected static ArrayList<langilea_class> langileaarray = new ArrayList<langilea_class>();
+	
 	/**
 	 * Launch the application.
 	 */
@@ -62,7 +44,7 @@ public class admin extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					admin frame = new admin();
+					Lehenengo_erabiltzailea frame = new Lehenengo_erabiltzailea();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -74,28 +56,10 @@ public class admin extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public admin() {
-		//ixteko programa eta minizatzeko botoiak kentzeko erabiltzen da 
+	public Lehenengo_erabiltzailea() {
 		setUndecorated(true);
-		
-		//langileak fitxategitik kagatzen ditu arrayra 
-		
-
-		//hemen langileen erabiltzaileak arraytik dlmra jarri
-		if(langileaarray.size()>0) {
-			for(int p=0;p<langileaarray.size();p++) {
-				if(dlm_erabiltzailea.contains(langileaarray.get(p).getErabiltzailea())){
-					
-				}
-				else {
-					dlm_erabiltzailea.addElement(langileaarray.get(p).getErabiltzailea());
-				}
-				
-			}
-		}
-		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 634, 448);
+		setBounds(100, 100, 450, 365);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -121,12 +85,12 @@ public class admin extends JFrame {
 		btn_sortu = new JButton("Sortu");
 		btn_sortu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(langileaarray.size()>0) {
+				if(admin.langileaarray.size()>0) {
 					nankomp=false;
 					
-					for(int i=0;i<langileaarray.size() && nankomp==false ;i++) {	
+					for(int i=0;i<admin.langileaarray.size() && nankomp==false ;i++) {	
 					
-						if(Erabiltzaile_testua.getText().equals(langileaarray.get(i).getErabiltzailea())) {
+						if(Erabiltzaile_testua.getText().equals(admin.langileaarray.get(i).getErabiltzailea())) {
 						nankomp=true;		
 					
 					}}
@@ -138,18 +102,15 @@ public class admin extends JFrame {
 					JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,null);
 						try {
 					if (birpaza==0) {
-								langilea_class langilea= new langilea_class(Izena_testua.getText(),Abizena_testua.getText(),Dokumentazio_testua.getText(),Erabiltzaile_testua.getText(),Pasahitza1_testua.getText(),Mota_box.getSelectedItem().toString());
-								langileaarray.add(langilea);
+								langilea_class langilea= new langilea_class(Izena_testua.getText(),Abizena_testua.getText(),Dokumentazio_testua.getText(),Erabiltzaile_testua.getText(),Pasahitza1_testua.getText(),"Admin");
+								admin.langileaarray.add(langilea);
 								Fitxategi_class langile = new Fitxategi_class();
-								langile.gordeLangileak(langileaarray);
-								dlm_erabiltzailea.addElement(langilea.getErabiltzailea());
-								Erabiltzaile_testua.setText("");
-								Izena_testua.setText("");
-								Abizena_testua.setText("");
-								Dokumentazio_testua.setText("");
-								Pasahitza1_testua.setText("");
-								Pasahitza2_testua.setText("");
+								langile.gordeLangileak(admin.langileaarray);
+								Login frame = new Login();
+								frame.setVisible(true);
+								dispose();
 							}
+								
 				else {
 					JOptionPane.showMessageDialog(null,(String)"Zerbait falta zaizu!!","Ez duzu amaitu",
 							JOptionPane.INFORMATION_MESSAGE,null);
@@ -161,32 +122,23 @@ public class admin extends JFrame {
 				}
 				}
 			}});
-		btn_sortu.setBounds(10, 331, 90, 35);
+		btn_sortu.setBounds(333, 301, 90, 35);
 		contentPane.add(btn_sortu);
 		
-		JLabel Label_mota = new JLabel("Mota");
-		Label_mota.setBounds(10, 157, 119, 14);
-		contentPane.add(Label_mota);
-		
-		Mota_box = new JComboBox<String>();
-		Mota_box.addItem("Mekanikaria");
-		Mota_box.addItem("Harrera");
-		Mota_box.addItem("Admin");
-		Mota_box.setBounds(139, 154, 158, 20);
-		contentPane.add(Mota_box);
+
 		
 		Abizena_testua = new JTextField();
-		Abizena_testua.setBounds(139, 234, 158, 20);
+		Abizena_testua.setBounds(139, 200, 158, 20);
 		contentPane.add(Abizena_testua);
 		Abizena_testua.setColumns(10);
 		
 		Izena_testua = new JTextField();
-		Izena_testua.setBounds(139, 194, 158, 20);
+		Izena_testua.setBounds(139, 163, 158, 20);
 		contentPane.add(Izena_testua);
 		Izena_testua.setColumns(10);
 		
 		Dokumentazio_testua = new JTextField();
-		Dokumentazio_testua.setBounds(139, 274, 158, 20);
+		Dokumentazio_testua.setBounds(139, 241, 158, 20);
 		contentPane.add(Dokumentazio_testua);
 		Dokumentazio_testua.setColumns(10);
 		
@@ -194,15 +146,15 @@ public class admin extends JFrame {
 		Dokumentazio_box.addItem("NAN");
 		Dokumentazio_box.addItem("NIE");
 		Dokumentazio_box.addItem("IFK");
-		Dokumentazio_box.setBounds(10, 274, 119, 20);
+		Dokumentazio_box.setBounds(10, 241, 119, 20);
 		contentPane.add(Dokumentazio_box);
 		
 		JLabel Label_abizena = new JLabel("Abizena");
-		Label_abizena.setBounds(10, 237, 119, 14);
+		Label_abizena.setBounds(10, 203, 119, 14);
 		contentPane.add(Label_abizena);
 		
 		JLabel Label_izena = new JLabel("Izena");
-		Label_izena.setBounds(10, 197, 119, 14);
+		Label_izena.setBounds(10, 166, 119, 14);
 		contentPane.add(Label_izena);
 		
 		Pasahitza1_testua = new JTextField();
@@ -214,97 +166,6 @@ public class admin extends JFrame {
 		Pasahitza2_testua.setBounds(139, 114, 158, 20);
 		contentPane.add(Pasahitza2_testua);
 		Pasahitza2_testua.setColumns(10);
-		
-		label_erabiltzailea = new JLabel("Erabiltzaileak");
-		label_erabiltzailea.setBounds(307, 11, 116, 32);
-		contentPane.add(label_erabiltzailea);
-		
-		list = new JList<String>();
-		list.setModel(dlm_erabiltzailea);
-		list.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				btn_ezabatu.setVisible(true);
-				btn_aldatu.setVisible(true);		
-				contador=list.getSelectedIndex();
-				Erabiltzaile_testua.setText(langileaarray.get(contador).getErabiltzailea());
-				Izena_testua.setText(langileaarray.get(contador).getIzena());
-				Abizena_testua.setText(langileaarray.get(contador).getAbizena());
-				Pasahitza1_testua.setText(langileaarray.get(contador).getPasahitza());
-				Pasahitza2_testua.setText(langileaarray.get(contador).getPasahitza());
-				Dokumentazio_testua.setText(langileaarray.get(contador).getNan());
-				
-			}
-		});
-		
-		list.setBounds(307, 36, 287, 258);
-		contentPane.add(list);
-		
-		btn_ezabatu = new JButton("Ezabatu");
-		btn_ezabatu.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try {
-					dlm_erabiltzailea.removeElementAt(contador);	
-					langileaarray.remove(contador);
-					contador=-1;
-					langile.gordeLangileak(langileaarray);
-					Erabiltzaile_testua.setText("");
-					Izena_testua.setText("");
-					Abizena_testua.setText("");
-					Dokumentazio_testua.setText("");
-					Pasahitza1_testua.setText("");
-					Pasahitza2_testua.setText("");
-					}
-					catch(ArrayIndexOutOfBoundsException si){
-						JOptionPane.showMessageDialog(null,"error");
-					}
-				
-			}
-		});
-		btn_ezabatu.setBounds(110, 331, 90, 35);
-		contentPane.add(btn_ezabatu);
-		btn_ezabatu.setVisible(false);
-		
-		btn_atzera = new JButton("Itzuli");
-		btn_atzera.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Admin_menu frame = new Admin_menu();
-				frame.setVisible(true);
-				dispose();				
-				
-			}
-		});
-		btn_atzera.setBounds(504, 331, 90, 35);
-		contentPane.add(btn_atzera);
-		
-		btn_aldatu = new JButton("Aldatu");
-		btn_aldatu.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			if(Erabiltzaile_testua.getText().length()>0 && Izena_testua.getText().length()>0 && Abizena_testua.getText().length()>0 && Pasahitza1_testua.getText().length()>0 && Pasahitza2_testua.getText().length()>0 && Dokumentazio_testua.getText().length()>0 && Pasahitza1_testua.getText().equals(Pasahitza2_testua.getText()) && KonprobatzaileaDokumentazioa()==true) {
-				langileaarray.get(contador).setErabiltzailea(Erabiltzaile_testua.getText());
-				langileaarray.get(contador).setIzena(Izena_testua.getText());
-				langileaarray.get(contador).setAbizena(Abizena_testua.getText());
-				langileaarray.get(contador).setPasahitza(Pasahitza1_testua.getText());
-				langileaarray.get(contador).setPasahitza(Pasahitza2_testua.getText());
-				langileaarray.get(contador).setNan(Dokumentazio_testua.getText());
-				Fitxategi_class langile = new Fitxategi_class();
-				langile.gordeLangileak(langileaarray);
-				Erabiltzaile_testua.setText("");
-				Izena_testua.setText("");
-				Abizena_testua.setText("");
-				Dokumentazio_testua.setText("");
-				Pasahitza1_testua.setText("");
-				Pasahitza2_testua.setText("");
-			}
-			else {
-				JOptionPane.showMessageDialog(null,(String)"Zerbait falta zaizu!!","Ez duzu amaitu",
-						JOptionPane.INFORMATION_MESSAGE,null);
-				}
-			}
-		});
-		btn_aldatu.setBounds(210, 331, 90, 35);
-		contentPane.add(btn_aldatu);
-		btn_aldatu.setVisible(false);
 	}
 	private boolean KonprobatzaileaDokumentazioa() {//Funtzio hau konprobatuko du combo box-an zein akueratu den eta Faktura6-an JLabel-a aldatuko du 
 		boolean Konpr=true; 
@@ -363,7 +224,7 @@ public class admin extends JFrame {
 	        else {
 	        	x=false;
 	        }
-			sum=Integer.parseInt(admin.NAN.substring(0,8));
+			sum=Integer.parseInt(Lehenengo_erabiltzailea.NAN.substring(0,8));
 			resto=sum % 23;
 			Letra_array=letrak[resto];
 			if(Letra==Letra_array && x==true) {
@@ -439,7 +300,7 @@ public class admin extends JFrame {
 			else {
 				x=false;
 			}
-			sum=Integer.parseInt(admin.NIE.substring(1,8));
+			sum=Integer.parseInt(Lehenengo_erabiltzailea.NIE.substring(1,8));
 			resto=sum % 23;
 			Letra_array=letrak[resto];
 			if(Letra==Letra_array && x==true) {
@@ -452,6 +313,6 @@ public class admin extends JFrame {
 		else {
 			x=false;
 		}
-		return x;	
+		return x;
 	}
 }

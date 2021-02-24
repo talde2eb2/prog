@@ -9,6 +9,7 @@ public class Lana_class extends PiezaLana_class implements Serializable{
 	private static final long serialVersionUID = 1L;
 	protected String Langile;
 	
+	
  Lana_class(){
 	 this.Langile = "";
  }

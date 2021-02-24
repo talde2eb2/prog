@@ -18,11 +18,9 @@ public class menu extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JButton btn_Harrera;
-	private JButton btn_Faktura;
 	private JButton btn_mekanikaria;
 	private JButton btn_Admin;
 	private JButton btn_Itxi;
-	private JButton btn_PiezaLana;
 	private JLabel Label_Kaixo;
 
 	/**
@@ -48,7 +46,7 @@ public class menu extends JFrame {
 		
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 593, 194);
+		setBounds(100, 100, 593, 137);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -62,19 +60,8 @@ public class menu extends JFrame {
 				dispose();
 			}
 		});
-		btn_Harrera.setBounds(10, 69, 130, 35);
+		btn_Harrera.setBounds(10, 49, 130, 35);
 		contentPane.add(btn_Harrera);
-		
-		btn_Faktura = new JButton("Faktura");
-		btn_Faktura.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				faktura_aukeratu frame = new faktura_aukeratu();
-				frame.setVisible(true);
-				dispose();
-			}
-		});
-		btn_Faktura.setBounds(434, 69, 130, 35);
-		contentPane.add(btn_Faktura);
 		
 		btn_mekanikaria = new JButton("Mekanikoa");
 		btn_mekanikaria.addActionListener(new ActionListener() {
@@ -84,18 +71,18 @@ public class menu extends JFrame {
 				dispose();
 			}
 		});
-		btn_mekanikaria.setBounds(150, 69, 130, 35);
+		btn_mekanikaria.setBounds(150, 49, 130, 35);
 		contentPane.add(btn_mekanikaria);
 		
 		btn_Admin = new JButton("Administradorea");
 		btn_Admin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				admin frame = new admin();
+				Admin_menu frame = new Admin_menu();
 				frame.setVisible(true);
 				dispose();
 			}
 		});
-		btn_Admin.setBounds(290, 69, 130, 35);
+		btn_Admin.setBounds(290, 49, 130, 35);
 		contentPane.add(btn_Admin);
 		
 		btn_Itxi = new JButton("Itxi");
@@ -104,23 +91,12 @@ public class menu extends JFrame {
 				System.exit(0);
 			}
 		});
-		btn_Itxi.setBounds(434, 130, 130, 35);
+		btn_Itxi.setBounds(430, 49, 130, 35);
 		contentPane.add(btn_Itxi);
 		
 		Label_Kaixo = new JLabel("");
 		Label_Kaixo.setText("Kaixo "+Login.izen);
-		Label_Kaixo.setBounds(205, 11, 190, 47);
+		Label_Kaixo.setBounds(230, 11, 190, 47);
 		contentPane.add(Label_Kaixo);
-		
-		btn_PiezaLana = new JButton("Pieza/Lana");
-		btn_PiezaLana.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				pieza_lana frame = new pieza_lana();
-				frame.setVisible(true);
-				dispose();
-			}
-		});
-		btn_PiezaLana.setBounds(10, 130, 130, 35);
-		contentPane.add(btn_PiezaLana);
 	}
 }

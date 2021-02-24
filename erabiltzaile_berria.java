@@ -104,10 +104,6 @@ public class erabiltzaile_berria extends JFrame {
 					
 					
 				}
-			
-				
-				
-				
 				if(nankomp==false&&Erabiltzaile_testua.getText().length()>0 && Izena_testua.getText().length()>0 && Abizena_testua.getText().length()>0 && Dokumentazio_testua.getText().length()>0 && Pasahitza1_testua.getText().length()>0 && Pasahitza2_testua.getText().length()>0 && Pasahitza1_testua.getText().equals(Pasahitza2_testua.getText())&& KonprobatzaileaDokumentazioa()==true) {
 					int birpaza = JOptionPane.showConfirmDialog(null, (String)"Sartu dituzu datu guztiak ondo?","Leiho aldaketa",
 					JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,null);

@@ -89,7 +89,7 @@ public class harrera_menua extends JFrame {
 		btn_faktura.setBounds(185, 49, 165, 35);
 		contentPane.add(btn_faktura);
 		
-		Label_izena = new JLabel("Kaixo \u201CErabiltzailearen izena\u201D");
+		Label_izena = new JLabel("Kaixo" + " " +Login.izena);
 		Label_izena.setBounds(10, 11, 285, 27);
 		contentPane.add(Label_izena);
 	}

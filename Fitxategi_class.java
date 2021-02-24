@@ -161,10 +161,10 @@ public class Fitxategi_class implements Serializable{
 			fis = new FileInputStream ("Langileak.txt");
 			ois=new ObjectInputStream(fis);
 			obj = (langilea_class)ois.readObject();
-			erabiltzaile_berria.langileaarray.add((langilea_class) obj);
+			admin.langileaarray.add((langilea_class) obj);
 			while(obj != null) {
 				obj = (langilea_class)ois.readObject();
-				erabiltzaile_berria.langileaarray.add((langilea_class) obj);
+				admin.langileaarray.add((langilea_class) obj);
 			}
 			ois.close();
 			}catch(IOException | ClassNotFoundException ioe) {
@@ -181,7 +181,7 @@ public class Fitxategi_class implements Serializable{
 			obj = (OT_class)ois.readObject();
 			OT1.otarray.add((OT_class) obj);
 			while(obj != null) {
-				obj = (langilea_class)ois.readObject();
+				obj = (OT_class)ois.readObject();
 				OT1.otarray.add((OT_class) obj);
 			}
 			ois.close();

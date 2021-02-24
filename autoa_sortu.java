@@ -12,9 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.awt.event.ActionEvent;
-
 import javax.swing.JComboBox;
 
 public class autoa_sortu extends JFrame {
@@ -37,10 +35,10 @@ public class autoa_sortu extends JFrame {
 	private JComboBox<String> comboBox;
 	private JButton btn_itzuli;
 	private JButton btn_gorde;
+	//private Fitxategi_class f;
 	private boolean matrikulakomp=false;
-	protected static ArrayList<autoa_class> autoaarray = new ArrayList<autoa_class>();
 	protected static DefaultListModel<String> dlm_Nan= new DefaultListModel<String>();
-	protected static ArrayList<bezero_class> bezeroarray = new ArrayList<bezero_class>();
+
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -61,6 +59,7 @@ public class autoa_sortu extends JFrame {
 	public autoa_sortu() {
 
 		// System.out.println(comboBox.getItemCount());
+		//f.kargatuBezeroa(registro1.bezeroarrayr);
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 370, 308);
@@ -105,9 +104,9 @@ public class autoa_sortu extends JFrame {
 		btn_gorde.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 							matrikulakomp=false;
-		if(autoaarray.size()>0) {
-			for(int i=0;i<autoaarray.size() && matrikulakomp==false ;i++) {
-				if(Matrikula_testua.getText().equals(autoaarray.get(i).getMatrikula())) {
+		if(registro1.autoaarrayr.size()>0) {
+			for(int i=0;i<registro1.autoaarrayr.size() && matrikulakomp==false ;i++) {
+				if(Matrikula_testua.getText().equals(registro1.autoaarrayr.get(i).getMatrikula())) {
 					matrikulakomp=true;	
 				}
 					
@@ -120,9 +119,9 @@ public class autoa_sortu extends JFrame {
 								if (birpaza==0) {
 										
 										autoa_class autoa =new autoa_class(Marka_testua.getText(),Modeloa_testua.getText(),Matrikula_testua.getText(),comboBox.getSelectedItem().toString());
-										autoaarray.add(autoa);
+										registro1.autoaarrayr.add(autoa);
 										Fitxategi_class auto = new Fitxategi_class();
-										auto.gordeAutoa(autoaarray);
+										auto.gordeAutoa(registro1.autoaarrayr);
 										registro1 frame = new registro1();
 										frame.setVisible(true);
 										dispose();	
@@ -157,29 +156,27 @@ public class autoa_sortu extends JFrame {
 		
 		comboBox = new JComboBox<String>();
 		comboBox.setBounds(10, 154, 163, 35);
+		if(comboBox.getItemCount()>0) {
+			comboBox.removeAllItems();
+		}
+		for(int p=0;registro1.bezeroarrayr.size()>p;p++) {
+				comboBox.addItem(registro1.bezeroarrayr.get(p).getNan());
+		}
 		contentPane.add(comboBox);
 		
 		
 		
-		if(comboBox.getItemCount()>0) {
-			comboBox.removeAllItems();
-			System.out.println("piusfeisef");
-		}
 		
-		for(int i=0;bezeroarray.size()>i;i++) {
-			comboBox.addItem(bezeroarray.get(i).getNan());
-	
-		}
-		if(bezero_sortu.bezeroarray.size()>0) {
-			for(int p=0;p<bezero_sortu.bezeroarray.size();p++) {
-				if(dlm_Nan.contains(bezero_sortu.bezeroarray.get(p).getNan())){
+		/*if(registro1.bezeroarrayr.size()>0) {
+			for(int p=0;p<registro1.bezeroarrayr.size();p++) {
+				if(dlm_Nan.contains(registro1.bezeroarrayr.get(p).getNan())){
 					
 				}
 				else {
-					dlm_Nan.addElement(bezero_sortu.bezeroarray.get(p).getNan());
+					dlm_Nan.addElement(registro1.bezeroarrayr.get(p).getNan());
 				}
 			}
-		}
+		}*/
 	}
 	private boolean MatrikulaKonprobatzailea() {//Funtzio hau konprobatuko du ea lehenengo 4 digitoak zenbakiak diren gero - dagoela eta azken 3 digitoak letrak direla
 		Matrikula=Matrikula_testua.getText();

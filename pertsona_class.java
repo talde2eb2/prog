@@ -20,6 +20,7 @@ pertsona_class(){
 }
 
 pertsona_class(String izena,String abizena,String nan){
+	
 	this.izena=izena;
 	this.abizena=abizena;
 	this.nan=nan;

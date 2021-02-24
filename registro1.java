@@ -9,6 +9,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.io.Serializable;
@@ -29,7 +30,7 @@ public class registro1 extends JFrame implements Serializable {
 	private JTextField bilatu_testua2;
 	private JList<String> list;
 	private JList<String> list_1;
-	private JButton btn_bilatu;
+	protected static JButton btn_bilatu;
 	private JButton btn_sortu;
 	private JButton btn_bilatu2;
 	private JButton btn_sortu2;
@@ -37,14 +38,18 @@ public class registro1 extends JFrame implements Serializable {
 	private JButton btn_atzera_1;
 	private JButton btn_OT;
 	private JLabel Label_nan;
-	private JLabel Label_autoa;
+	protected static JLabel Label_autoa;
 	private JScrollPane scrollPane;
 	private JScrollPane scrollPane_1;
-	private Fitxategi_class f;
+	protected static int contador;
+	Fitxategi_class bezero = new Fitxategi_class();
+	Fitxategi_class auto = new Fitxategi_class();
 	protected static DefaultListModel<String> dlm_Nan= new DefaultListModel<String>();
 	protected static DefaultListModel<String> dlm_matrikula= new DefaultListModel<String>();
 	protected static ArrayList<bezero_class> bezeroarrayr = new ArrayList<bezero_class>();
 	protected static ArrayList<autoa_class> autoaarrayr = new ArrayList<autoa_class>();
+	private JButton btn_aldatu1;
+
 	
 
 	/**
@@ -67,8 +72,7 @@ public class registro1 extends JFrame implements Serializable {
 	 * Create the frame.
 	 */
 	public registro1() {
-		f = new Fitxategi_class();
-		f.kargatuBezeroa(bezero_sortu.bezeroarray);
+		dlm_matrikula.removeAllElements();
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 540, 420);
@@ -173,6 +177,12 @@ public class registro1 extends JFrame implements Serializable {
 		contentPane.add(Label_autoa);
 		
 		list = new JList<String>();
+		list.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				contador=list.getSelectedIndex();
+			}
+		});
 		list.setModel(dlm_Nan);
 		list.setBounds(10, 86, 136, 222);
 		contentPane.add(list);
@@ -182,6 +192,7 @@ public class registro1 extends JFrame implements Serializable {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				btn_OT.setVisible(true);
+				contador=list_1.getSelectedIndex();
 			}
 		});
 		list_1.setModel(dlm_matrikula);
@@ -207,16 +218,63 @@ public class registro1 extends JFrame implements Serializable {
 		scrollPane_1.setBounds(272, 86, 141, 222);
 		contentPane.add(scrollPane_1);
 		
-		if(bezero_sortu.bezeroarray.size()>0) {
-			for(int p=0;p<bezero_sortu.bezeroarray.size();p++) {
-				if(dlm_Nan.contains(bezero_sortu.bezeroarray.get(p).getNan())){
-					
-				}
-				else {
-					dlm_Nan.addElement(bezero_sortu.bezeroarray.get(p).getNan());
-				}
+		JButton btn_ezabatu1 = new JButton("Ezabatu");
+		btn_ezabatu1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					dlm_Nan.removeElementAt(contador);
+					registro1.bezeroarrayr.remove(contador);
+					contador=-1;
+					bezero.gordeBezeroa(registro1.bezeroarrayr);
+					}
+					catch(ArrayIndexOutOfBoundsException si){
+						JOptionPane.showMessageDialog(null,"error");
+				}			
 			}
-		}
+		});
+		btn_ezabatu1.setBounds(172, 132, 90, 35);
+		contentPane.add(btn_ezabatu1);
+		
+		JButton btn_ezabatu2 = new JButton("Ezabatu");
+		btn_ezabatu2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					try {
+					dlm_matrikula.removeElementAt(contador);
+					registro1.autoaarrayr.remove(contador);
+					contador=-1;
+					auto.gordeAutoa(registro1.autoaarrayr);
+					
+					}
+					catch(ArrayIndexOutOfBoundsException si){
+						JOptionPane.showMessageDialog(null,"error");
+				}	
+			}
+		});
+		btn_ezabatu2.setBounds(421, 132, 90, 35);
+		contentPane.add(btn_ezabatu2);
+		
+		JButton btn_aldatu2 = new JButton("Aldatu");
+		btn_aldatu2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				autoa_aldatu frame = new autoa_aldatu();
+				frame.setVisible(true);
+				dispose();
+			}
+		});
+		btn_aldatu2.setBounds(421, 178, 90, 35);
+		contentPane.add(btn_aldatu2);
+		
+		btn_aldatu1 = new JButton("Aldatu");
+		btn_aldatu1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				bezero_aldatu frame = new bezero_aldatu();
+				frame.setVisible(true);
+				dispose();
+			}
+		});
+		btn_aldatu1.setBounds(172, 178, 90, 35);
+		contentPane.add(btn_aldatu1);
+
 		if(registro1.bezeroarrayr.size()>0) {
 			for(int p=0;p<registro1.bezeroarrayr.size();p++) {
 				if(dlm_Nan.contains(registro1.bezeroarrayr.get(p).getNan())){
@@ -224,16 +282,6 @@ public class registro1 extends JFrame implements Serializable {
 				}
 				else {
 					dlm_Nan.addElement(registro1.bezeroarrayr.get(p).getNan());
-				}
-			}
-		}
-		if(autoa_sortu.autoaarray.size()>0) {
-			for(int p=0;p<autoa_sortu.autoaarray.size();p++) {
-				if(dlm_matrikula.contains(autoa_sortu.autoaarray.get(p).getMatrikula())){
-					
-				}
-				else {
-					dlm_matrikula.addElement(autoa_sortu.autoaarray.get(p).getMatrikula());
 				}
 			}
 		}
