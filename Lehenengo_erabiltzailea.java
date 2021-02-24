@@ -1,9 +1,14 @@
 package Erronka2;
 
 import java.awt.EventQueue;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -35,6 +40,7 @@ public class Lehenengo_erabiltzailea extends JFrame {
 	private JTextField Dokumentazio_testua;
 	private JTextField Pasahitza1_testua;
 	private JTextField Pasahitza2_testua;
+	private JLabel logoa;
 	private boolean nankomp=false;
 	
 	/**
@@ -59,26 +65,26 @@ public class Lehenengo_erabiltzailea extends JFrame {
 	public Lehenengo_erabiltzailea() {
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 365);
+		setBounds(100, 100, 617, 409);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel Label_erabiltzailea = new JLabel("Erabiltzailea");
-		Label_erabiltzailea.setBounds(10, 37, 119, 14);
+		Label_erabiltzailea.setBounds(10, 214, 119, 14);
 		contentPane.add(Label_erabiltzailea);
 		
 		JLabel Label_pasahitza = new JLabel("Pasahitza");
-		Label_pasahitza.setBounds(10, 77, 119, 14);
+		Label_pasahitza.setBounds(10, 245, 119, 14);
 		contentPane.add(Label_pasahitza);
 		
 		JLabel Label_pasahitza2 = new JLabel("Pasahitza Errepikatu");
-		Label_pasahitza2.setBounds(10, 117, 119, 17);
+		Label_pasahitza2.setBounds(10, 275, 119, 17);
 		contentPane.add(Label_pasahitza2);
 		
 		Erabiltzaile_testua = new JTextField();
-		Erabiltzaile_testua.setBounds(139, 34, 158, 20);
+		Erabiltzaile_testua.setBounds(139, 211, 158, 20);
 		contentPane.add(Erabiltzaile_testua);
 		Erabiltzaile_testua.setColumns(10);
 		
@@ -97,10 +103,11 @@ public class Lehenengo_erabiltzailea extends JFrame {
 					
 					
 				}
-				if(nankomp==false&&Erabiltzaile_testua.getText().length()>0 && Izena_testua.getText().length()>0 && Abizena_testua.getText().length()>0 && Dokumentazio_testua.getText().length()>0 && Pasahitza1_testua.getText().length()>0 && Pasahitza2_testua.getText().length()>0 && Pasahitza1_testua.getText().equals(Pasahitza2_testua.getText())&& KonprobatzaileaDokumentazioa()==true) {
+				
+					if(nankomp==false&&Erabiltzaile_testua.getText().length()>0 && Izena_testua.getText().length()>0 && Abizena_testua.getText().length()>0 && Dokumentazio_testua.getText().length()>0 && Pasahitza1_testua.getText().length()>0 && Pasahitza2_testua.getText().length()>0 && Pasahitza1_testua.getText().equals(Pasahitza2_testua.getText())&& KonprobatzaileaDokumentazioa()==true) {
 					int birpaza = JOptionPane.showConfirmDialog(null, (String)"Sartu dituzu datu guztiak ondo?","Leiho aldaketa",
 					JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,null);
-						try {
+						
 					if (birpaza==0) {
 								langilea_class langilea= new langilea_class(Izena_testua.getText(),Abizena_testua.getText(),Dokumentazio_testua.getText(),Erabiltzaile_testua.getText(),Pasahitza1_testua.getText(),"Admin");
 								admin.langileaarray.add(langilea);
@@ -114,31 +121,26 @@ public class Lehenengo_erabiltzailea extends JFrame {
 				else {
 					JOptionPane.showMessageDialog(null,(String)"Zerbait falta zaizu!!","Ez duzu amaitu",
 							JOptionPane.INFORMATION_MESSAGE,null);
-					}}
-			
-				catch(Exception e1) {
-					JOptionPane.showMessageDialog(null,(String)"txarto dago","Ez duzu amaitu",
-					JOptionPane.INFORMATION_MESSAGE,null);
+					
 				}
-				}
-			}});
-		btn_sortu.setBounds(333, 301, 90, 35);
+		}}});
+		btn_sortu.setBounds(501, 324, 90, 35);
 		contentPane.add(btn_sortu);
 		
 
 		
 		Abizena_testua = new JTextField();
-		Abizena_testua.setBounds(139, 200, 158, 20);
+		Abizena_testua.setBounds(433, 242, 158, 20);
 		contentPane.add(Abizena_testua);
 		Abizena_testua.setColumns(10);
 		
 		Izena_testua = new JTextField();
-		Izena_testua.setBounds(139, 163, 158, 20);
+		Izena_testua.setBounds(433, 211, 158, 20);
 		contentPane.add(Izena_testua);
 		Izena_testua.setColumns(10);
 		
 		Dokumentazio_testua = new JTextField();
-		Dokumentazio_testua.setBounds(139, 241, 158, 20);
+		Dokumentazio_testua.setBounds(433, 273, 158, 20);
 		contentPane.add(Dokumentazio_testua);
 		Dokumentazio_testua.setColumns(10);
 		
@@ -146,26 +148,39 @@ public class Lehenengo_erabiltzailea extends JFrame {
 		Dokumentazio_box.addItem("NAN");
 		Dokumentazio_box.addItem("NIE");
 		Dokumentazio_box.addItem("IFK");
-		Dokumentazio_box.setBounds(10, 241, 119, 20);
+		Dokumentazio_box.setBounds(304, 273, 119, 20);
 		contentPane.add(Dokumentazio_box);
 		
 		JLabel Label_abizena = new JLabel("Abizena");
-		Label_abizena.setBounds(10, 203, 119, 14);
+		Label_abizena.setBounds(304, 245, 119, 14);
 		contentPane.add(Label_abizena);
 		
 		JLabel Label_izena = new JLabel("Izena");
-		Label_izena.setBounds(10, 166, 119, 14);
+		Label_izena.setBounds(304, 214, 119, 14);
 		contentPane.add(Label_izena);
 		
 		Pasahitza1_testua = new JTextField();
-		Pasahitza1_testua.setBounds(139, 74, 158, 20);
+		Pasahitza1_testua.setBounds(139, 242, 158, 20);
 		contentPane.add(Pasahitza1_testua);
 		Pasahitza1_testua.setColumns(10);
 		
 		Pasahitza2_testua = new JTextField();
-		Pasahitza2_testua.setBounds(139, 114, 158, 20);
+		Pasahitza2_testua.setBounds(139, 273, 158, 20);
 		contentPane.add(Pasahitza2_testua);
 		Pasahitza2_testua.setColumns(10);
+		
+		//Hau da ikusteko argazkia
+		logoa = new JLabel();
+		File sourceimage = new File("fotos/logoRA_psd.png");
+		Image image;
+		try {
+		image = ImageIO.read(sourceimage);
+		logoa = new JLabel(new ImageIcon(image));
+		} catch (IOException e1) {
+		logoa.setVisible(false);
+		}
+		logoa.setBounds(72, 44, 450, 114);
+		contentPane.add(logoa);
 	}
 	private boolean KonprobatzaileaDokumentazioa() {//Funtzio hau konprobatuko du combo box-an zein akueratu den eta Faktura6-an JLabel-a aldatuko du 
 		boolean Konpr=true; 

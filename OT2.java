@@ -58,13 +58,14 @@ public class OT2 extends JFrame {
 	private JList<String> list_2_1;
 	private JScrollPane scrollPane;
 	private JScrollPane scrollPane_1;
+	private JScrollPane scrollPane_2;
+	private JScrollPane scrollPane_3;
 	protected static DefaultListModel<String> dlm_lana= new DefaultListModel<String>();
 	protected static DefaultListModel<String> dlm_pieza= new DefaultListModel<String>();
 	protected static DefaultListModel<String> dlm_lanakant= new DefaultListModel<String>();
 	protected static DefaultListModel<String> dlm_piezakant= new DefaultListModel<String>();
 	protected static ArrayList<Pieza_class> otarrayp = new ArrayList<Pieza_class>();
 	protected static ArrayList<Lana_class> otarrayl = new ArrayList<Lana_class>();
-	protected static ArrayList<OT_class> ot1 = new ArrayList<OT_class>();
 	//private String ParteZenb;
 	private int contador;
 	//private int pos=0;
@@ -112,6 +113,7 @@ public class OT2 extends JFrame {
 						for(int y = 0; y < Lana_box.getItemCount();y++) {
 							if (dlm_lana.getElementAt(x).equals(Lanak.lanakarray.get(y).getIzena())) {
 								otarrayl.add(Lanak.lanakarray.get(y));
+								otarrayl.get(otarrayl.size()-1).setKant(Integer.parseInt(dlm_lanakant.getElementAt(x)));
 							}
 						}
 					x++;
@@ -121,21 +123,22 @@ public class OT2 extends JFrame {
 						for(int y = 0; y < Pieza_box.getItemCount();y++) {
 							if (dlm_pieza.getElementAt(x).equals(Piezak.piezakarray.get(y).getIzena())) {
 								otarrayp.add(Piezak.piezakarray.get(y));
+								otarrayp.get(otarrayp.size()-1).setKant(Integer.parseInt(dlm_piezakant.getElementAt(x)));
 							}
 						}
 					x++;
 					}	
 					int pos=-1;
 					boolean xd=false;
-					for(int i=0;i<ot1.size()&&xd==false;i++) {
-						if(ot1.get(i).getMat().equals(registro2.dlm_Mat.getElementAt(registro2.contador))) {
+					for(int i=0;i<OT1.otarray.size()&&xd==false;i++) {
+						if(OT1.otarray.get(i).getMat().equals(registro2.dlm_Mat.getElementAt(registro2.contador))) {
 						 pos=i;
 						xd=true;	
 						}
 					}
 					if(pos!=-1) {
-					ot1.get(pos).setOtarray_lana(otarrayl);
-					ot1.get(pos).setOtarray_pieza(otarrayp);
+						OT1.otarray.get(pos).setOtarray_lana(otarrayl);
+						OT1.otarray.get(pos).setOtarray_pieza(otarrayp);
 					}
 					Fitxategi_class ot1 = new Fitxategi_class();
 					ot1.GordeOt(OT1.otarray);			
@@ -163,7 +166,7 @@ public class OT2 extends JFrame {
 		contentPane.add(btn_itzuli);
 		
 		rdbtn_BaiEz = new JRadioButton("BAI/EZ");
-		rdbtn_BaiEz.setBounds(424, 440, 82, 23);
+		rdbtn_BaiEz.setBounds(424, 482, 82, 23);
 		contentPane.add(rdbtn_BaiEz);
 		
 		Label_Konponketa = new JLabel("Konponketa");
@@ -216,7 +219,7 @@ public class OT2 extends JFrame {
 		contentPane.add(Label_OT2);
 		
 		Label_eginda = new JLabel("Eginda");
-		Label_eginda.setBounds(424, 419, 46, 14);
+		Label_eginda.setBounds(424, 461, 46, 14);
 		contentPane.add(Label_eginda);
 		
 		
@@ -352,10 +355,17 @@ public class OT2 extends JFrame {
 		list_2_1.setBounds(317, 516, 87, 130);
 		contentPane.add(list_2_1);
 		
+		scrollPane_3 = new JScrollPane(list_1_1);
+		scrollPane_3.setBounds(317, 516, 89, 130);
+		contentPane.add(scrollPane_3);
+		
+		scrollPane_2 = new JScrollPane(list_2_1);
+		scrollPane_2.setBounds(106, 516, 199, 130);
+		contentPane.add(scrollPane_2);
+		
 		if(OT1.otarray.size()>0) {
 			for(int p=0;p<OT1.otarray.size();p++) {
 				if(OT1.dlm_arazoa.contains(OT1.otarray.get(p).getArazoa())){
-					
 				}
 				else {
 					OT1.dlm_arazoa.addElement(OT1.otarray.get(p).getArazoa());

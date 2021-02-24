@@ -6,11 +6,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class faktura_aukeratu extends JFrame {
 
@@ -22,6 +25,7 @@ public class faktura_aukeratu extends JFrame {
 	protected static JList<String> list;
 	private JButton btn_aukeratu;
 	private JButton btn_itzuli;
+	protected static int contador;
 	protected static DefaultListModel<String> dlm_fak= new DefaultListModel<String>();
 	
 
@@ -55,6 +59,12 @@ public class faktura_aukeratu extends JFrame {
 		contentPane.setLayout(null);
 		
 		list = new JList<String>();
+		list.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				contador=list.getSelectedIndex();
+			}
+		});
 		list.setModel(dlm_fak);
 		for(int i = 0;i < OT1.otarray.size();i++) {
 			if(OT1.otarray.get(i).getEginda()==false) {
@@ -67,9 +77,14 @@ public class faktura_aukeratu extends JFrame {
 		btn_aukeratu = new JButton("Aukeratu");
 		btn_aukeratu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
 				Faktura frame = new Faktura();
 				frame.setVisible(true);
 				dispose();
+				}catch(IndexOutOfBoundsException e1) {
+					JOptionPane.showMessageDialog(null,(String)"txarto dago","Ez duzu amaitu",
+							JOptionPane.INFORMATION_MESSAGE,null);
+				}
 			}
 		});
 		btn_aukeratu.setBounds(307, 11, 90, 35);

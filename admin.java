@@ -227,7 +227,6 @@ public class admin extends JFrame {
 				btn_ezabatu.setVisible(true);
 				btn_aldatu.setVisible(true);		
 				contador=list.getSelectedIndex();
-				Erabiltzaile_testua.setText(langileaarray.get(contador).getErabiltzailea());
 				Izena_testua.setText(langileaarray.get(contador).getIzena());
 				Abizena_testua.setText(langileaarray.get(contador).getAbizena());
 				Pasahitza1_testua.setText(langileaarray.get(contador).getPasahitza());
@@ -281,7 +280,6 @@ public class admin extends JFrame {
 		btn_aldatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			if(Erabiltzaile_testua.getText().length()>0 && Izena_testua.getText().length()>0 && Abizena_testua.getText().length()>0 && Pasahitza1_testua.getText().length()>0 && Pasahitza2_testua.getText().length()>0 && Dokumentazio_testua.getText().length()>0 && Pasahitza1_testua.getText().equals(Pasahitza2_testua.getText()) && KonprobatzaileaDokumentazioa()==true) {
-				langileaarray.get(contador).setErabiltzailea(Erabiltzaile_testua.getText());
 				langileaarray.get(contador).setIzena(Izena_testua.getText());
 				langileaarray.get(contador).setAbizena(Abizena_testua.getText());
 				langileaarray.get(contador).setPasahitza(Pasahitza1_testua.getText());

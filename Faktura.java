@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
@@ -23,11 +24,52 @@ public class Faktura extends JFrame {
 	protected static int totala=0;
 	protected static int bez=0;
 	protected static int beztotala=0;
-	private JLabel lblIzen;
+	private JButton btn_Gorde;
+	private JButton btn_Itzuli;
+	private JButton btn_PDF;
 	private JButton btnEuskera;
 	private JButton btnEspañol;
+	private JLabel Label_Total;
+	private JLabel Label_Bez;
+	private JLabel lblGuztira;
+	private JLabel Label_€;
+	private JLabel Label_Lanak;
+	private JLabel Label_Fecha;
+	private JLabel Label_Data;
+	private JLabel Label_nº;
+	private JLabel Label_Dirua;
+	private JLabel Label_Bezdirua;
+	private JLabel Label_datuak1;
+	private JLabel Label_datuak2;
+	private JLabel Label_datuak3;
+	private JLabel Label_datuak4;
+	private JLabel Label_datuak5;
+	private JLabel Label_BDatuak;
+	private JLabel Label_Izena;
+	private JLabel Label_Abizena;
+	private JLabel Label_Nan;
+	private JLabel Label_Helbidea;
+	private JLabel Label_Telefonoa;
+	private JLabel lblIzen;
+	private JLabel Label_Abizen;
+	private JLabel Label_nan;
+	private JLabel Label_Helbide;
+	private JLabel Label_telefono;
+	private JLabel Label_IDatuak;
+	private JLabel Label_Matrikula;
+	private JLabel Label_Modeloa;
+	private JLabel Label_Mat;
+	private JLabel Label_modelo;
+	private JList<String> list;
+	private JList<String> list_1;
+	private JList<String> list_2;
+	protected static DefaultListModel<String> dlm_piezalana= new DefaultListModel<String>();
+	protected static DefaultListModel<String> dlm_kant= new DefaultListModel<String>();
+	protected static DefaultListModel<String> dlm_prezioa= new DefaultListModel<String>();
 	private JPanel contentPane;
-
+	private String prezio_has;
+	private String BEZ1;
+	private String emaitza;
 	/**
 	 * Launch the application.
 	 */
@@ -48,7 +90,7 @@ public class Faktura extends JFrame {
 	 * Create the frame.
 	 */
 	public Faktura() {
-		
+		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 451, 654);
 		contentPane = new JPanel();
@@ -56,118 +98,121 @@ public class Faktura extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton_3 = new JButton("Gorde");
-		btnNewButton_3.setBounds(52, 569, 104, 35);
-		contentPane.add(btnNewButton_3);
+		btn_Gorde = new JButton("Gorde");
+		btn_Gorde.setBounds(52, 569, 104, 35);
+		contentPane.add(btn_Gorde);
 		
-		JButton btnNewButton_4 = new JButton("Itzuli");
-		btnNewButton_4.addActionListener(new ActionListener() {
+		btn_Itzuli = new JButton("Itzuli");
+		btn_Itzuli.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				faktura_aukeratu frame = new faktura_aukeratu();
 				frame.setVisible(true);
 				dispose();
 			}
 		});
-		btnNewButton_4.setBounds(166, 569, 104, 35);
-		contentPane.add(btnNewButton_4);
+		btn_Itzuli.setBounds(166, 569, 104, 35);
+		contentPane.add(btn_Itzuli);
 		
-		JButton btnNewButton_5 = new JButton("PDF Sortu");
-		btnNewButton_5.setBounds(282, 569, 104, 35);
-		contentPane.add(btnNewButton_5);
+		btn_PDF = new JButton("PDF Sortu");
+		btn_PDF.setBounds(282, 569, 104, 35);
+		contentPane.add(btn_PDF);
 		
-		JLabel lblNewLabel = new JLabel("Totala");
-		lblNewLabel.setBounds(120, 460, 46, 30);
-		contentPane.add(lblNewLabel);
+		Label_Total = new JLabel("");
+		Label_Total.setBounds(120, 460, 46, 30);
+		contentPane.add(Label_Total);
 		
-		JLabel lblNewLabel_1 = new JLabel("BEZ-a");
-		lblNewLabel_1.setBounds(120, 501, 46, 30);
-		contentPane.add(lblNewLabel_1);
+		Label_Bez = new JLabel("BEZ-a");
+		Label_Bez.setBounds(120, 487, 46, 30);
+		contentPane.add(Label_Bez);
 		
-		JLabel lblNewLabel_2 = new JLabel("Totala");
-		lblNewLabel_2.setBounds(249, 460, 86, 30);
-		contentPane.add(lblNewLabel_2);
+		lblGuztira = new JLabel("Guztira");
+		lblGuztira.setBounds(120, 528, 86, 30);
+		contentPane.add(lblGuztira);
 		
-		JLabel lblNewLabel_3 = new JLabel("\u20AC");
-		lblNewLabel_3.setBounds(305, 290, 46, 14);
-		contentPane.add(lblNewLabel_3);
+		Label_€ = new JLabel("\u20AC");
+		Label_€.setBounds(305, 290, 46, 14);
+		contentPane.add(Label_€);
 		
-		JLabel lblNewLabel_4 = new JLabel("Lanak");
-		lblNewLabel_4.setBounds(10, 290, 46, 14);
-		contentPane.add(lblNewLabel_4);
+		Label_Lanak = new JLabel("Lanak");
+		Label_Lanak.setBounds(10, 290, 46, 14);
+		contentPane.add(Label_Lanak);
 		
-		JLabel lblNewLabel_16 = new JLabel(""+LocalDate.now());
-		lblNewLabel_16.setBounds(339, 53, 86, 14);
-		contentPane.add(lblNewLabel_16);
+		Label_Fecha = new JLabel(""+LocalDate.now());
+		Label_Fecha.setBounds(339, 53, 86, 14);
+		contentPane.add(Label_Fecha);
 		
-		JLabel lblNewLabel_5 = new JLabel("Data");
-		lblNewLabel_5.setBounds(249, 53, 86, 14);
-		contentPane.add(lblNewLabel_5);
+		Label_Data = new JLabel("Data");
+		Label_Data.setBounds(249, 53, 86, 14);
+		contentPane.add(Label_Data);
 		
-		JList<String> list = new JList<String>();
+		list = new JList<String>();
+		list.setModel(dlm_piezalana);
 		list.setBounds(10, 315, 234, 134);
 		contentPane.add(list);
 		
-		JList<String> list_1 = new JList<String>();
+		list_1 = new JList<String>();
+		list_1.setModel(dlm_kant);
 		list_1.setBounds(249, 315, 51, 134);
 		contentPane.add(list_1);
 		
-		JList<String> list_2 = new JList<String>();
+		list_2 = new JList<String>();
+		list_2.setModel(dlm_prezioa);
 		list_2.setBounds(305, 315, 120, 134);
 		contentPane.add(list_2);
 		
-		JLabel lblNewLabel_8 = new JLabel("n\u00BA");
-		lblNewLabel_8.setBounds(249, 290, 46, 14);
-		contentPane.add(lblNewLabel_8);
+		Label_nº = new JLabel("n\u00BA");
+		Label_nº.setBounds(249, 290, 46, 14);
+		contentPane.add(Label_nº);
 		
-		JLabel lblNewLabel_9 = new JLabel("t");
-		lblNewLabel_9.setBounds(166, 460, 73, 30);
-		contentPane.add(lblNewLabel_9);
+		Label_Dirua = new JLabel("t");
+		Label_Dirua.setBounds(166, 460, 73, 30);
+		contentPane.add(Label_Dirua);
 		
-		JLabel lblNewLabel_10 = new JLabel("b");
-		lblNewLabel_10.setBounds(166, 501, 78, 30);
-		contentPane.add(lblNewLabel_10);
+		Label_Bezdirua = new JLabel("b");
+		Label_Bezdirua.setBounds(161, 487, 78, 30);
+		contentPane.add(Label_Bezdirua);
 		
-		JLabel lblNewLabel_11 = new JLabel("New label");
-		lblNewLabel_11.setBounds(249, 501, 86, 30);
-		contentPane.add(lblNewLabel_11);
+		Label_datuak1 = new JLabel("New label");
+		Label_datuak1.setBounds(166, 528, 86, 30);
+		contentPane.add(Label_datuak1);
 		
-		JLabel lblNewLabel_12 = new JLabel("REKORD AUTORAK S.L.");
-		lblNewLabel_12.setBounds(10, 11, 143, 14);
-		contentPane.add(lblNewLabel_12);
+		Label_datuak2 = new JLabel("REKORD AUTORAK S.L.");
+		Label_datuak2.setBounds(10, 11, 143, 14);
+		contentPane.add(Label_datuak2);
 		
-		JLabel lblNewLabel_13 = new JLabel("Zumarralakarregi kalea, 13");
-		lblNewLabel_13.setBounds(10, 25, 161, 14);
-		contentPane.add(lblNewLabel_13);
+		Label_datuak3 = new JLabel("Zumarralakarregi kalea, 13");
+		Label_datuak3.setBounds(10, 25, 161, 14);
+		contentPane.add(Label_datuak3);
 		
-		JLabel lblNewLabel_14 = new JLabel("Tfnoa: 6589003948");
-		lblNewLabel_14.setBounds(10, 39, 143, 14);
-		contentPane.add(lblNewLabel_14);
+		Label_datuak4 = new JLabel("Tfnoa: 6589003948");
+		Label_datuak4.setBounds(10, 39, 143, 14);
+		contentPane.add(Label_datuak4);
 		
-		JLabel lblNewLabel_15 = new JLabel("NIF: 47839940F");
-		lblNewLabel_15.setBounds(10, 53, 131, 14);
-		contentPane.add(lblNewLabel_15);
+		Label_datuak5 = new JLabel("NIF: 47839940F");
+		Label_datuak5.setBounds(10, 53, 131, 14);
+		contentPane.add(Label_datuak5);
 		
-		JLabel Label_BDatuak = new JLabel("BEZEROAREN DATUAK:");
+		Label_BDatuak = new JLabel("BEZEROAREN DATUAK:");
 		Label_BDatuak.setBounds(10, 78, 189, 14);
 		contentPane.add(Label_BDatuak);
 		
-		JLabel Label_Izena = new JLabel("Izena");
+		Label_Izena = new JLabel("Izena");
 		Label_Izena.setBounds(30, 96, 80, 14);
 		contentPane.add(Label_Izena);
 		
-		JLabel Label_Abizena = new JLabel("Abizena");
+		Label_Abizena = new JLabel("Abizena");
 		Label_Abizena.setBounds(30, 116, 80, 14);
 		contentPane.add(Label_Abizena);
 		
-		JLabel Label_Nan = new JLabel("NAN/IFK");
+		Label_Nan = new JLabel("NAN/IFK");
 		Label_Nan.setBounds(30, 136, 80, 14);
 		contentPane.add(Label_Nan);
 		
-		JLabel Label_Helbidea = new JLabel("Helbidea");
+		Label_Helbidea = new JLabel("Helbidea");
 		Label_Helbidea.setBounds(30, 156, 80, 14);
 		contentPane.add(Label_Helbidea);
 		
-		JLabel Label_Telefonoa = new JLabel("Telefonoa");
+		Label_Telefonoa = new JLabel("Telefonoa");
 		Label_Telefonoa.setBounds(30, 176, 80, 14);
 		contentPane.add(Label_Telefonoa);
 		
@@ -176,64 +221,107 @@ public class Faktura extends JFrame {
 		lblIzen.setBounds(120, 96, 214, 14);
 		contentPane.add(lblIzen);
 		
-		JLabel lblNewLabel_19_1 = new JLabel("Auto");
-		lblNewLabel_19_1.setBounds(121, 116, 214, 14);
-		contentPane.add(lblNewLabel_19_1);
+		Label_Abizen = new JLabel("");
+		Label_Abizen.setBounds(121, 116, 214, 14);
+		contentPane.add(Label_Abizen);
 		
-		JLabel lblNewLabel_19_2 = new JLabel("Auto");
-		lblNewLabel_19_2.setBounds(121, 136, 214, 14);
-		contentPane.add(lblNewLabel_19_2);
+		Label_nan = new JLabel("");
+		Label_nan.setBounds(121, 136, 214, 14);
+		contentPane.add(Label_nan);
 		
-		JLabel lblNewLabel_19_3 = new JLabel("Auto");
-		lblNewLabel_19_3.setBounds(120, 156, 214, 14);
-		contentPane.add(lblNewLabel_19_3);
+		Label_Helbide = new JLabel("");
+		Label_Helbide.setBounds(120, 156, 214, 14);
+		contentPane.add(Label_Helbide);
 		
-		JLabel lblNewLabel_19_4 = new JLabel("Auto");
-		lblNewLabel_19_4.setBounds(121, 176, 214, 14);
-		contentPane.add(lblNewLabel_19_4);
+		Label_telefono = new JLabel("");
+		Label_telefono.setBounds(121, 176, 214, 14);
+		contentPane.add(Label_telefono);
 		
-		JLabel lblNewLabel_20 = new JLabel("IBILGAILUAREN DATUAK");
-		lblNewLabel_20.setBounds(10, 201, 189, 14);
-		contentPane.add(lblNewLabel_20);
+		Label_IDatuak = new JLabel("IBILGAILUAREN DATUAK");
+		Label_IDatuak.setBounds(10, 201, 189, 14);
+		contentPane.add(Label_IDatuak);
 		
-		JLabel lblNewLabel_21 = new JLabel("Matrikula");
-		lblNewLabel_21.setBounds(30, 226, 80, 14);
-		contentPane.add(lblNewLabel_21);
+		Label_Matrikula = new JLabel("Matrikula");
+		Label_Matrikula.setBounds(30, 226, 80, 14);
+		contentPane.add(Label_Matrikula);
 		
-		JLabel lblNewLabel_22 = new JLabel("Modeloa");
-		lblNewLabel_22.setBounds(30, 251, 80, 14);
-		contentPane.add(lblNewLabel_22);
+		Label_Modeloa = new JLabel("Modeloa");
+		Label_Modeloa.setBounds(30, 251, 80, 14);
+		contentPane.add(Label_Modeloa);
 		
-		JLabel lblNewLabel_23 = new JLabel("Auto");
-		lblNewLabel_23.setBounds(121, 226, 214, 14);
-		contentPane.add(lblNewLabel_23);
+		Label_Mat = new JLabel("");
+		Label_Mat.setBounds(121, 226, 214, 14);
+		contentPane.add(Label_Mat);
 		
-		JLabel lblNewLabel_24 = new JLabel("Auto");
-		lblNewLabel_24.setBounds(120, 251, 214, 14);
-		contentPane.add(lblNewLabel_24);
+		Label_modelo = new JLabel("");
+		Label_modelo.setBounds(120, 251, 214, 14);
+		contentPane.add(Label_modelo);
 		
 		btnEspañol = new JButton("Espa\u00F1ol");
-		btnEspañol.setBounds(237, 7, 89, 23);
+		btnEspañol.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				btnEuskera.setVisible(true);
+				btnEspañol.setVisible(false);
+			}
+		});
+		btnEspañol.setBounds(237, 7, 89, 35);
 		contentPane.add(btnEspañol);
 		
 		btnEuskera = new JButton("Euskera");
 		btnEuskera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				btnEspañol.setVisible(true);
+				btnEuskera.setVisible(false);
 			}
 		});
-		btnEuskera.setBounds(336, 7, 89, 23);
+		btnEuskera.setBounds(336, 7, 89, 35);
 		contentPane.add(btnEuskera);
 		btnEuskera.setVisible(false);
-		
 		for(int i = 0;i<registro1.autoaarrayr.size();i++) {
 			if (faktura_aukeratu.dlm_fak.getElementAt(faktura_aukeratu.list.getSelectedIndex()).equals(registro1.autoaarrayr.get(i).getMatrikula())) {
 			for(int a = 0;a<registro1.bezeroarrayr.size();a++) {
-				if(registro1.autoaarrayr.get(a).getBezero().equals(registro1.bezeroarrayr.get(a).getNan())) {
+				if(registro1.autoaarrayr.get(i).getBezero().equals(registro1.bezeroarrayr.get(a).getNan())) {
 					lblIzen.setText(registro1.bezeroarrayr.get(a).getIzena());
-					System.out.println("hola");
+					Label_Abizen.setText(registro1.bezeroarrayr.get(a).getAbizena());
+					Label_nan.setText(registro1.bezeroarrayr.get(a).getNan());
+					Label_Helbide.setText(registro1.bezeroarrayr.get(a).getHelbidea());
+					Label_telefono.setText(String.valueOf(registro1.bezeroarrayr.get(a).getTelefonoa()));
+					Label_Mat.setText(registro1.autoaarrayr.get(i).getMatrikula());
+					Label_modelo.setText(registro1.autoaarrayr.get(i).getModelo());
 				}
 			}
 		}
 	}
+	for(int a = 0;a<OT1.otarray.get(faktura_aukeratu.contador).getOtarray_pieza().size();a++) {
+		dlm_piezalana.addElement(OT1.otarray.get(0).getOtarray_pieza().get(a).getIzena());
+		dlm_kant.addElement(String.valueOf(OT1.otarray.get(0).getOtarray_pieza().get(a).getKant()));
+		dlm_prezioa.addElement(String.valueOf(OT1.otarray.get(0).getOtarray_pieza().get(a).getPrezioa()));
+	}
+	for(int a = 0;a<OT1.otarray.get(faktura_aukeratu.contador).getOtarray_lana().size();a++) {
+		dlm_piezalana.addElement(OT1.otarray.get(0).getOtarray_lana().get(a).getIzena());
+		dlm_kant.addElement(String.valueOf(OT1.otarray.get(0).getOtarray_lana().get(a).getKant()));
+		dlm_prezioa.addElement(String.valueOf(OT1.otarray.get(0).getOtarray_lana().get(a).getPrezioa()));
+	}
+	kalkulua();
+	Label_Dirua.setText(prezio_has);
+	Label_Bezdirua.setText(BEZ1);
+	Label_datuak1.setText(emaitza);
+	
+	}
+	public void kalkulua() {
+		double prez_has=0;
+		double BEZ=0;
+		double totala=0;
+		for(int i=0;i<dlm_piezalana.getSize();i++) {
+			prez_has=prez_has+(Double.parseDouble(dlm_kant.getElementAt(i))*Double.parseDouble(dlm_prezioa.getElementAt(i)));
+		}
+		BEZ=prez_has*0.21;
+		totala=prez_has+BEZ;
+		prezio_has=String.valueOf(prez_has);
+		BEZ1=String.valueOf(BEZ);
+		emaitza=String.valueOf(totala);
 	}
 }
+	

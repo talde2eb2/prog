@@ -61,7 +61,7 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
-		
+		//Hau kargatzen ditu fitxategi guztiak
 		f = new Fitxategi_class();
 		f.kargatuLangilea(admin.langileaarray);
 		f.kargatuAutoa(registro1.autoaarrayr);
@@ -80,13 +80,15 @@ public class Login extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
+		
 		btn_sartu = new JButton("Sartu");
 		btn_sartu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//Bukle hau bilatzen du langile array batean eta badago langile hori sartzen da
 				for(int i=0;i<admin.langileaarray.size();i++) {
 					if (admin.langileaarray.get(i).getErabiltzailea().equals(Erabiltzaile_testua.getText())) {
 						if (admin.langileaarray.get(i).getPasahitza().equals(new String(Pasahitza.getPassword()))) {
+							//honek ikusten du ea erabiltzailea zer mota den
 							if (admin.langileaarray.get(i).getMota().equals("Admin")) {
 								izen=Erabiltzaile_testua.getText();
 								izena=admin.langileaarray.get(i).getIzena();
@@ -216,6 +218,7 @@ public class Login extends JFrame {
 		contentPane.add(Erabiltzaile_testua);
 		Erabiltzaile_testua.setColumns(10);
 
+		//Hau da ikusteko argazkia
 		logoa = new JLabel();
 		File sourceimage = new File("fotos/logoRA_psd.png");
 		Image image;
@@ -234,7 +237,6 @@ public class Login extends JFrame {
 				Label_erabiltzailea.setText("Usuario");
 				Label_Pasahitza.setText("Contraseña");
 				btn_sartu.setText("Entrar");
-				registro1.btn_bilatu.setText("Buscar");
 				btnEspañol.setVisible(false);
 				btnEuskera.setVisible(true);
 			}

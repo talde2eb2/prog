@@ -82,7 +82,7 @@ public class OT1 extends JFrame {
 					Fitxategi_class ot1 = new Fitxategi_class();
 					ot1.GordeOt(otarray);			
 			
-					faktura_aukeratu frame = new faktura_aukeratu();
+					harrera_menua frame = new harrera_menua();
 					frame.setVisible(true);
 					dispose();}
 					catch(ArrayIndexOutOfBoundsException e2) {
